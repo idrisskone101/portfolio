@@ -10,11 +10,13 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="w-full bg-main text-white lg:w-1/6 lg:flex lg:flex-col lg:items-center lg:justify-center">
+    <nav className="w-full bg-main text-white lg:w-3/12 lg:flex lg:flex-col lg:items-center lg:justify-center mlg:h-fit">
       <div className="flex mlg:flex-row-reverse justify-between mx-5 items-center py-3">
         <HamburgerMenu toggleMenu={toggleMenu} isOpen={isOpen} />
         <div className="">
-          <h2 className="lg:mb-5">Idriss Kone</h2>
+          <h2 className="lg:mb-5 font-bold text-2xl tracking-widest ">
+            IDRISS
+          </h2>
           <ul className="mlg:hidden">
             <li className="mb-2">Home</li>
             <li className="mb-2">About</li>
