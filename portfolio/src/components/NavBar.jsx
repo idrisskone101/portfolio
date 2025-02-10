@@ -6,7 +6,7 @@ const HamburgerMenu = ({ toggleMenu, isOpen }) => {
   return (
     <button
       onClick={toggleMenu}
-      className="lg:hidden flex flex-col justify-center items-center w-8 h-8"
+      className="flex flex-col justify-center items-center w-8 h-8 lg:hidden"
     >
       <span
         className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${
@@ -35,11 +35,11 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="w-full bg-main text-white lg:w-1/6 lg:flex lg:flex-col lg:items-center lg:justify-center">
-      <div className="flex mlg:flex-row-reverse justify-between mx-5 items-center py-3">
+    <nav className="w-full text-white bg-main lg:w-1/6 lg:flex lg:flex-col lg:items-center lg:justify-center">
+      <div className="flex justify-between items-center py-3 mx-5 mlg:flex-row-reverse">
         <HamburgerMenu toggleMenu={toggleMenu} isOpen={isOpen} />
         <div className="">
-          <h2 className="lg:mb-5">Idriss Kone</h2>
+          <h2 className="text-3xl font-bold tracking-widest uppercase lg:mb-5">Idriss</h2>
           <ul className={`${isOpen ? 'block' : 'hidden'} lg:block`}>
             <li className="mb-2">Home</li>
             <li className="mb-2">About</li>

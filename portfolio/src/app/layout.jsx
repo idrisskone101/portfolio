@@ -5,6 +5,8 @@ import NavBar from "@/components/NavBar";
 const montserrat = Montserrat({
   subsets: ["latin"],
   display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-montserrat',
 });
 
 export const metadata = {
@@ -16,7 +18,7 @@ export default function RootLayout({children}) {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} flex flex-col w-screen min-h-screen lg:flex-row`}
+        className={`${montserrat.className} ${montserrat.variable} flex flex-col w-screen min-h-screen lg:flex-row`}
       >
         <NavBar />
         <main>{children}</main>
