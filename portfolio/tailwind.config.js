@@ -65,7 +65,23 @@ module.exports = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+      animation: {
+        'morph': 'morph 8s ease-in-out 1s infinite',
+      },
+      keyframes: {
+        morph: {
+          '0%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+          '50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' },
+          '100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+        },
+      },
+      borderRadius: {
+        'blob': '60% 40% 30% 70% / 60% 30% 70% 40%',
+      },
+      boxShadow: {
+        'profile': 'inset 0 0 0 9px hsla(0, 0%, 100%, .3)',
+      },
   	}
   },
   plugins: [require("tailwindcss-animate")],
