@@ -16,10 +16,10 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full text-white bg-main xl:w-1/6 xl:flex xl:flex-col xl:items-center xl:justify-center">
+    <nav className="w-full text-white bg-main xl:w-1/6 xl:flex xl:flex-col xl:items-center xl:justify-center xl:bg-black">
       <div className="flex items-center justify-between py-3 mx-5 xl:flex-row-reverse">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <div className="flex items-center justify-between w-full">
+          <div className="flex items-center justify-between w-full xl:hidden">
             <h2 className="text-3xl font-bold tracking-widest uppercase xl:mb-5">Idriss</h2>
 
           <SheetTrigger asChild className="xl:hidden">
