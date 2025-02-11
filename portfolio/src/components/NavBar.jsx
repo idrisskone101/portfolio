@@ -14,6 +14,8 @@ import HamburgerMenu from "@/components/ui/hamburger-menu";
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  console.log(isOpen, "isOpen");
+
   return (
     <nav className="w-full text-white bg-main lg:w-1/6 lg:flex lg:flex-col lg:items-center lg:justify-center">
       <div className="flex items-center justify-between py-3 mx-5 lg:flex-row-reverse">
@@ -27,7 +29,7 @@ export default function NavBar() {
               </button>
             </SheetTrigger>
           </div>
-          <SheetContent side="left" className="bg-main w-[300px] sm:w-[300px] text-white">
+          <SheetContent open={isOpen} side="left" className="bg-main w-[300px] sm:w-[300px] text-white">
             <div className="mt-6">
               <h2 className="mb-5 text-3xl font-bold tracking-widest uppercase">Idriss</h2>
               <ul className="space-y-4">

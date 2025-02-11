@@ -12,7 +12,7 @@ const SheetClose = SheetPrimitive.Close
 
 const SheetPortal = SheetPrimitive.Portal
 
-const SheetOverlay = React.forwardRef(({ className, ...props }, ref) => (
+const SheetOverlay = React.forwardRef(({ className, open, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
       "fixed inset-0 z-50 bg-black/80",
@@ -55,25 +55,29 @@ const sheetVariants = {
   }
 }
 
-const SheetContent = React.forwardRef(({ side = "right", className, children, ...props }, ref) => (
+const SheetContent = React.forwardRef(({ side = "right", className, open, children, ...props }, ref) => (
   <SheetPortal>
-    <SheetOverlay />
-    <SheetPrimitive.Content ref={ref} className={cn("fixed z-50 gap-4 bg-background p-6 shadow-lg", className)} {...props} asChild>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        variants={sheetVariants[side]}
-        transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        className={cn("fixed z-50 gap-4 bg-background p-6 shadow-lg", {
-          "inset-y-0 left-0 h-full border-r": side === "left",
-          "inset-y-0 right-0 h-full border-l": side === "right",
-          "inset-x-0 top-0 border-b": side === "top",
-          "inset-x-0 bottom-0 border-t": side === "bottom",
-        })}
-      >
-        {children}
-      </motion.div>
+    <SheetOverlay open={open} />
+    <SheetPrimitive.Content ref={ref} {...props} asChild>
+      <AnimatePresence mode="wait">
+        {open && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={sheetVariants[side]}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            className={cn("fixed z-50 gap-4 bg-background p-6 shadow-lg", className, {
+              "inset-y-0 left-0 h-full border-r": side === "left",
+              "inset-y-0 right-0 h-full border-l": side === "right",
+              "inset-x-0 top-0 border-b": side === "top",
+              "inset-x-0 bottom-0 border-t": side === "bottom",
+            })}
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </SheetPrimitive.Content>
   </SheetPortal>
 ))
