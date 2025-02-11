@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   Sheet,
   SheetContent,
@@ -10,18 +10,18 @@ import {
   SheetClose,
   SheetTitle,
   SheetHeader,
-} from "@/components/ui/sheet";
-import HamburgerMenu from "@/components/ui/hamburger-menu";
+} from '@/components/ui/sheet';
+import HamburgerMenu from '@/components/ui/hamburger-menu';
 import { X } from 'lucide-react';
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Services", path: "/services" },
-  { name: "Portfolio", path: "/portfolio" },
-  { name: "Blog", path: "/blog" },
-  { name: "Contact", path: "/contact" },
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+  { name: 'Services', path: '/services' },
+  { name: 'Portfolio', path: '/portfolio' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 export default function NavBar() {
@@ -30,15 +30,15 @@ export default function NavBar() {
 
   const NavLink = ({ href, children, className, onClick }) => {
     const isActive = pathname === href;
-    
+
     return (
-      <Link 
-        href={href} 
+      <Link
+        href={href}
         onClick={onClick}
         className={cn(
-          "relative py-1 transition-colors duration-300",
-          "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full",
-          isActive && "after:w-full",
+          'relative py-1 transition-colors duration-300',
+          'after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full',
+          isActive && 'after:w-full',
           className
         )}
       >
@@ -48,7 +48,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="w-full text-white bg-main xl:w-1/6 xl:flex xl:flex-col xl:items-center xl:justify-center xl:bg-black">
+    <nav className="w-full text-white bg-main xl:flex xl:w-1/6 xl:flex-col xl:items-center xl:justify-center xl:bg-black">
       <div className="flex items-center justify-between py-3 mx-5 xl:flex-row-reverse">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <div className="flex items-center justify-between w-full xl:hidden">
@@ -60,7 +60,12 @@ export default function NavBar() {
               </button>
             </SheetTrigger>
           </div>
-          <SheetContent open={isOpen} side="left" className="bg-[#111] w-[300px] lg:w-[450px] text-white" aria-describedby={undefined}>
+          <SheetContent
+            open={isOpen}
+            side="left"
+            className="w-[300px] bg-[#111] text-white lg:w-[450px]"
+            aria-describedby={undefined}
+          >
             <div className="flex items-center justify-between mb-6">
               <SheetTitle className="text-3xl font-bold tracking-widest text-white uppercase">
                 Idriss
@@ -81,7 +86,7 @@ export default function NavBar() {
             </ul>
           </SheetContent>
         </Sheet>
-        
+
         <div className="hidden xl:block">
           <h2 className="text-3xl font-bold tracking-widest uppercase lg:mb-5">Idriss</h2>
           <ul className="space-y-4">
