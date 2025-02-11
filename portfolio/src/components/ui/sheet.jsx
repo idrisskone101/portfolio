@@ -2,7 +2,7 @@ import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, easeInOut } from "framer-motion"
 
 const Sheet = SheetPrimitive.Root
 
@@ -26,7 +26,7 @@ const SheetOverlay = React.forwardRef(({ className, open, ...props }, ref) => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ type: "tween", duration: 0.2 }}
     />
   </SheetPrimitive.Overlay>
 ))
@@ -34,41 +34,42 @@ SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
 const sheetVariants = {
   left: {
-    hidden: { x: "-100%", opacity: 0 },
-    visible: { x: 0, opacity: 1 },
-    exit: { x: "-100%", opacity: 0 }
+    hidden: { x: "-100%" },
+    visible: { x: 0 },
+    exit: { x: "-100%" }
   },
   right: {
-    hidden: { x: "100%", opacity: 0 },
-    visible: { x: 0, opacity: 1 },
-    exit: { x: "100%", opacity: 0 }
+    hidden: { x: "100%" },
+    visible: { x: 0 },
+    exit: { x: "100%" }
   },
   top: {
-    hidden: { y: "-100%", opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-    exit: { y: "-100%", opacity: 0 }
+    hidden: { y: "-100%" },
+    visible: { y: 0 },
+    exit: { y: "-100%" }
   },
   bottom: {
-    hidden: { y: "100%", opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-    exit: { y: "100%", opacity: 0 }
+    hidden: { y: "100%" },
+    visible: { y: 0 },
+    exit: { y: "100%" }
   }
 }
 
 const SheetContent = React.forwardRef(({ side = "right", className, open, children, ...props }, ref) => (
-  <SheetPortal>
-    <SheetOverlay open={open} />
-    <SheetPrimitive.Content ref={ref} {...props} asChild>
-      <AnimatePresence mode="wait">
-        {open && (
+  <AnimatePresence>
+    {open && (
+      <SheetPortal forceMount>
+        <SheetOverlay open={open} asChild forceMount />
+        <SheetPrimitive.Content ref={ref} {...props} asChild forceMount>
           <motion.div
             initial="hidden"
             animate="visible"
             exit="exit"
+            key={`sheet-content-${side}`}
             variants={sheetVariants[side]}
-            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+            transition={{duration: 0.3, ease: "easeInOut"}}
             className={cn("fixed z-50 gap-4 bg-background p-6 shadow-lg", className, {
-              "inset-y-0 left-0 h-full border-r": side === "left",
+              "inset-y-0 left-0 h-full": side === "left",
               "inset-y-0 right-0 h-full border-l": side === "right",
               "inset-x-0 top-0 border-b": side === "top",
               "inset-x-0 bottom-0 border-t": side === "bottom",
@@ -76,10 +77,10 @@ const SheetContent = React.forwardRef(({ side = "right", className, open, childr
           >
             {children}
           </motion.div>
-        )}
-      </AnimatePresence>
-    </SheetPrimitive.Content>
-  </SheetPortal>
+        </SheetPrimitive.Content>
+      </SheetPortal>
+    )}
+  </AnimatePresence>
 ))
 SheetContent.displayName = SheetPrimitive.Content.displayName
 

@@ -18,10 +18,10 @@ export default function RootLayout({children}) {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} ${montserrat.variable} flex flex-col w-screen min-h-screen lg:flex-row`}
+        className={`${montserrat.className} ${montserrat.variable} flex flex-col w-screen h-screen overflow-hidden lg:flex-row`}
       >
         <NavBar />
-        <main>{children}</main>
+        <main className="flex-1 overflow-auto">{children}</main>
       </body>
     </html>
   );

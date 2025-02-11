@@ -8,8 +8,8 @@ import { TypeAnimation } from 'react-type-animation';
 
 export default function Home() {
   return (
-    <div className="flex-1 bg-[#111] text-white min-h-screen relative">
-      <div className="absolute inset-0 flex items-center justify-center px-5">
+    <div className="flex-1 bg-[#111] text-white h-full relative">
+      <div className="flex absolute inset-0 justify-center items-center px-5">
         <div className="text-center">
           <div className="relative">
           <div
@@ -17,6 +17,7 @@ export default function Home() {
             style={{
               backgroundImage: `url(${profileImage.src})`,
               filter: 'grayscale(100%)',
+              backgroundPosition: '50% 0%'  // Moving image down to show more forehead
             }}
           />
           </div>
@@ -42,32 +43,32 @@ export default function Home() {
             />
           </div>
           <p className="mt-4 text-[#BBB] text-lg max-w-sm">
-            Innovative Software Developer based in Montreal, passionate about crafting elegant solutions and eager to collaborate on projects across North America.
+            Innovative developer in Montreal, crafting elegant solutions and ready to elevate projects across North America with cutting-edge expertise.
           </p>
-          <ul className="flex justify-center gap-6 mt-8">
+          <ul className="flex gap-3 justify-center mt-8 text-white">
             <li>
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-600 transition-colors hover:text-gray-900">
-                <Github size={32} />
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gray-900">
+                <Github size={20} />
               </a>
             </li>
             <li>
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="text-gray-600 transition-colors hover:text-gray-900">
-                <Linkedin size={32} />
+              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gray-900">
+                <Linkedin size={20} />
               </a>
             </li>
             <li>
-              <a href="mailto:you@example.com" className="text-gray-600 transition-colors hover:text-gray-900">
-                <Mail size={32} />
+              <a href="mailto:you@example.com" className="transition-colors hover:text-gray-900">
+                <Mail size={20} />  
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" className="text-gray-600 transition-colors hover:text-gray-900">
-                <Twitter size={32} />
+              <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gray-900">
+                <Twitter size={20} />
               </a>
             </li>
             <li>
-              <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" className="text-gray-600 transition-colors hover:text-gray-900">
-                <Instagram size={32} />
+              <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gray-900">
+                <Instagram size={20} />
               </a>
             </li>
           </ul>
