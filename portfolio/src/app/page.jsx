@@ -4,13 +4,34 @@ import Image from "next/image";
 import profileImage from "@/app/_assets/images/profile.jpg";
 import { Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
+import { motion } from "framer-motion";
 
+const variants = {
+  enter: {
+    x: -100,
+    opacity: 0
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1
+  }
+};
 
 export default function Home() {
   return (
     <div className="flex-1 bg-[#111] text-white h-full relative">
       <div className="absolute inset-0 flex items-center justify-center px-5">
-        <div className="text-center xl:flex xl:space-x-20">
+        <motion.div
+          variants={variants}
+          initial="enter"
+          animate="center"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 }
+          }}
+          className="text-center xl:flex xl:space-x-20"
+        >
           <div className="relative">
           <div
             className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover object-top animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto"
@@ -75,7 +96,7 @@ export default function Home() {
           </ul>
           </div>
 
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Sheet,
   SheetContent,
@@ -11,9 +13,39 @@ import {
 } from "@/components/ui/sheet";
 import HamburgerMenu from "@/components/ui/hamburger-menu";
 import { X } from 'lucide-react';
+import { cn } from "@/lib/utils";
+
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Services", path: "/services" },
+  { name: "Portfolio", path: "/portfolio" },
+  { name: "Blog", path: "/blog" },
+  { name: "Contact", path: "/contact" },
+];
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const NavLink = ({ href, children, className, onClick }) => {
+    const isActive = pathname === href;
+    
+    return (
+      <Link 
+        href={href} 
+        onClick={onClick}
+        className={cn(
+          "relative py-1 transition-colors duration-300",
+          "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full",
+          isActive && "after:w-full",
+          className
+        )}
+      >
+        {children}
+      </Link>
+    );
+  };
 
   return (
     <nav className="w-full text-white bg-main xl:w-1/6 xl:flex xl:flex-col xl:items-center xl:justify-center xl:bg-black">
@@ -22,11 +54,11 @@ export default function NavBar() {
           <div className="flex items-center justify-between w-full xl:hidden">
             <h2 className="text-3xl font-bold tracking-widest uppercase xl:mb-5">Idriss</h2>
 
-          <SheetTrigger asChild className="xl:hidden">
+            <SheetTrigger asChild className="xl:hidden">
               <button className="p-2">
-              <HamburgerMenu isOpen={isOpen} />
-            </button>
-          </SheetTrigger>
+                <HamburgerMenu isOpen={isOpen} />
+              </button>
+            </SheetTrigger>
           </div>
           <SheetContent open={isOpen} side="left" className="bg-[#111] w-[300px] lg:w-[450px] text-white" aria-describedby={undefined}>
             <div className="flex items-center justify-between mb-6">
@@ -39,10 +71,13 @@ export default function NavBar() {
               </SheetClose>
             </div>
             <ul className="space-y-4">
-              <li>Home</li>
-              <li>About</li>
-              <li>Services</li>
-              <li>Contact</li>
+              {navItems.map((item) => (
+                <li key={item.path}>
+                  <NavLink href={item.path} onClick={() => setIsOpen(false)}>
+                    {item.name}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </SheetContent>
         </Sheet>
@@ -50,10 +85,11 @@ export default function NavBar() {
         <div className="hidden xl:block">
           <h2 className="text-3xl font-bold tracking-widest uppercase lg:mb-5">Idriss</h2>
           <ul className="space-y-4">
-            <li>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Contact</li>
+            {navItems.map((item) => (
+              <li key={item.path}>
+                <NavLink href={item.path}>{item.name}</NavLink>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
