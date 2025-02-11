@@ -1,6 +1,8 @@
 import {Montserrat} from "next/font/google";
 import "./_assets/globals.css";
 import NavBar from "@/components/NavBar";
+import ContentSlideIn from "@/components/ContentSlideIn";
+
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -14,6 +16,8 @@ export const metadata = {
   description: "Portfolio of Idriss Kone",
 };
 
+
+
 export default function RootLayout({children}) {
   return (
     <html lang="en">
@@ -21,7 +25,15 @@ export default function RootLayout({children}) {
         className={`${montserrat.className} ${montserrat.variable} flex flex-col w-screen h-screen overflow-hidden xl:flex-row`}
       >
         <NavBar />
-        <main className="flex-1 overflow-auto">{children}</main>
+        <main className="flex-1 overflow-auto">
+        <div className="flex-1 bg-[#111] text-white h-full relative">
+        <div className="absolute inset-0 flex items-center justify-center px-5">
+          <ContentSlideIn>
+            {children}
+          </ContentSlideIn>
+        </div>
+        </div>
+        </main>
       </body>
     </html>
   );
