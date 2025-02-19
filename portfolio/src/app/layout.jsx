@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} ${montserrat.variable} flex flex-col w-screen h-screen overflow-hidden xl:flex-row`}
+        className={`${montserrat.className} ${montserrat.variable} flex flex-col w-screen h-screen overflow-hidden xl:flex-row xl:justify-center`}
       >
         <NavBar />
         <main className="flex-1 overflow-auto bg-[#111]">

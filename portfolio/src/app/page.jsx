@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div className="flex min-h-[calc(100vh-5rem)] items-center justify-center xl:min-h-screen w-full">
-      <div className="xl:flex xl:space-x-20">
+      <div className="xl:flex xl:space-x-20 xl:justify-center xl:mx-auto xl:w-full">
         <div className="relative">
           <div
             className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover object-top animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto"
