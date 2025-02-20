@@ -10,7 +10,7 @@ const AboutHero = ({ settings, name }) => {
         </p>
         <h1 className="pb-16 text-3xl font-extrabold">{settings.title}</h1>
         <div
-          className="w-full aspect-[16/13] mt-6 mb-9 bg-no-repeat bg-center bg-cover object-top bg-blend-multiply"
+          className="w-full aspect-[16/13] mt-6 mb-9 bg-no-repeat bg-center bg-cover object-top bg-blend-multiply lg:max-w-md"
           style={{
             backgroundImage: `url(${profileImage.src})`,
             filter: 'grayscale(100%)',

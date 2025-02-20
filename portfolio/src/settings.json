@@ -62,6 +62,123 @@
         "label": "Degree:",
         "value": "Bachelor of Science in Computer Science"
       }
+    ],
+    "skills": [
+      {
+        "name": "React",
+        "colorClass": "bg-[#7ee1fc26]",
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/react.svg"
+      },
+      {
+        "name": "TypeScript",
+        "colorClass": "bg-[#007acc26]",
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/typescript.svg"
+      },
+      {
+        "name": "JavaScript",
+        "colorClass": "bg-[#f0db4f26]",
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/javascript.svg"
+      },
+      {
+        "name": "Tailwind",
+        "colorClass": "bg-[#44a8b326]",
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/tailwind.svg"
+      },
+      {
+        "name": "Sass",
+        "colorClass": "bg-[#cf649a26]",
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/sass.svg"
+      },
+      {
+        "name": "HTML",
+        "colorClass": "bg-[#dd4b2526]",
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/html.svg"
+      },
+      {
+        "name": "CSS",
+        "colorClass": "bg-[#264de426]",
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/css.svg"
+      },
+      {
+        "name": "Next.js",
+        "colorClass": "bg-[#ffffff14]",
+        "isInvert": true,
+        "stack": "frontend",
+        "iconPath": "@/app/(pages)/about/assets/nextjs.svg"
+      },
+      {
+        "name": "Node.js",
+        "colorClass": "bg-[#6fa66026]",
+        "stack": "backend",
+        "iconPath": "@/app/(pages)/about/assets/nodejs.svg"
+      },
+      {
+        "name": "Python",
+        "colorClass": "bg-[#30699826]",
+        "stack": "backend",
+        "iconPath": "@/app/(pages)/about/assets/python.svg"
+      },
+      {
+        "name": "Express",
+        "colorClass": "bg-[#ffffff14]",
+        "isInvert": true,
+        "stack": "backend"
+      },
+      {
+        "name": "MongoDB",
+        "colorClass": "bg-[#4db33d26]",
+        "stack": "backend"
+      },
+      {
+        "name": "Vite",
+        "colorClass": "bg-[#646cff26]",
+        "stack": "backend"
+      },
+      {
+        "name": "GitHub",
+        "colorClass": "bg-[#ffffff14]",
+        "stack": "tools",
+        "isInvert": true
+      },
+      {
+        "name": "WordPress",
+        "colorClass": "bg-[#ffffff14]",
+        "stack": "tools",
+        "isInvert": true
+      },
+      {
+        "name": "Shopify",
+        "colorClass": "bg-[#8CBC5A]",
+        "stack": "tools"
+      },
+      {
+        "name": "Webflow",
+        "colorClass": "bg-[#ffffff14]",
+        "stack": "tools"
+      },
+      {
+        "name": "GraphQL",
+        "colorClass": "bg-[#e8457c]",
+        "stack": "tools"
+      },
+      {
+        "name": "Remix Run",
+        "colorClass": "bg-[#ffffff14]",
+        "stack": "frontend"
+      },
+      {
+        "name": "Squarespace",
+        "colorClass": "bg-[#ffffff14]",
+        "stack": "tools",
+        "isInvert": true
+      }
     ]
   },
   "services": {
