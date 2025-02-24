@@ -47,11 +47,15 @@ const iconMap = {
   Git: GitIcon,
 };
 
-const SkillBlock = ({ title, skills, index }) => (
-  <div
-    className={`relative  ${index % 2 === 0 ? 'bg-black w-screen -mr-1/2 -ml-1/2' : ''}`}
-  >
-    <div className="container px-5 py-8 mx-auto">
+const SkillSection = ({ title, skills, hasBackground = false }) => (
+  <div className="relative">
+    {/* Full-width background that extends edge to edge - only if hasBackground is true */}
+    {hasBackground && (
+      <div className="absolute left-0 right-0 w-screen h-full bg-black xl:ml-[calc(-50vw+50%)] ml-[calc(-50vw+50%-0px)] xs:ml-[calc(-50vw+50%+110px)] lg:ml-[calc(-50vw+50%+140px)]"></div>
+    )}
+
+    {/* Centered content */}
+    <div className="relative z-10 py-8">
       <h3 className="mb-6 text-lg font-bold text-left">{title}</h3>
       <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {skills.map((skill, index) => (
@@ -87,15 +91,26 @@ const AboutSkills = () => {
 
   return (
     <div className="relative">
-      <div className="container pt-10 mx-auto">
+      <div className="container max-w-[1140px] mx-auto pt-10">
         <h2 className="mb-6 text-2xl font-bold text-left text-white">
           Skills & Tools
         </h2>
-
         <div className="space-y-8">
-          <SkillBlock title="Frontend" skills={frontendSkills} index={0} />
-          <SkillBlock title="Backend" skills={backendSkills} index={1} />
-          <SkillBlock title="Tools & Platforms" skills={toolSkills} index={2} />
+          <SkillSection
+            title="Frontend"
+            skills={frontendSkills}
+            hasBackground={true}
+          />
+          <SkillSection
+            title="Backend"
+            skills={backendSkills}
+            hasBackground={false}
+          />
+          <SkillSection
+            title="Tools & Platforms"
+            skills={toolSkills}
+            hasBackground={true}
+          />
         </div>
       </div>
     </div>
