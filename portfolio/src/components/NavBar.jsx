@@ -48,11 +48,13 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="w-full text-white bg-main xl:flex xl:w-1/6 xl:flex-col xl:items-center xl:justify-center xl:bg-black">
+    <nav className="w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-center xl:justify-center xl:bg-black">
       <div className="flex items-center justify-between py-3 mx-5 xl:flex-row-reverse">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <div className="flex items-center justify-between w-full xl:hidden">
-            <h2 className="text-3xl font-bold tracking-widest uppercase xl:mb-5">Idriss</h2>
+            <h2 className="text-3xl font-bold tracking-widest uppercase xl:mb-5">
+              Idriss
+            </h2>
 
             <SheetTrigger asChild className="xl:hidden">
               <button className="p-2">
@@ -88,7 +90,9 @@ export default function NavBar() {
         </Sheet>
 
         <div className="hidden xl:block">
-          <h2 className="text-3xl font-bold tracking-widest uppercase lg:mb-5">Idriss</h2>
+          <h2 className="text-3xl font-bold tracking-widest uppercase lg:mb-5">
+            Idriss
+          </h2>
           <ul className="space-y-4">
             {navItems.map((item) => (
               <li key={item.path}>

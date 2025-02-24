@@ -178,6 +178,11 @@
         "colorClass": "bg-[#ffffff14]",
         "stack": "tools",
         "isInvert": true
+      },
+      {
+        "name": "Git",
+        "colorClass": "bg-[#ffffff14]",
+        "stack": "tools"
       }
     ]
   },

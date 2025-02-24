@@ -21,6 +21,7 @@ import WebflowIcon from '@/app/(pages)/about/assets/webflow.svg';
 import GraphQLIcon from '@/app/(pages)/about/assets/graphql.svg';
 import RemixRunIcon from '@/app/(pages)/about/assets/remixrun.svg';
 import SquarespaceIcon from '@/app/(pages)/about/assets/squarespace.svg';
+import GitIcon from '@/app/(pages)/about/assets/git.svg';
 
 const iconMap = {
   React: ReactIcon,
@@ -43,32 +44,37 @@ const iconMap = {
   Squarespace: SquarespaceIcon,
   GraphQL: GraphQLIcon,
   'Remix Run': RemixRunIcon,
+  Git: GitIcon,
 };
 
-const SkillBlock = ({ title, skills }) => (
-  <div>
-    <h3 className="mb-6 text-lg font-bold text-left">{title}</h3>
-    <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-      {skills.map((skill, index) => (
-        <li
-          key={index}
-          className="flex items-center gap-3 rounded-md p-3 bg-secondary/5 dark:bg-[#ffffff0a] backdrop-blur-2xl"
-        >
-          <div
-            className={`p-2 items-center justify-center rounded-lg ${skill.colorClass}`}
+const SkillBlock = ({ title, skills, index }) => (
+  <div
+    className={`relative  ${index % 2 === 0 ? 'bg-black w-screen -mr-1/2 -ml-1/2' : ''}`}
+  >
+    <div className="container px-5 py-8 mx-auto">
+      <h3 className="mb-6 text-lg font-bold text-left">{title}</h3>
+      <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {skills.map((skill, index) => (
+          <li
+            key={index}
+            className="flex items-center gap-3 rounded-md p-3 bg-secondary/5 dark:bg-[#ffffff0a] backdrop-blur-2xl"
           >
-            <Image
-              src={iconMap[skill.name]}
-              alt={skill.name}
-              width={20}
-              height={20}
-              className={`object-contain ${skill.isInvert ? 'invert' : ''}`}
-            />
-          </div>
-          <span className="text-sm">{skill.name}</span>
-        </li>
-      ))}
-    </ul>
+            <div
+              className={`p-2 items-center justify-center rounded-lg ${skill.colorClass}`}
+            >
+              <Image
+                src={iconMap[skill.name]}
+                alt={skill.name}
+                width={20}
+                height={20}
+                className={`object-contain ${skill.isInvert ? 'invert' : ''}`}
+              />
+            </div>
+            <span className="text-sm">{skill.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 );
 
@@ -80,13 +86,17 @@ const AboutSkills = () => {
   const toolSkills = skills.filter((skill) => skill.stack === 'tools');
 
   return (
-    <div className="w-full mt-24 text-white">
-      <h2 className="mb-6 text-2xl font-bold text-left">Skills & Tools</h2>
+    <div className="relative">
+      <div className="container pt-10 mx-auto">
+        <h2 className="mb-6 text-2xl font-bold text-left text-white">
+          Skills & Tools
+        </h2>
 
-      <div className="space-y-8">
-        <SkillBlock title="Frontend" skills={frontendSkills} />
-        <SkillBlock title="Backend" skills={backendSkills} />
-        <SkillBlock title="Tools & Platforms" skills={toolSkills} />
+        <div className="space-y-8">
+          <SkillBlock title="Frontend" skills={frontendSkills} index={0} />
+          <SkillBlock title="Backend" skills={backendSkills} index={1} />
+          <SkillBlock title="Tools & Platforms" skills={toolSkills} index={2} />
+        </div>
       </div>
     </div>
   );

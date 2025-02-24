@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
       >
         <NavBar />
         <main className="flex-1 overflow-auto bg-[#111]">
-          <div className="relative flex-1 h-full text-white">
-            <div className="px-5 py-10 xl:py-0 xl:pt-10">
+          <div className="relative flex-1 w-full h-full text-white">
+            <div className="w-full px-5 py-10 xl:py-0 xl:pt-10">
               <ContentSlideIn>{children}</ContentSlideIn>
             </div>
           </div>
