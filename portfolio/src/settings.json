@@ -199,6 +199,7 @@
   },
   "portfolio": {
     "title": "Portfolio",
+    "subtitle": "My Recent Work",
     "description": "Check out some of my work",
     "projects": [
       {
@@ -207,7 +208,9 @@
         "description": "A responsive weather application built with React that uses weather APIs to display current weather and forecasts. Features include location search, temperature units toggle, and detailed weather information.",
         "image": "/projects/weatherapp.png",
         "liveUrl": "https://example-weather.com",
-        "githubUrl": "https://github.com/username/weather-app"
+        "githubUrl": "https://github.com/username/weather-app",
+        "category": "web",
+        "technologies": ["React", "JavaScript", "CSS", "Weather API"]
       },
       {
         "id": 2,
@@ -215,7 +218,15 @@
         "description": "An IP address tracking application that allows users to search for any IP address and view its location on a map along with other details like ISP and timezone.",
         "image": "/projects/ipaddress.png",
         "liveUrl": "https://example-iptracker.com",
-        "githubUrl": "https://github.com/username/ip-tracker"
+        "githubUrl": "https://github.com/username/ip-tracker",
+        "category": "web",
+        "technologies": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "IP Geolocation API",
+          "Leaflet Maps"
+        ]
       },
       {
         "id": 3,
@@ -223,7 +234,9 @@
         "description": "A multi-page website for a fictional design agency with responsive layouts, custom animations, and form validation.",
         "image": "/projects/designo.png",
         "liveUrl": "https://example-designo.com",
-        "githubUrl": "https://github.com/username/designo-website"
+        "githubUrl": "https://github.com/username/designo-website",
+        "category": "frontend",
+        "technologies": ["React", "Next.js", "Tailwind CSS", "Framer Motion"]
       },
       {
         "id": 4,
@@ -231,7 +244,9 @@
         "description": "A restaurant website featuring an elegant design, online booking system, and responsive menu displays.",
         "image": "/projects/dine.png",
         "liveUrl": "https://example-dine.com",
-        "githubUrl": "https://github.com/username/dine-restaurant"
+        "githubUrl": "https://github.com/username/dine-restaurant",
+        "category": "frontend",
+        "technologies": ["HTML", "CSS", "JavaScript", "GSAP Animation"]
       },
       {
         "id": 5,
@@ -239,7 +254,9 @@
         "description": "A movie search application that allows users to search for movies, view details, and save favorites. Built with React and a movie database API.",
         "image": "/projects/moviesearch.png",
         "liveUrl": "https://example-moviesearch.com",
-        "githubUrl": "https://github.com/username/movie-search"
+        "githubUrl": "https://github.com/username/movie-search",
+        "category": "app",
+        "technologies": ["React", "Redux", "Styled Components", "TMDB API"]
       },
       {
         "id": 6,
@@ -247,7 +264,9 @@
         "description": "An interactive Pokedex application that displays information about different Pokemon. Features include search, filtering, and detailed Pokemon stats.",
         "image": "/projects/pokedex.png",
         "liveUrl": "https://example-pokedex.com",
-        "githubUrl": "https://github.com/username/pokedex-app"
+        "githubUrl": "https://github.com/username/pokedex-app",
+        "category": "app",
+        "technologies": ["React", "TypeScript", "CSS Modules", "Pokemon API"]
       }
     ]
   },
