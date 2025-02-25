@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import clsx from 'clsx';
 import settings from '@/settings.json';
 import ReactIcon from '@/app/(pages)/about/assets/react.svg';
 import TypeScriptIcon from '@/app/(pages)/about/assets/typescript.svg';
@@ -64,14 +65,17 @@ const SkillSection = ({ title, skills, hasBackground = false }) => (
             className="flex items-center gap-3 rounded-md p-3 bg-secondary/5 dark:bg-[#ffffff0a] backdrop-blur-2xl"
           >
             <div
-              className={`p-2 items-center justify-center rounded-lg ${skill.colorClass}`}
+              className={clsx(
+                'p-2 items-center justify-center rounded-lg',
+                skill.colorClass
+              )}
             >
               <Image
                 src={iconMap[skill.name]}
                 alt={skill.name}
                 width={20}
                 height={20}
-                className={`object-contain ${skill.isInvert ? 'invert' : ''}`}
+                className={clsx('object-contain', skill.isInvert && 'invert')}
               />
             </div>
             <span className="text-sm">{skill.name}</span>

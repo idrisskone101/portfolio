@@ -1,4 +1,5 @@
 import { Montserrat } from 'next/font/google';
+import clsx from 'clsx';
 import './_assets/globals.css';
 import NavBar from '@/components/NavBar';
 import ContentSlideIn from '@/components/ContentSlideIn';
@@ -19,7 +20,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} ${montserrat.variable} flex flex-col w-screen h-screen overflow-hidden xl:flex-row xl:justify-center`}
+        className={clsx(
+          montserrat.className,
+          montserrat.variable,
+          'flex flex-col w-screen h-screen overflow-hidden xl:flex-row xl:justify-center'
+        )}
       >
         <NavBar />
         <main className="flex-1 overflow-auto bg-[#111]">
