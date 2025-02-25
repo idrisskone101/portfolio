@@ -200,7 +200,56 @@
   "portfolio": {
     "title": "Portfolio",
     "description": "Check out some of my work",
-    "projects": []
+    "projects": [
+      {
+        "id": 1,
+        "title": "Weather App",
+        "description": "A responsive weather application built with React that uses weather APIs to display current weather and forecasts. Features include location search, temperature units toggle, and detailed weather information.",
+        "image": "/projects/weatherapp.png",
+        "liveUrl": "https://example-weather.com",
+        "githubUrl": "https://github.com/username/weather-app"
+      },
+      {
+        "id": 2,
+        "title": "IP Address Tracker",
+        "description": "An IP address tracking application that allows users to search for any IP address and view its location on a map along with other details like ISP and timezone.",
+        "image": "/projects/ipaddress.png",
+        "liveUrl": "https://example-iptracker.com",
+        "githubUrl": "https://github.com/username/ip-tracker"
+      },
+      {
+        "id": 3,
+        "title": "Designo Website",
+        "description": "A multi-page website for a fictional design agency with responsive layouts, custom animations, and form validation.",
+        "image": "/projects/designo.png",
+        "liveUrl": "https://example-designo.com",
+        "githubUrl": "https://github.com/username/designo-website"
+      },
+      {
+        "id": 4,
+        "title": "Dine Restaurant",
+        "description": "A restaurant website featuring an elegant design, online booking system, and responsive menu displays.",
+        "image": "/projects/dine.png",
+        "liveUrl": "https://example-dine.com",
+        "githubUrl": "https://github.com/username/dine-restaurant"
+      },
+      {
+        "id": 5,
+        "title": "Movie Search App",
+        "description": "A movie search application that allows users to search for movies, view details, and save favorites. Built with React and a movie database API.",
+        "image": "/projects/moviesearch.png",
+        "liveUrl": "https://example-moviesearch.com",
+        "githubUrl": "https://github.com/username/movie-search"
+      },
+      {
+        "id": 6,
+        "title": "Pokedex App",
+        "description": "An interactive Pokedex application that displays information about different Pokemon. Features include search, filtering, and detailed Pokemon stats.",
+        "image": "/projects/pokedex.png",
+        "liveUrl": "https://example-pokedex.com",
+        "githubUrl": "https://github.com/username/pokedex-app"
+      }
+    ]
   },
   "blog": {
     "title": "Blog",
