@@ -66,122 +66,101 @@
     "skills": [
       {
         "name": "React",
-        "colorClass": "bg-[#7ee1fc26]",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/react.svg"
       },
       {
         "name": "TypeScript",
-        "colorClass": "bg-[#007acc26]",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/typescript.svg"
       },
       {
         "name": "JavaScript",
-        "colorClass": "bg-[#f0db4f26]",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/javascript.svg"
       },
       {
         "name": "Tailwind",
-        "colorClass": "bg-[#44a8b326]",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/tailwind.svg"
       },
       {
         "name": "Sass",
-        "colorClass": "bg-[#cf649a26]",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/sass.svg"
       },
       {
         "name": "HTML",
-        "colorClass": "bg-[#dd4b2526]",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/html.svg"
       },
       {
         "name": "CSS",
-        "colorClass": "bg-[#264de426]",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/css.svg"
       },
       {
         "name": "Next.js",
-        "colorClass": "bg-[#ffffff14]",
         "isInvert": true,
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/nextjs.svg"
       },
       {
         "name": "Node.js",
-        "colorClass": "bg-[#6fa66026]",
         "stack": "backend",
         "iconPath": "@/app/(pages)/about/assets/nodejs.svg"
       },
       {
         "name": "Python",
-        "colorClass": "bg-[#30699826]",
         "stack": "backend",
         "iconPath": "@/app/(pages)/about/assets/python.svg"
       },
       {
         "name": "Express",
-        "colorClass": "bg-[#ffffff14]",
         "isInvert": true,
         "stack": "backend"
       },
       {
         "name": "MongoDB",
-        "colorClass": "bg-[#4db33d26]",
         "stack": "backend"
       },
       {
         "name": "Vite",
-        "colorClass": "bg-[#646cff26]",
         "stack": "backend"
       },
       {
         "name": "GitHub",
-        "colorClass": "bg-[#ffffff14]",
         "stack": "tools",
         "isInvert": true
       },
       {
         "name": "WordPress",
-        "colorClass": "bg-[#ffffff14]",
         "stack": "tools",
         "isInvert": true
       },
       {
         "name": "Shopify",
-        "colorClass": "bg-[#8CBC5A]",
         "stack": "tools"
       },
       {
         "name": "Webflow",
-        "colorClass": "bg-[#ffffff14]",
         "stack": "tools"
       },
       {
         "name": "GraphQL",
-        "colorClass": "bg-[#e8457c]",
         "stack": "tools"
       },
       {
         "name": "Remix Run",
-        "colorClass": "bg-[#ffffff14]",
         "stack": "frontend"
       },
       {
         "name": "Squarespace",
-        "colorClass": "bg-[#ffffff14]",
         "stack": "tools",
         "isInvert": true
       },
       {
         "name": "Git",
-        "colorClass": "bg-[#ffffff14]",
         "stack": "tools"
       }
     ]
@@ -209,8 +188,13 @@
         "image": "/projects/weatherapp.png",
         "liveUrl": "https://example-weather.com",
         "githubUrl": "https://github.com/username/weather-app",
-        "category": "web",
-        "technologies": ["React", "JavaScript", "CSS", "Weather API"]
+        "category": "Frontend",
+        "technologies": [
+          { "name": "React" },
+          { "name": "JavaScript" },
+          { "name": "CSS" },
+          { "name": "Weather API" }
+        ]
       },
       {
         "id": 2,
@@ -219,13 +203,13 @@
         "image": "/projects/ipaddress.png",
         "liveUrl": "https://example-iptracker.com",
         "githubUrl": "https://github.com/username/ip-tracker",
-        "category": "web",
+        "category": "Frontend",
         "technologies": [
-          "JavaScript",
-          "HTML",
-          "CSS",
-          "IP Geolocation API",
-          "Leaflet Maps"
+          { "name": "JavaScript" },
+          { "name": "HTML" },
+          { "name": "CSS" },
+          { "name": "IP Geolocation API" },
+          { "name": "Leaflet Maps" }
         ]
       },
       {
@@ -235,8 +219,13 @@
         "image": "/projects/designo.png",
         "liveUrl": "https://example-designo.com",
         "githubUrl": "https://github.com/username/designo-website",
-        "category": "frontend",
-        "technologies": ["React", "Next.js", "Tailwind CSS", "Framer Motion"]
+        "category": "Frontend",
+        "technologies": [
+          { "name": "React" },
+          { "name": "Next.js" },
+          { "name": "Tailwind CSS" },
+          { "name": "Framer Motion" }
+        ]
       },
       {
         "id": 4,
@@ -245,8 +234,13 @@
         "image": "/projects/dine.png",
         "liveUrl": "https://example-dine.com",
         "githubUrl": "https://github.com/username/dine-restaurant",
-        "category": "frontend",
-        "technologies": ["HTML", "CSS", "JavaScript", "GSAP Animation"]
+        "category": "Frontend",
+        "technologies": [
+          { "name": "HTML" },
+          { "name": "CSS" },
+          { "name": "JavaScript" },
+          { "name": "GSAP Animation" }
+        ]
       },
       {
         "id": 5,
@@ -255,8 +249,13 @@
         "image": "/projects/moviesearch.png",
         "liveUrl": "https://example-moviesearch.com",
         "githubUrl": "https://github.com/username/movie-search",
-        "category": "app",
-        "technologies": ["React", "Redux", "Styled Components", "TMDB API"]
+        "category": "Frontend",
+        "technologies": [
+          { "name": "React" },
+          { "name": "Redux" },
+          { "name": "Styled Components" },
+          { "name": "TMDB API" }
+        ]
       },
       {
         "id": 6,
@@ -265,8 +264,13 @@
         "image": "/projects/pokedex.png",
         "liveUrl": "https://example-pokedex.com",
         "githubUrl": "https://github.com/username/pokedex-app",
-        "category": "app",
-        "technologies": ["React", "TypeScript", "CSS Modules", "Pokemon API"]
+        "category": "Frontend",
+        "technologies": [
+          { "name": "React" },
+          { "name": "TypeScript" },
+          { "name": "CSS Modules" },
+          { "name": "Pokemon API" }
+        ]
       }
     ]
   },

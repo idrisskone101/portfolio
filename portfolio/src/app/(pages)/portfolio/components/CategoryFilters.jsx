@@ -19,7 +19,7 @@ export default function CategoryFilters({
               : 'bg-transparent text-gray-400 hover:text-white hover:bg-white/5'
           )}
         >
-          {category.charAt(0).toUpperCase() + category.slice(1)}
+          {category}
         </button>
       ))}
     </div>

@@ -14,7 +14,7 @@ export default function PortfolioPage() {
   const { title, subtitle, projects } = settings.portfolio;
   const [selectedProject, setSelectedProject] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('All');
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
@@ -27,15 +27,17 @@ export default function PortfolioPage() {
 
   // Extract unique categories from projects
   const categories = [
-    'all',
-    ...new Set(projects.map((project) => project.category || 'other')),
+    'All',
+    ...new Set(projects.map((project) => project.category || 'Other')),
   ];
 
   // Filter projects based on active category
   const filteredProjects =
-    activeFilter === 'all'
+    activeFilter === 'All'
       ? projects
       : projects.filter((project) => project.category === activeFilter);
+
+  console.log('selected project', selectedProject);
 
   return (
     <div className="container px-4 py-12 mx-auto">

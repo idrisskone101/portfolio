@@ -24,28 +24,113 @@ import RemixRunIcon from '@/app/(pages)/about/assets/remixrun.svg';
 import SquarespaceIcon from '@/app/(pages)/about/assets/squarespace.svg';
 import GitIcon from '@/app/(pages)/about/assets/git.svg';
 
-const iconMap = {
-  React: ReactIcon,
-  TypeScript: TypeScriptIcon,
-  JavaScript: JavaScriptIcon,
-  Tailwind: TailwindIcon,
-  Sass: SassIcon,
-  HTML: HTMLIcon,
-  CSS: CSSIcon,
-  'Next.js': NextJSIcon,
-  'Node.js': NodeJSIcon,
-  Python: PythonIcon,
-  MongoDB: MongoDBIcon,
-  Express: ExpressIcon,
-  Vite: ViteIcon,
-  GitHub: GitHubIcon,
-  WordPress: WordPressIcon,
-  Shopify: ShopifyIcon,
-  Webflow: WebflowIcon,
-  Squarespace: SquarespaceIcon,
-  GraphQL: GraphQLIcon,
-  'Remix Run': RemixRunIcon,
-  Git: GitIcon,
+// Unified skill data object with all properties
+const skillsData = {
+  React: {
+    bgColor: 'bg-[#7ee1fc26]',
+    textColor: 'text-[#7ee1fc]',
+    icon: ReactIcon,
+  },
+  TypeScript: {
+    bgColor: 'bg-[#007acc26]',
+    textColor: 'text-[#007acc]',
+    icon: TypeScriptIcon,
+  },
+  JavaScript: {
+    bgColor: 'bg-[#f0db4f26]',
+    textColor: 'text-[#f0db4f]',
+    icon: JavaScriptIcon,
+  },
+  Tailwind: {
+    bgColor: 'bg-[#44a8b326]',
+    textColor: 'text-[#44a8b3]',
+    icon: TailwindIcon,
+  },
+  Sass: {
+    bgColor: 'bg-[#cf649a26]',
+    textColor: 'text-[#cf649a]',
+    icon: SassIcon,
+  },
+  HTML: {
+    bgColor: 'bg-[#dd4b2526]',
+    textColor: 'text-[#dd4b25]',
+    icon: HTMLIcon,
+  },
+  CSS: {
+    bgColor: 'bg-[#264de426]',
+    textColor: 'text-[#264de4]',
+    icon: CSSIcon,
+  },
+  'Next.js': {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: NextJSIcon,
+  },
+  'Node.js': {
+    bgColor: 'bg-[#6fa66026]',
+    textColor: 'text-[#6fa660]',
+    icon: NodeJSIcon,
+  },
+  Python: {
+    bgColor: 'bg-[#30699826]',
+    textColor: 'text-[#306998]',
+    icon: PythonIcon,
+  },
+  Express: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: ExpressIcon,
+  },
+  MongoDB: {
+    bgColor: 'bg-[#4db33d26]',
+    textColor: 'text-[#4db33d]',
+    icon: MongoDBIcon,
+  },
+  Vite: {
+    bgColor: 'bg-[#646cff26]',
+    textColor: 'text-[#646cff]',
+    icon: ViteIcon,
+  },
+  GitHub: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: GitHubIcon,
+  },
+  WordPress: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: WordPressIcon,
+  },
+  Shopify: {
+    bgColor: 'bg-[#8CBC5A]',
+    textColor: 'text-[#8CBC5A]',
+    icon: ShopifyIcon,
+  },
+  Webflow: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: WebflowIcon,
+  },
+  GraphQL: {
+    bgColor: 'bg-[#e8457c]',
+    textColor: 'text-[#e8457c]',
+    icon: GraphQLIcon,
+  },
+  'Remix Run': {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: RemixRunIcon,
+  },
+  Squarespace: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: SquarespaceIcon,
+  },
+  Git: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: GitIcon,
+  },
 };
 
 const SkillSection = ({ title, skills, hasBackground = false }) => (
@@ -59,28 +144,37 @@ const SkillSection = ({ title, skills, hasBackground = false }) => (
     <div className="relative z-10 py-8">
       <h3 className="mb-6 text-lg font-bold text-left">{title}</h3>
       <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {skills.map((skill, index) => (
-          <li
-            key={index}
-            className="flex items-center gap-3 rounded-md p-3 bg-secondary/5 dark:bg-[#ffffff0a] backdrop-blur-2xl"
-          >
-            <div
-              className={clsx(
-                'p-2 items-center justify-center rounded-lg',
-                skill.colorClass
-              )}
+        {skills.map((skill, index) => {
+          const skillInfo = skillsData[skill.name] || {
+            bgColor: 'bg-[#ffffff14]',
+            textColor: 'text-white',
+            icon: null,
+          };
+
+          return (
+            <li
+              key={index}
+              className="flex items-center gap-3 rounded-md p-3 bg-secondary/5 dark:bg-[#ffffff0a] backdrop-blur-2xl"
             >
-              <Image
-                src={iconMap[skill.name]}
-                alt={skill.name}
-                width={20}
-                height={20}
-                className={clsx('object-contain', skill.isInvert && 'invert')}
-              />
-            </div>
-            <span className="text-sm">{skill.name}</span>
-          </li>
-        ))}
+              <div
+                className={clsx(
+                  'p-2 items-center justify-center rounded-lg',
+                  skillInfo.bgColor,
+                  skillInfo.textColor
+                )}
+              >
+                <Image
+                  src={skillInfo.icon}
+                  alt={skill.name}
+                  width={20}
+                  height={20}
+                  className={clsx('object-contain', skill.isInvert && 'invert')}
+                />
+              </div>
+              <span className="text-sm">{skill.name}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   </div>
