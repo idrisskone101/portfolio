@@ -36,7 +36,7 @@ export default function ContactForm() {
     }
 
     const subject = `Portfolio message from ${name}`;
-    const body = `${message}\n\n— ${name} <${email}>`;
+    const body = `${message}\n\n- ${name} <${email}>`;
     const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailto;

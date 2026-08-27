@@ -34,20 +34,22 @@ export default function PortfolioPage() {
       <PageHeader
         eyebrow={title}
         title="Selected work"
-        lede="Explore recent projects. Case studies marked Placeholder are stand-ins until real writeups replace them in src/data/site-content.js."
+        lede="Explore recent projects. Items marked Placeholder are stand-ins until real writeups exist."
       />
       <div className="flex items-center gap-3 mb-8">
         <PlaceholderFlag />
         <p className="text-sm text-copy-faint">
-          Project copy, links, and some imagery are draft content.
+          Copy, links, and some imagery are draft.
         </p>
       </div>
 
-      <CategoryFilters
-        categories={categories}
-        activeFilter={activeFilter}
-        setActiveFilter={setActiveFilter}
-      />
+      {categories.length > 2 ? (
+        <CategoryFilters
+          categories={categories}
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+        />
+      ) : null}
 
       {filteredProjects.length > 0 ? (
         <PortfolioGrid

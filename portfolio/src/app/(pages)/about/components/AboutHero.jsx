@@ -1,6 +1,7 @@
 import profileImage from '@/app/_assets/images/profile.jpg';
 import { Button } from '@/components/ui/button';
-import { PageHeader } from '@/components/page-chrome';
+import { PageHeader, PlaceholderFlag } from '@/components/page-chrome';
+import { contact } from '@/data/site-content';
 
 export default function AboutHero({ settings, name }) {
   return (
@@ -39,7 +40,12 @@ export default function AboutHero({ settings, name }) {
         {settings.info.map((info) => (
           <div className="flex text-sm" key={info.label}>
             <p className="w-24 font-bold text-left shrink-0">{info.label}</p>
-            <p className="text-copy-muted text-left">{info.value}</p>
+            <p className="flex flex-wrap items-center gap-2 text-copy-muted text-left">
+              {info.value}
+              {info.label === 'Phone:' && contact.phonePlaceholder ? (
+                <PlaceholderFlag />
+              ) : null}
+            </p>
           </div>
         ))}
       </div>

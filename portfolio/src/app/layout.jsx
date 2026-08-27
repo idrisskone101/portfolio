@@ -26,8 +26,14 @@ export default function RootLayout({ children }) {
           'flex flex-col w-full h-[100dvh] overflow-hidden xl:flex-row xl:justify-center bg-canvas'
         )}
       >
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:px-3 focus:py-2 focus:bg-magenta focus:text-white"
+        >
+          Skip to content
+        </a>
         <NavBar />
-        <main className="flex-1 min-h-0 overflow-auto bg-canvas">
+        <main id="content" className="flex-1 min-h-0 overflow-auto bg-canvas">
           <div className="relative w-full h-full min-h-full text-white">
             <PageTransition>{children}</PageTransition>
           </div>

@@ -12,49 +12,6 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 
-// Organized tech data with exact hex values including opacity
-const techData = {
-  // Frontend technologies
-  React: { className: 'bg-[#7ee1fc26] text-[#7ee1fc]' },
-  TypeScript: { className: 'bg-[#007acc26] text-[#007acc]' },
-  JavaScript: { className: 'bg-[#f0db4f26] text-[#f0db4f]' },
-  Tailwind: { className: 'bg-[#44a8b326] text-[#44a8b3]' },
-  'Tailwind CSS': { className: 'bg-[#44a8b326] text-[#44a8b3]' },
-  Sass: { className: 'bg-[#cf649a26] text-[#cf649a]' },
-  HTML: { className: 'bg-[#dd4b2526] text-[#dd4b25]' },
-  CSS: { className: 'bg-[#264de426] text-[#264de4]' },
-  'CSS Modules': { className: 'bg-[#264de426] text-[#264de4]' },
-  'Next.js': { className: 'bg-[#ffffff14] text-white' },
-  'Remix Run': { className: 'bg-[#ffffff14] text-white' },
-  'Styled Components': { className: 'bg-[#db709326] text-[#db7093]' },
-  'Framer Motion': { className: 'bg-[#0055FF26] text-[#0055FF]' },
-  'GSAP Animation': { className: 'bg-[#88ce0226] text-[#88ce02]' },
-  Redux: { className: 'bg-[#764abc26] text-[#764abc]' },
-
-  // Backend technologies
-  'Node.js': { className: 'bg-[#6fa66026] text-[#6fa660]' },
-  Python: { className: 'bg-[#30699826] text-[#306998]' },
-  Express: { className: 'bg-[#ffffff14] text-white' },
-  MongoDB: { className: 'bg-[#4db33d26] text-[#4db33d]' },
-  Vite: { className: 'bg-[#646cff26] text-[#646cff]' },
-  GraphQL: { className: 'bg-[#e8457c] text-[#e8457c]' },
-
-  // Tools and platforms
-  GitHub: { className: 'bg-[#ffffff14] text-white' },
-  WordPress: { className: 'bg-[#ffffff14] text-white' },
-  Shopify: { className: 'bg-[#8CBC5A] text-[#8CBC5A]' },
-  Webflow: { className: 'bg-[#ffffff14] text-white' },
-  Squarespace: { className: 'bg-[#ffffff14] text-white' },
-  Git: { className: 'bg-[#ffffff14] text-white' },
-
-  // APIs
-  'Weather API': { className: 'bg-[#00aaff26] text-[#00aaff]' },
-  'IP Geolocation API': { className: 'bg-[#5a7d9a26] text-[#5a7d9a]' },
-  'Leaflet Maps': { className: 'bg-[#19990026] text-[#199900]' },
-  'TMDB API': { className: 'bg-[#01d27726] text-[#01d277]' },
-  'Pokemon API': { className: 'bg-[#ffcb0526] text-[#ffcb05]' },
-};
-
 export default function ProjectDialog({
   dialogOpen,
   setDialogOpen,
@@ -73,14 +30,11 @@ export default function ProjectDialog({
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-          <div className="absolute top-4 right-4">
-            <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-white/20 backdrop-blur-sm">
-              {selectedProject.category || 'Project'}
-            </span>
-          </div>
         </div>
         <AlertDialogHeader>
+          <p className="mb-2 text-sm text-copy-faint">
+            {selectedProject.category || 'Project'}
+          </p>
           <AlertDialogTitle className="text-2xl text-white">
             {selectedProject.title}
           </AlertDialogTitle>
@@ -94,7 +48,7 @@ export default function ProjectDialog({
               {selectedProject.technologies.map((tech, index) => (
                 <span
                   key={index}
-                  className={`px-2 py-1 text-xs font-medium rounded-md ${techData[tech.name]?.className || 'bg-[#ffffff14] text-white'}`}
+                  className="px-2 py-1 text-xs font-medium border text-copy-muted border-line"
                 >
                   {tech.name}
                 </span>

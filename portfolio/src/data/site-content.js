@@ -80,14 +80,14 @@ export const portfolio = {
 export const services = {
   eyebrow: 'Services',
   title: 'What I can help with',
-  lede: 'Offerings below are placeholders so the page can ship. Swap titles and copy in src/data/site-content.js when the real list is ready.',
+  lede: 'These offerings are placeholders until the real list is ready. Nothing here is a client claim or a metric.',
   offerings: [
     {
       id: 'web-development',
       number: '01',
       title: 'Web development',
       description:
-        'Placeholder. Full-stack product work: Next.js, React, and APIs that stay maintainable after launch.',
+        'Full-stack product work: Next.js, React, and APIs that stay maintainable after launch.',
       placeholder: true,
     },
     {
@@ -95,7 +95,7 @@ export const services = {
       number: '02',
       title: 'Frontend engineering',
       description:
-        'Placeholder. Interfaces that are fast, accessible, and consistent with a design system instead of a pile of one-off styles.',
+        'Interfaces that are fast, accessible, and consistent with a design system instead of a pile of one-off styles.',
       placeholder: true,
     },
     {
@@ -103,7 +103,7 @@ export const services = {
       number: '03',
       title: 'E-commerce',
       description:
-        'Placeholder. Storefronts and merchandising flows on Shopify, headless setups, or custom checkout paths.',
+        'Storefronts and merchandising flows on Shopify, headless setups, or custom checkout paths.',
       placeholder: true,
     },
     {
@@ -111,7 +111,7 @@ export const services = {
       number: '04',
       title: 'Design to code',
       description:
-        'Placeholder. Taking Figma, Webflow, or Squarespace intent into production React without losing the look.',
+        'Taking Figma, Webflow, or Squarespace intent into production React without losing the look.',
       placeholder: true,
     },
     {
@@ -119,7 +119,7 @@ export const services = {
       number: '05',
       title: 'Performance and polish',
       description:
-        'Placeholder. Load, Core Web Vitals, and the small motion and type details that make a site feel finished.',
+        'Load, Core Web Vitals, and the small motion and type details that make a site feel finished.',
       placeholder: true,
     },
     {
@@ -127,7 +127,7 @@ export const services = {
       number: '06',
       title: 'Collaboration',
       description:
-        'Placeholder. Short engagements to unblock a team, review an architecture, or pair on a thorny UI.',
+        'Short engagements to unblock a team, review an architecture, or pair on a thorny UI.',
       placeholder: true,
     },
   ],
@@ -142,7 +142,7 @@ export const blog = {
   fallbackPosts: [
     {
       id: 'placeholder-shipping-ui',
-      title: 'Placeholder: shipping a UI you can iterate',
+      title: 'Shipping a UI you can iterate',
       brief: 'A stand-in post about keeping visual decisions in tokens so a site can change without a rewrite. Replace from Hashnode.',
       url: `https://${HASHNODE_HOST}`,
       publishedAt: '2026-04-12T12:00:00.000Z',
@@ -152,7 +152,7 @@ export const blog = {
     },
     {
       id: 'placeholder-react-notes',
-      title: 'Placeholder: notes on React in production',
+      title: 'Notes on React in production',
       brief: 'Stand-in brief covering server components, client islands, and when not to add another library. Replace from Hashnode.',
       url: `https://${HASHNODE_HOST}`,
       publishedAt: '2026-02-03T12:00:00.000Z',
@@ -162,7 +162,7 @@ export const blog = {
     },
     {
       id: 'placeholder-montreal-dev',
-      title: 'Placeholder: building from Montreal',
+      title: 'Building from Montreal',
       brief: 'Stand-in brief about remote-friendly product work and keeping a personal site honest about what is real vs. draft.',
       url: `https://${HASHNODE_HOST}`,
       publishedAt: '2025-11-18T12:00:00.000Z',
@@ -180,7 +180,7 @@ export const news = {
   articles: [
     {
       slug: 'site-foundation',
-      title: 'Placeholder: this site now has a visual canon',
+      title: 'This site now has a visual canon',
       date: '2026-08-01',
       excerpt:
         'Tokens, shared page chrome, and one route transition so later visual work is a small change instead of a restyle.',
@@ -193,19 +193,19 @@ export const news = {
     },
     {
       slug: 'open-to-collaborations',
-      title: 'Placeholder: open to collaborations',
+      title: 'Open to collaborations',
       date: '2026-06-20',
       excerpt:
         'A stand-in note that the contact form is a mailto for now, and that project case studies will land in Portfolio.',
       paragraphs: [
         'This is placeholder news, not a real announcement.',
-        'When real work ships, swap this article in src/data/site-content.js. Do not invent employers or metrics here.',
+        'When real work ships, swap this article. Do not invent employers or metrics here.',
       ],
       placeholder: true,
     },
     {
       slug: 'reading-list',
-      title: 'Placeholder: a public reading list',
+      title: 'A public reading list',
       date: '2026-03-09',
       excerpt:
         'Stand-in excerpt for a list of talks, posts, and docs worth keeping next to the Hashnode blog.',
@@ -217,7 +217,7 @@ export const news = {
     },
     {
       slug: 'map-and-contact',
-      title: 'Placeholder: contact and map',
+      title: 'Contact and map',
       date: '2026-01-14',
       excerpt:
         'Stand-in note that Contact uses a frontend-only form and a Montreal pin until a backend exists.',

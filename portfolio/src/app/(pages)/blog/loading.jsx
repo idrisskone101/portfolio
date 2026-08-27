@@ -4,21 +4,14 @@ export default function Loading() {
   return (
     <PageShell>
       <PageHeader eyebrow="Blog" title="Writing" lede="Loading posts." />
-      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div
-            key={i}
-            className="overflow-hidden border bg-surface border-line rounded-lg"
-          >
-            <div className="w-full h-48 bg-surface-2 animate-pulse" />
-            <div className="p-6">
-              <div className="w-3/4 h-6 mb-3 rounded bg-surface-2 animate-pulse" />
-              <div className="w-1/4 h-4 mb-3 rounded bg-surface-2 animate-pulse" />
-              <div className="space-y-2">
-                <div className="w-full h-4 rounded bg-surface-2 animate-pulse" />
-                <div className="w-full h-4 rounded bg-surface-2 animate-pulse" />
-                <div className="w-2/3 h-4 rounded bg-surface-2 animate-pulse" />
-              </div>
+      <div>
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="py-8 border-t border-line">
+            <div className="w-24 h-4 mb-3 bg-surface-2 animate-pulse" />
+            <div className="w-3/4 h-7 mb-3 bg-surface-2 animate-pulse" />
+            <div className="space-y-2 max-w-[65ch]">
+              <div className="w-full h-4 bg-surface-2 animate-pulse" />
+              <div className="w-5/6 h-4 bg-surface-2 animate-pulse" />
             </div>
           </div>
         ))}

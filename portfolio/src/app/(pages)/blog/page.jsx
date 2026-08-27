@@ -3,11 +3,11 @@ import { formatDistanceToNow } from 'date-fns';
 import { getBlogPosts } from '@/lib/blog/hashnode';
 import { blog } from '@/data/site-content';
 import {
-  PageCard,
   PageHeader,
   PageShell,
   PlaceholderFlag,
 } from '@/components/page-chrome';
+import { cn } from '@/lib/utils';
 
 export const revalidate = 3600;
 
@@ -27,48 +27,48 @@ export default async function BlogPage() {
 
   return (
     <PageShell>
-      <PageHeader eyebrow={blog.eyebrow} title={blog.title} lede={blog.lede} />
-      {usingFallback ? (
-        <p className="mb-8 text-sm text-copy-faint">
-          Hashnode is unavailable or empty, so placeholder posts are showing.
-          Writing still lives at{' '}
-          <a
-            href={blog.hashnodeUrl}
-            className="text-magenta hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {blog.hashnodeHost}
-          </a>
-          .
-        </p>
-      ) : null}
+      <PageHeader
+        eyebrow={blog.eyebrow}
+        title={blog.title}
+        lede={
+          usingFallback
+            ? `Hashnode is unavailable, so stand-in posts are showing. Writing still lives at ${blog.hashnodeHost}.`
+            : blog.lede
+        }
+      />
 
-      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <PageCard
+      <ol className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
+        {posts.map((post, index) => (
+          <li
             key={post.id}
-            href={post.url}
-            external
-            className="flex flex-col"
-          >
-            {post.coverImageUrl ? (
-              <div className="relative w-full h-48">
-                <Image
-                  src={post.coverImageUrl}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
-            ) : (
-              <div className="flex items-center justify-center w-full h-48 border-b bg-surface-2 border-line">
-                <span className="text-sm text-copy-faint">No cover image</span>
-              </div>
+            className={cn(
+              'border-t border-line py-8',
+              index === 0 && 'md:col-span-2'
             )}
-            <div className="flex flex-col flex-1 p-6">
-              <div className="flex items-center gap-2 mb-3">
+          >
+            <a
+              href={post.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
+            >
+              {post.coverImageUrl ? (
+                <div
+                  className={cn(
+                    'relative w-full mb-6 overflow-hidden border border-line',
+                    index === 0 ? 'aspect-[16/7]' : 'aspect-[16/9]'
+                  )}
+                >
+                  <Image
+                    src={post.coverImageUrl}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 66vw"
+                  />
+                </div>
+              ) : null}
+              <div className="flex flex-wrap items-center gap-3 mb-3">
                 {post.placeholder ? <PlaceholderFlag /> : null}
                 {post.publishedAt ? (
                   <p className="text-sm text-copy-faint">
@@ -76,17 +76,22 @@ export default async function BlogPage() {
                   </p>
                 ) : null}
               </div>
-              <h2 className="mb-3 text-xl font-semibold">{post.title}</h2>
-              <p className="mb-6 text-sm leading-6 text-copy-muted line-clamp-3">
+              <h2
+                className={cn(
+                  'mb-3 font-semibold group-hover:text-magenta',
+                  index === 0 ? 'text-2xl sm:text-3xl' : 'text-xl'
+                )}
+              >
+                {post.title}
+              </h2>
+              <p className="mb-4 text-sm leading-6 text-copy-muted line-clamp-3 max-w-[65ch]">
                 {post.brief}
               </p>
-              <span className="mt-auto text-sm font-medium text-magenta">
-                Read more
-              </span>
-            </div>
-          </PageCard>
+              <span className="text-sm font-medium text-magenta">Read more</span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ol>
     </PageShell>
   );
 }
