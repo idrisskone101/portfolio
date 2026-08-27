@@ -9,7 +9,7 @@ export default function HomeTypeTitles({ titles, reduceMotion }) {
   const titlesKey = titles.join('|');
 
   useEffect(() => {
-    if (reduceMotion || titles.length === 0) {
+    if (reduceMotion || titlesKey.length === 0) {
       return undefined;
     }
 
