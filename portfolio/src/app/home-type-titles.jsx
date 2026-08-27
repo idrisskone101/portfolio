@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { homeMotion } from '@/lib/motion/tokens';
+import { getHomeTypeTiming } from '@/lib/motion/tokens';
 
 export default function HomeTypeTitles({ titles, reduceMotion }) {
   const firstTitle = titles[0] || '';
@@ -16,6 +16,7 @@ export default function HomeTypeTitles({ titles, reduceMotion }) {
     let cancelled = false;
     let timeoutId;
     const list = titlesKey.split('|');
+    const timing = getHomeTypeTiming();
 
     function wait(ms) {
       return new Promise((resolve) => {
@@ -28,12 +29,12 @@ export default function HomeTypeTitles({ titles, reduceMotion }) {
       setText(list[index]);
 
       while (!cancelled) {
-        await wait(homeMotion.holdMs);
+        await wait(timing.holdMs);
         if (cancelled) return;
 
         const leaving = list[index];
         for (let n = leaving.length; n > 0; n -= 1) {
-          await wait(homeMotion.deleteMs);
+          await wait(timing.deleteMs);
           if (cancelled) return;
           setText(leaving.slice(0, n - 1));
         }
@@ -41,7 +42,7 @@ export default function HomeTypeTitles({ titles, reduceMotion }) {
         index = (index + 1) % list.length;
         const next = list[index];
         for (let n = 1; n <= next.length; n += 1) {
-          await wait(homeMotion.typeMs);
+          await wait(timing.typeMs);
           if (cancelled) return;
           setText(next.slice(0, n));
         }

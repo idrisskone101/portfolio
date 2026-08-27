@@ -17,6 +17,7 @@
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --duration-page: 380ms;
     --duration-morph: 18s;
+    --identity-gutter: 3rem;
     --background: 0 0% 6.7%;
     --foreground: 0 0% 100%;
     --card: 0 0% 10%;
@@ -65,6 +66,31 @@
 
   .home-type-caret {
     animation: none !important;
+  }
+}
+
+.animate-morph {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@media (max-width: 1279px) {
+  :root {
+    --duration-morph: 40s;
+  }
+
+  @keyframes morph {
+    0%,
+    100% {
+      border-radius: 58% 42% 38% 62% / 58% 38% 62% 42%;
+    }
+    50% {
+      border-radius: 48% 52% 45% 55% / 52% 48% 50% 50%;
+    }
+  }
+
+  .home-type-caret {
+    animation-duration: 1.6s;
   }
 }
 
