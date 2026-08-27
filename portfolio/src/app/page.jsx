@@ -20,10 +20,10 @@ export default function Home() {
   const reduceMotion = useReducedMotion() === true;
 
   return (
-    <div className="flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full xl:h-full">
-      <div className="xl:flex xl:items-center xl:gap-20 xl:justify-center xl:mx-auto xl:w-full">
+    <div className="flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full xl:h-full xl:justify-start xl:px-[var(--identity-gutter)]">
+      <div className="xl:flex xl:items-center xl:gap-20 xl:justify-start xl:w-full">
         <div
-          className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto"
+          className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto xl:m-0"
           style={{
             backgroundImage: `url(${profileImage.src})`,
             filter: 'grayscale(100%)',

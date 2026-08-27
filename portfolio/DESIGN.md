@@ -34,7 +34,8 @@ Change appearance in this order. Stop as soon as the change lands.
 | `--radius` `0.5rem` | Controls and cards | `rounded-md` / `rounded-lg` |
 | `--ease-out` | Page and hover easing | motion tokens |
 | `--duration-page` `380ms` | Shared route transition | motion tokens |
-| `--duration-morph` `18s` | Home portrait blob loop | `animate-morph` |
+| `--duration-morph` `18s` / `40s` below xl | Home portrait blob loop | `animate-morph` |
+| `--identity-gutter` `3rem` | Desktop rail + Home origin | nav + Home |
 
 Montserrat is the only typeface. Weights: 400 body, 600 labels, 700–800 titles. Do not add a display serif or a second sans.
 
@@ -56,7 +57,7 @@ Every inner route (`/about`, `/services`, `/portfolio`, `/blog`, `/news`, `/cont
 2. `PageHeader` — eyebrow chip, title, optional lede.
 3. Sections and cards from the same folder.
 
-Home is the exception: centered identity, morphing portrait, no eyebrow chip.
+Home is the exception: morphing portrait, no eyebrow chip. Mobile stays centered. Desktop left-aligns the rail name, blob, and home copy to `--identity-gutter`.
 
 ## Layout
 
@@ -69,7 +70,7 @@ Home is the exception: centered identity, morphing portrait, no eyebrow chip.
 
 One shared route transition: fade + 16px rise on enter, fade + 10px rise-out on exit, 380ms `--ease-out`. No spring. No per-page snowflake animation.
 
-The Home portrait morph is the only looping motion (`--duration-morph`, 18s). Honor `prefers-reduced-motion` (no morph, no route travel, instant swap).
+The Home portrait morph is the only looping motion (`--duration-morph`: 18s desktop, 40s below xl). Honor `prefers-reduced-motion` (no morph, no route travel, instant swap).
 
 Hover on cards is border and opacity, not scale.
 

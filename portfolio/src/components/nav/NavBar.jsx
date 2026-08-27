@@ -20,8 +20,8 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-center xl:justify-center xl:bg-rail">
-      <div className="flex items-center justify-between py-3 mx-5 xl:flex-row-reverse">
+    <nav className="w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-start xl:justify-center xl:bg-rail xl:px-[var(--identity-gutter)]">
+      <div className="flex items-center justify-between py-3 mx-5 xl:mx-0 xl:w-full xl:justify-start">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <div className="flex items-center justify-between w-full xl:hidden">
             <Link
