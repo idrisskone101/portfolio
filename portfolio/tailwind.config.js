@@ -77,7 +77,7 @@ module.exports = {
         page: 'var(--duration-page)',
       },
       animation: {
-        morph: 'morph 8s ease-in-out 1s infinite',
+        morph: 'morph var(--duration-morph) ease-in-out infinite',
       },
       keyframes: {
         morph: {

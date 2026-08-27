@@ -1,11 +1,13 @@
 'use client';
 
+import { useReducedMotion } from 'framer-motion';
 import profileImage from '@/app/_assets/images/profile.jpg';
 import { Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { home, socials } from '@/data/site-content';
+import { homeMotion } from '@/lib/motion/tokens';
 
 const ICONS = {
   github: Github,
@@ -16,6 +18,8 @@ const ICONS = {
 };
 
 export default function Home() {
+  const reduceMotion = useReducedMotion() === true;
+
   return (
     <div className="flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full xl:h-full">
       <div className="xl:flex xl:items-center xl:gap-20 xl:justify-center xl:mx-auto xl:w-full">
@@ -35,14 +39,25 @@ export default function Home() {
             {home.name}
           </h1>
           <div className="mt-3 text-xl font-medium text-magenta min-h-[1.25em] lg:text-2xl">
-            <TypeAnimation
-              sequence={home.titles.flatMap((title) => [title, 2400])}
-              wrapper="span"
-              speed={50}
-              deletionSpeed={70}
-              repeat={Infinity}
-              preRenderFirstString
-            />
+            {reduceMotion ? (
+              <span>{home.titles[0]}</span>
+            ) : (
+              <TypeAnimation
+                sequence={home.titles.flatMap((title) => [
+                  title,
+                  homeMotion.holdMs,
+                ])}
+                wrapper="span"
+                speed={{ type: 'keyStrokeDelayInMs', value: homeMotion.typeMs }}
+                deletionSpeed={{
+                  type: 'keyStrokeDelayInMs',
+                  value: homeMotion.deleteMs,
+                }}
+                repeat={Infinity}
+                preRenderFirstString
+                style={{ display: 'inline-block' }}
+              />
+            )}
           </div>
           <p className="max-w-md mt-5 text-lg text-copy-muted">
             {home.description}

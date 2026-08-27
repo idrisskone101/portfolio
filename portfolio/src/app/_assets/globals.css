@@ -16,6 +16,7 @@
     --line: rgba(255, 255, 255, 0.1);
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --duration-page: 380ms;
+    --duration-morph: 18s;
     --background: 0 0% 6.7%;
     --foreground: 0 0% 100%;
     --card: 0 0% 10%;

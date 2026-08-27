@@ -4,3 +4,10 @@ export const pageMotion = {
   enterY: 16,
   exitY: -10,
 };
+
+export const homeMotion = {
+  typeMs: 92,
+  deleteMs: 58,
+  holdMs: 3600,
+};
+
