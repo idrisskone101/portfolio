@@ -18,17 +18,9 @@ import { navigation } from '@/data/site-content';
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === '/';
 
   return (
-    <nav
-      className={cn(
-        'w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-start xl:px-[var(--identity-gutter)]',
-        isHome
-          ? 'xl:absolute xl:inset-y-0 xl:left-0 xl:z-20 xl:justify-start xl:pt-[var(--identity-gutter)] xl:bg-transparent xl:pointer-events-none'
-          : 'xl:justify-center xl:bg-rail'
-      )}
-    >
+    <nav className="w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-start xl:px-[var(--identity-gutter)] xl:justify-center xl:bg-rail">
       <div className="flex items-center justify-between py-3 mx-5 xl:mx-0 xl:w-full xl:justify-start">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <div className="flex items-center justify-between w-full xl:hidden">
@@ -79,7 +71,7 @@ export default function NavBar() {
           </SheetContent>
         </Sheet>
 
-        <div className="hidden xl:block xl:pointer-events-auto">
+        <div className="hidden xl:block">
           <Link
             href="/"
             className="block text-3xl font-bold tracking-widest uppercase lg:mb-5"
@@ -87,7 +79,7 @@ export default function NavBar() {
           >
             Idriss
           </Link>
-          <ul className={cn('space-y-4', isHome && 'xl:space-y-2')}>
+          <ul className="space-y-4">
             {navigation.map((item) => (
               <li key={item.path}>
                 <NavLink href={item.path} pathname={pathname}>

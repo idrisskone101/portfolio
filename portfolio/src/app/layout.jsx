@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         className={clsx(
           montserrat.className,
           montserrat.variable,
-          'relative flex flex-col w-full h-[100dvh] overflow-hidden xl:flex-row xl:justify-center bg-canvas'
+          'flex flex-col w-full h-[100dvh] overflow-hidden xl:flex-row xl:justify-center bg-canvas'
         )}
       >
         <a

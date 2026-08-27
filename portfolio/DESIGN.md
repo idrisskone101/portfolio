@@ -35,8 +35,7 @@ Change appearance in this order. Stop as soon as the change lands.
 | `--ease-out` | Page and hover easing | motion tokens |
 | `--duration-page` `380ms` | Shared route transition | motion tokens |
 | `--duration-morph` `18s` / `80s` below xl | Home portrait blob loop | `animate-morph` |
-| `--identity-gutter` `3rem` | Desktop identity origin | nav name, Home blob, Home copy |
-| `--rail-span` `20vw` | Desktop identity column width | nav + Home lockup |
+| `--identity-gutter` `3rem` | Desktop nav padding | nav name |
 
 Montserrat is the only typeface. Weights: 400 body, 600 labels, 700–800 titles. Do not add a display serif or a second sans.
 
@@ -58,11 +57,11 @@ Every inner route (`/about`, `/services`, `/portfolio`, `/blog`, `/news`, `/cont
 2. `PageHeader` — eyebrow chip, title, optional lede.
 3. Sections and cards from the same folder.
 
-Home is the exception: morphing portrait, no eyebrow chip. Mobile stays centered. Desktop locks the rail name, blob, and home copy to one left edge (`--identity-gutter`). The Home rail paint is transparent so that lockup does not cross a black/canvas seam. Inner routes keep the black rail.
+Home is the exception: morphing portrait, no eyebrow chip. Mobile stays centered in a column. Desktop is a horizontal band: in-flow black identity rail on the left, blob and home copy side by side in the canvas on the same midline as the nav name.
 
 ## Layout
 
-- **xl and up:** left identity rail (~20%), canvas on the right. Rail stays black on inner routes. Home takes the rail out of flow, drops its paint, and starts the hero at `--identity-gutter` inside the full-width canvas so `main` overflow cannot clip the lockup.
+- **xl and up:** left identity rail (`xl:w-1/5`, black `bg-rail`, vertically centered nav), canvas on the right. Home places the morphing portrait and copy in a horizontal row in the canvas, vertically centered on the same midline as the nav name.
 - **Below xl:** `#323232` top bar, name on the left, sheet menu on the left.
 - **Scroll:** the rail/top bar stays put. Only the canvas scrolls.
 - **Canvas:** `#111`. Do not switch to a light theme.
@@ -94,7 +93,7 @@ Use `src/components/ui` (shadcn) for Button, Sheet, dialogs, Input, Textarea, La
 ## Do not
 
 - Dump a second component library next to shadcn.
-- Center inner pages. Home is centered below xl. Desktop Home shares the identity origin. Everything else is left-aligned.
+- Center inner pages. Home is centered below xl. Desktop Home is a horizontal band beside the in-flow rail. Everything else is left-aligned.
 - Invent employers, schools, or metrics. If copy is not real yet, mark it placeholder.
 - Use `dangerouslySetInnerHTML`.
 - Give each route a different transition.

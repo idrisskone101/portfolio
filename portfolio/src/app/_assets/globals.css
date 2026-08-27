@@ -18,8 +18,6 @@
     --duration-page: 380ms;
     --duration-morph: 18s;
     --identity-gutter: 3rem;
-    --rail-span: 20vw;
-    --home-lockup-top: 24rem;
     --background: 0 0% 6.7%;
     --foreground: 0 0% 100%;
     --card: 0 0% 10%;
@@ -76,19 +74,6 @@
   backface-visibility: hidden;
   contain: layout paint;
   will-change: border-radius;
-}
-
-@media (min-width: 1280px) {
-  .home-identity-lockup {
-    margin-left: 0;
-    width: 100%;
-    padding-top: var(--home-lockup-top);
-    padding-bottom: 1.5rem;
-    padding-left: var(--identity-gutter);
-    padding-right: 2rem;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
 }
 
 @media (max-width: 1279px) {

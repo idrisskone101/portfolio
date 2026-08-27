@@ -20,10 +20,10 @@ export default function Home() {
   const reduceMotion = useReducedMotion() === true;
 
   return (
-    <div className="home-identity-lockup flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full">
-      <div className="flex flex-col items-center xl:items-start xl:justify-start xl:gap-8 xl:w-full">
+    <div className="flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full">
+      <div className="flex flex-col items-center xl:flex-row xl:items-center xl:gap-20 xl:justify-center xl:w-full">
         <div
-          className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto xl:m-0 xl:shrink-0"
+          className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto xl:m-0 shrink-0"
           style={{
             backgroundImage: `url(${profileImage.src})`,
             filter: 'grayscale(100%)',
