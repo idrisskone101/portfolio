@@ -20,7 +20,8 @@ export default function ServicesPage() {
             key={offering.id}
             className={cn(
               'border-t border-line py-8',
-              index === 0 && 'md:col-span-2'
+              (index === 0 || index === services.offerings.length - 1) &&
+                'md:col-span-2'
             )}
           >
             <div className="flex items-center justify-between gap-3 mb-4">

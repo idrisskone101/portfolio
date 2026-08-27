@@ -36,8 +36,8 @@ export default function NewsPage() {
               <h2
                 className={
                   index === 0
-                    ? 'mb-3 text-3xl font-extrabold sm:text-4xl group-hover:text-magenta'
-                    : 'mb-2 text-2xl font-bold group-hover:text-magenta'
+                    ? 'mb-3 text-2xl font-extrabold sm:text-3xl group-hover:text-magenta'
+                    : 'mb-2 text-xl font-semibold group-hover:text-magenta'
                 }
               >
                 {article.title}
