@@ -80,11 +80,11 @@
 
 @media (min-width: 1280px) {
   .home-identity-lockup {
-    margin-left: calc(var(--identity-gutter) - var(--rail-span));
-    width: calc(100% + var(--rail-span) - var(--identity-gutter));
+    margin-left: 0;
+    width: 100%;
     padding-top: var(--home-lockup-top);
     padding-bottom: 1.5rem;
-    padding-left: 0;
+    padding-left: var(--identity-gutter);
     padding-right: 2rem;
     justify-content: flex-start;
     align-items: flex-start;

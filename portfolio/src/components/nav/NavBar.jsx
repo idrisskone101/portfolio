@@ -25,7 +25,7 @@ export default function NavBar() {
       className={cn(
         'w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-start xl:px-[var(--identity-gutter)]',
         isHome
-          ? 'xl:justify-start xl:pt-[var(--identity-gutter)] xl:bg-transparent xl:z-20'
+          ? 'xl:absolute xl:inset-y-0 xl:left-0 xl:z-20 xl:justify-start xl:pt-[var(--identity-gutter)] xl:bg-transparent xl:pointer-events-none'
           : 'xl:justify-center xl:bg-rail'
       )}
     >
@@ -79,7 +79,7 @@ export default function NavBar() {
           </SheetContent>
         </Sheet>
 
-        <div className="hidden xl:block">
+        <div className="hidden xl:block xl:pointer-events-auto">
           <Link
             href="/"
             className="block text-3xl font-bold tracking-widest uppercase lg:mb-5"

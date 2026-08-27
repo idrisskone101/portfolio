@@ -62,7 +62,7 @@ Home is the exception: morphing portrait, no eyebrow chip. Mobile stays centered
 
 ## Layout
 
-- **xl and up:** left identity rail (~20%), canvas on the right. Rail stays black on inner routes. Home drops the rail paint so the identity and hero can share `--identity-gutter`.
+- **xl and up:** left identity rail (~20%), canvas on the right. Rail stays black on inner routes. Home takes the rail out of flow, drops its paint, and starts the hero at `--identity-gutter` inside the full-width canvas so `main` overflow cannot clip the lockup.
 - **Below xl:** `#323232` top bar, name on the left, sheet menu on the left.
 - **Scroll:** the rail/top bar stays put. Only the canvas scrolls.
 - **Canvas:** `#111`. Do not switch to a light theme.
@@ -94,7 +94,7 @@ Use `src/components/ui` (shadcn) for Button, Sheet, dialogs, Input, Textarea, La
 ## Do not
 
 - Dump a second component library next to shadcn.
-- Center inner pages. Home is centered; everything else is left-aligned.
+- Center inner pages. Home is centered below xl. Desktop Home shares the identity origin. Everything else is left-aligned.
 - Invent employers, schools, or metrics. If copy is not real yet, mark it placeholder.
 - Use `dangerouslySetInnerHTML`.
 - Give each route a different transition.
