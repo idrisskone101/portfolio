@@ -9,9 +9,9 @@ export const homeMotion = {
   typeMs: 92,
   deleteMs: 58,
   holdMs: 3600,
-  mobileTypeMs: 180,
-  mobileDeleteMs: 120,
-  mobileHoldMs: 5500,
+  mobileTypeMs: 280,
+  mobileDeleteMs: 200,
+  mobileHoldMs: 8000,
   mobileQuery: '(max-width: 1279px)',
 };
 

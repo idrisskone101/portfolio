@@ -26,7 +26,6 @@ export default function HomeTypeTitles({ titles, reduceMotion }) {
 
     async function run() {
       let index = 0;
-      setText(list[index]);
 
       while (!cancelled) {
         await wait(timing.holdMs);
