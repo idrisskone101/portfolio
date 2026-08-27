@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <div className="home-identity-lockup flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full">
-      <div className="xl:flex xl:items-center xl:gap-16 xl:justify-start xl:w-full">
+      <div className="flex flex-col items-center xl:items-start xl:justify-start xl:gap-8 xl:w-full">
         <div
           className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto xl:m-0 xl:shrink-0"
           style={{
@@ -44,7 +44,7 @@ export default function Home() {
           <p className="max-w-md mt-5 text-lg text-copy-muted">
             {home.description}
           </p>
-          <div className="flex flex-wrap justify-center gap-3 mt-8 xl:justify-start">
+          <div className="flex flex-wrap justify-center gap-3 mt-8 xl:justify-start xl:mt-5">
             <Button asChild>
               <Link href="/portfolio">View work</Link>
             </Button>
@@ -52,7 +52,7 @@ export default function Home() {
               <Link href="/contact">Get in touch</Link>
             </Button>
           </div>
-          <ul className="flex justify-center gap-4 mt-8 text-white xl:justify-start">
+          <ul className="flex justify-center gap-4 mt-8 text-white xl:justify-start xl:mt-5">
             {socials.map((social) => {
               const Icon = ICONS[social.icon];
               return (

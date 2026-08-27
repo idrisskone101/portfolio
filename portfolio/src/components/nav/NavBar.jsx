@@ -87,7 +87,7 @@ export default function NavBar() {
           >
             Idriss
           </Link>
-          <ul className="space-y-4">
+          <ul className={cn('space-y-4', isHome && 'xl:space-y-2')}>
             {navigation.map((item) => (
               <li key={item.path}>
                 <NavLink href={item.path} pathname={pathname}>

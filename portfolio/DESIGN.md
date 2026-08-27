@@ -58,7 +58,7 @@ Every inner route (`/about`, `/services`, `/portfolio`, `/blog`, `/news`, `/cont
 2. `PageHeader` — eyebrow chip, title, optional lede.
 3. Sections and cards from the same folder.
 
-Home is the exception: morphing portrait, no eyebrow chip. Mobile stays centered. Desktop locks the rail name and the Home hero to `--identity-gutter` (blob on that edge, copy left-aligned beside it). The Home rail paint is transparent so the lockup does not cross a black/canvas seam. Inner routes keep the black rail.
+Home is the exception: morphing portrait, no eyebrow chip. Mobile stays centered. Desktop locks the rail name, blob, and home copy to one left edge (`--identity-gutter`). The Home rail paint is transparent so that lockup does not cross a black/canvas seam. Inner routes keep the black rail.
 
 ## Layout
 

@@ -19,7 +19,7 @@
     --duration-morph: 18s;
     --identity-gutter: 3rem;
     --rail-span: 20vw;
-    --home-lockup-top: 18rem;
+    --home-lockup-top: 24rem;
     --background: 0 0% 6.7%;
     --foreground: 0 0% 100%;
     --card: 0 0% 10%;
@@ -83,7 +83,7 @@
     margin-left: calc(var(--identity-gutter) - var(--rail-span));
     width: calc(100% + var(--rail-span) - var(--identity-gutter));
     padding-top: var(--home-lockup-top);
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
     padding-left: 0;
     padding-right: 2rem;
     justify-content: flex-start;
