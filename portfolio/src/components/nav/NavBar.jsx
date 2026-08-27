@@ -32,7 +32,11 @@ export default function NavBar() {
             </Link>
 
             <SheetTrigger asChild className="xl:hidden">
-              <button type="button" className="p-2" aria-label="Open menu">
+              <button
+                type="button"
+                className="p-2 text-white rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
+                aria-label="Open menu"
+              >
                 <HamburgerMenu isOpen={isOpen} />
               </button>
             </SheetTrigger>

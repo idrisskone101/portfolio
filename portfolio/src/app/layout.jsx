@@ -23,12 +23,12 @@ export default function RootLayout({ children }) {
         className={clsx(
           montserrat.className,
           montserrat.variable,
-          'flex flex-col w-screen h-[100dvh] overflow-hidden xl:flex-row xl:justify-center bg-canvas'
+          'flex flex-col w-full h-[100dvh] overflow-hidden xl:flex-row xl:justify-center bg-canvas'
         )}
       >
         <NavBar />
-        <main className="flex-1 overflow-auto bg-canvas">
-          <div className="relative w-full min-h-full text-white">
+        <main className="flex-1 min-h-0 overflow-auto bg-canvas">
+          <div className="relative w-full h-full min-h-full text-white">
             <PageTransition>{children}</PageTransition>
           </div>
         </main>

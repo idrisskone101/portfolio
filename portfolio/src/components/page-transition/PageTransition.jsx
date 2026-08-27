@@ -32,7 +32,7 @@ export default function PageTransition({ children }) {
           duration: reduceMotion ? 0 : pageMotion.duration,
           ease: pageMotion.ease,
         }}
-        className="w-full min-h-full"
+        className="w-full min-h-full h-full"
       >
         {children}
       </motion.div>

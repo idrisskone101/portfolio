@@ -16,13 +16,8 @@ const ICONS = {
 };
 
 export default function Home() {
-  const titleSequence = home.titles.reduce(
-    (acc, title) => [...acc, title, 2000, '', 500],
-    []
-  );
-
   return (
-    <div className="flex min-h-[100dvh] items-center justify-center w-full px-5 py-16 xl:min-h-full">
+    <div className="flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full xl:h-full">
       <div className="xl:flex xl:items-center xl:gap-20 xl:justify-center xl:mx-auto xl:w-full">
         <div
           className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto"
@@ -39,12 +34,14 @@ export default function Home() {
           <h1 className="text-4xl font-bold uppercase lg:text-5xl">
             {home.name}
           </h1>
-          <div className="mt-3 text-xl font-medium text-magenta h-[30px] lg:text-2xl">
+          <div className="mt-3 text-xl font-medium text-magenta min-h-[1.25em] lg:text-2xl">
             <TypeAnimation
-              sequence={titleSequence}
+              sequence={home.titles.flatMap((title) => [title, 2400])}
               wrapper="span"
               speed={50}
+              deletionSpeed={70}
               repeat={Infinity}
+              preRenderFirstString
             />
           </div>
           <p className="max-w-md mt-5 text-lg text-copy-muted">
