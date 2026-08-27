@@ -1,0 +1,5 @@
+{
+  "name": "portfolio",
+  "install": "bash scripts/install-pstack-models.sh",
+  "start": "true"
+}
