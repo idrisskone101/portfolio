@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import clsx from 'clsx';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -66,7 +65,7 @@ export default function ProjectDialog({
 
   return (
     <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <AlertDialogContent className="xl:max-w-3xl max-h-[90vh] overflow-y-auto bg-[#111] border-gray-800 px-4 sm:px-6 max-w-[90vw]">
+      <AlertDialogContent className="xl:max-w-3xl max-h-[90vh] overflow-y-auto bg-canvas border-line px-4 sm:px-6 max-w-[90vw]">
         <div className="relative mb-4 overflow-hidden rounded-lg aspect-video">
           <Image
             src={selectedProject.image || placeholderImage}
@@ -85,7 +84,7 @@ export default function ProjectDialog({
           <AlertDialogTitle className="text-2xl text-white">
             {selectedProject.title}
           </AlertDialogTitle>
-          <AlertDialogDescription className="text-base text-gray-300 max-sm:mt-10">
+          <AlertDialogDescription className="text-base text-copy-muted max-sm:mt-10">
             {selectedProject.description}
           </AlertDialogDescription>
 

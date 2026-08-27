@@ -1,4 +1,8 @@
 {
+  "private": true,
+  "scripts": {
+    "kode:check": "npm --prefix portfolio run lint && npm --prefix portfolio run build"
+  },
   "dependencies": {
     "date-fns": "^4.1.0"
   }

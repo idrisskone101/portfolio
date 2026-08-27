@@ -1,114 +1,92 @@
+import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
+import { getBlogPosts } from '@/lib/blog/hashnode';
+import { blog } from '@/data/site-content';
+import {
+  PageCard,
+  PageHeader,
+  PageShell,
+  PlaceholderFlag,
+} from '@/components/page-chrome';
 
-async function getBlogPosts() {
-  const hashnodeHostname = 'idrisskone.hashnode.dev';
+export const revalidate = 3600;
 
-  const query = `
-    query Publication($host: String!) {
-      publication(host: $host) {
-        posts(first: 6) {
-          edges {
-            node {
-              title
-              brief
-              slug
-              url
-              publishedAt
-              coverImage {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const response = await fetch('https://gql.hashnode.com/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-      variables: { host: hashnodeHostname },
-    }),
-    next: { revalidate: 3600 }, // Revalidate every hour
-  });
-
-  const data = await response.json();
-  return data.data.publication.posts.edges;
+function formatDate(dateString) {
+  try {
+    return formatDistanceToNow(new Date(dateString), { addSuffix: true });
+  } catch (cause) {
+    console.error('blog date format failed', { dateString, cause });
+    return '';
+  }
 }
 
 export default async function BlogPage() {
-  const posts = await getBlogPosts();
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return formatDistanceToNow(date, { addSuffix: true });
-  };
+  const result = await getBlogPosts();
+  const posts = result.posts;
+  const usingFallback = !result.ok;
 
   return (
-    <div className="container py-12 mx-auto">
-      {/* Hero Section */}
-      <div className="mb-12 text-left">
-        <p className="text-[#999] py-3 px-3 bg-white/[8%] uppercase font-semibold text-xs mb-4 w-fit">
-          Blog
+    <PageShell>
+      <PageHeader eyebrow={blog.eyebrow} title={blog.title} lede={blog.lede} />
+      {usingFallback ? (
+        <p className="mb-8 text-sm text-copy-faint">
+          Hashnode is unavailable or empty, so placeholder posts are showing.
+          Writing still lives at{' '}
+          <a
+            href={blog.hashnodeUrl}
+            className="text-magenta hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {blog.hashnodeHost}
+          </a>
+          .
         </p>
-        <h1 className="mb-4 text-3xl font-bold">Latest Blog Posts</h1>
-        <p className="max-w-2xl text-base text-left text-gray-300">
-          Thoughts, ideas, and insights on software development, design, and
-          technology
-        </p>
-      </div>
+      ) : null}
 
-      {posts.length === 0 ? (
-        <div className="flex items-center justify-center">
-          <p className="text-lg text-gray-300">
-            No blog posts found. Check back soon!
-          </p>
-        </div>
-      ) : (
-        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
-            <div
-              key={index}
-              className="overflow-hidden transition-all duration-300 bg-main rounded-lg shadow-md hover:shadow-xl hover:transform hover:scale-[1.02]"
-            >
-              {post.node.coverImage?.url ? (
-                <img
-                  src={post.node.coverImage.url}
-                  alt={post.node.title}
-                  className="object-cover w-full h-48"
+      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <PageCard
+            key={post.id}
+            href={post.url}
+            external
+            className="flex flex-col"
+          >
+            {post.coverImageUrl ? (
+              <div className="relative w-full h-48">
+                <Image
+                  src={post.coverImageUrl}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-              ) : (
-                <div className="flex items-center justify-center w-full h-48 bg-gray-800">
-                  <span className="text-gray-500">No cover image</span>
-                </div>
-              )}
-              <div className="p-6 text-left">
-                <h2 className="mb-3 text-xl font-semibold">
-                  {post.node.title}
-                </h2>
-                <p className="mb-3 text-sm text-gray-400">
-                  {formatDate(post.node.publishedAt)}
-                </p>
-                <p className="mb-4 text-gray-300 line-clamp-3">
-                  {post.node.brief}
-                </p>
-                <a
-                  href={post.node.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 text-sm font-medium text-white transition-colors bg-[#111] rounded"
-                >
-                  Read More
-                </a>
               </div>
+            ) : (
+              <div className="flex items-center justify-center w-full h-48 border-b bg-surface-2 border-line">
+                <span className="text-sm text-copy-faint">No cover image</span>
+              </div>
+            )}
+            <div className="flex flex-col flex-1 p-6">
+              <div className="flex items-center gap-2 mb-3">
+                {post.placeholder ? <PlaceholderFlag /> : null}
+                {post.publishedAt ? (
+                  <p className="text-sm text-copy-faint">
+                    {formatDate(post.publishedAt)}
+                  </p>
+                ) : null}
+              </div>
+              <h2 className="mb-3 text-xl font-semibold">{post.title}</h2>
+              <p className="mb-6 text-sm leading-6 text-copy-muted line-clamp-3">
+                {post.brief}
+              </p>
+              <span className="mt-auto text-sm font-medium text-magenta">
+                Read more
+              </span>
             </div>
-          ))}
-        </div>
-      )}
-    </div>
+          </PageCard>
+        ))}
+      </div>
+    </PageShell>
   );
 }
