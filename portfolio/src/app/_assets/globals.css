@@ -18,6 +18,8 @@
     --duration-page: 380ms;
     --duration-morph: 18s;
     --identity-gutter: 3rem;
+    --rail-span: 20vw;
+    --home-lockup-top: 18rem;
     --background: 0 0% 6.7%;
     --foreground: 0 0% 100%;
     --card: 0 0% 10%;
@@ -72,25 +74,44 @@
 .animate-morph {
   transform: translateZ(0);
   backface-visibility: hidden;
+  contain: layout paint;
+  will-change: border-radius;
+}
+
+@media (min-width: 1280px) {
+  .home-identity-lockup {
+    margin-left: calc(var(--identity-gutter) - var(--rail-span));
+    width: calc(100% + var(--rail-span) - var(--identity-gutter));
+    padding-top: var(--home-lockup-top);
+    padding-bottom: 3rem;
+    padding-left: 0;
+    padding-right: 2rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 1279px) {
   :root {
-    --duration-morph: 40s;
+    --duration-morph: 80s;
   }
 
   @keyframes morph {
     0%,
     100% {
-      border-radius: 58% 42% 38% 62% / 58% 38% 62% 42%;
+      border-radius: 56% 44% 42% 58% / 56% 42% 58% 44%;
     }
     50% {
-      border-radius: 48% 52% 45% 55% / 52% 48% 50% 50%;
+      border-radius: 52% 48% 46% 54% / 50% 54% 46% 50%;
     }
   }
 
+  .animate-morph {
+    animation-timing-function: linear;
+  }
+
   .home-type-caret {
-    animation-duration: 1.6s;
+    animation-duration: 2s;
   }
 }
 

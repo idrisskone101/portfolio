@@ -20,10 +20,10 @@ export default function Home() {
   const reduceMotion = useReducedMotion() === true;
 
   return (
-    <div className="flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full xl:h-full xl:justify-start xl:px-[var(--identity-gutter)]">
-      <div className="xl:flex xl:items-center xl:gap-20 xl:justify-start xl:w-full">
+    <div className="home-identity-lockup flex min-h-[calc(100dvh-4.5rem)] items-center justify-center w-full px-5 py-16 xl:min-h-full">
+      <div className="xl:flex xl:items-center xl:gap-16 xl:justify-start xl:w-full">
         <div
-          className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto xl:m-0"
+          className="w-[200px] aspect-square lg:w-[300px] bg-no-repeat bg-center bg-cover animate-morph bg-blend-multiply shadow-profile rounded-blob overflow-hidden m-auto xl:m-0 xl:shrink-0"
           style={{
             backgroundImage: `url(${profileImage.src})`,
             filter: 'grayscale(100%)',
@@ -31,10 +31,11 @@ export default function Home() {
           }}
           role="img"
           aria-label={`${home.name} portrait`}
+          data-identity="blob"
         />
 
         <div className="flex flex-col items-center justify-center mt-8 text-center xl:mt-0 xl:text-left xl:items-start">
-          <h1 className="text-4xl font-bold uppercase lg:text-5xl">
+          <h1 className="text-4xl font-bold uppercase lg:text-5xl" data-identity="copy">
             {home.name}
           </h1>
           <div className="mt-3 text-xl font-medium text-magenta min-h-[1.25em] lg:text-2xl">

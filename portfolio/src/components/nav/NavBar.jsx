@@ -18,9 +18,17 @@ import { navigation } from '@/data/site-content';
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === '/';
 
   return (
-    <nav className="w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-start xl:justify-center xl:bg-rail xl:px-[var(--identity-gutter)]">
+    <nav
+      className={cn(
+        'w-full text-white bg-main xl:flex xl:w-1/5 xl:flex-col xl:items-start xl:px-[var(--identity-gutter)]',
+        isHome
+          ? 'xl:justify-start xl:pt-[var(--identity-gutter)] xl:bg-transparent xl:z-20'
+          : 'xl:justify-center xl:bg-rail'
+      )}
+    >
       <div className="flex items-center justify-between py-3 mx-5 xl:mx-0 xl:w-full xl:justify-start">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <div className="flex items-center justify-between w-full xl:hidden">
@@ -75,6 +83,7 @@ export default function NavBar() {
           <Link
             href="/"
             className="block text-3xl font-bold tracking-widest uppercase lg:mb-5"
+            data-identity="name"
           >
             Idriss
           </Link>
