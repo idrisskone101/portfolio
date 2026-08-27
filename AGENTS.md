@@ -42,6 +42,8 @@ Root helpers: `npm run kode:setup` (same as install) and `npm run kode:check` (l
 - Dev server: `npm --prefix portfolio run dev` (http://localhost:3000)
 - Production: `npm --prefix portfolio run build` then `npm --prefix portfolio run start`
 
+Lint currently fails because `portfolio/.eslintrc.json` extends `next/babel`, which Next 14 does not ship as an ESLint config. The production build currently fails prerendering `/blog` (the page treats an HTML response as JSON). Both are pre-existing app issues, not Cloud boot failures. Do not "fix" them in an environment PR.
+
 ### pstack models
 
 - The workspace file `.cursor/rules/pstack-models.mdc` is the source of truth. It maps roles to `composer-2.5` or `inherit-parent`, same lock as PostForge.
