@@ -3,11 +3,10 @@
 import { useReducedMotion } from 'framer-motion';
 import profileImage from '@/app/_assets/images/profile.jpg';
 import { Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
-import { TypeAnimation } from 'react-type-animation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { home, socials } from '@/data/site-content';
-import { homeMotion } from '@/lib/motion/tokens';
+import HomeTypeTitles from './home-type-titles';
 
 const ICONS = {
   github: Github,
@@ -39,25 +38,7 @@ export default function Home() {
             {home.name}
           </h1>
           <div className="mt-3 text-xl font-medium text-magenta min-h-[1.25em] lg:text-2xl">
-            {reduceMotion ? (
-              <span>{home.titles[0]}</span>
-            ) : (
-              <TypeAnimation
-                sequence={home.titles.flatMap((title) => [
-                  title,
-                  homeMotion.holdMs,
-                ])}
-                wrapper="span"
-                speed={{ type: 'keyStrokeDelayInMs', value: homeMotion.typeMs }}
-                deletionSpeed={{
-                  type: 'keyStrokeDelayInMs',
-                  value: homeMotion.deleteMs,
-                }}
-                repeat={Infinity}
-                preRenderFirstString
-                style={{ display: 'inline-block' }}
-              />
-            )}
+            <HomeTypeTitles titles={home.titles} reduceMotion={reduceMotion} />
           </div>
           <p className="max-w-md mt-5 text-lg text-copy-muted">
             {home.description}
