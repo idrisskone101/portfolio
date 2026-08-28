@@ -1,0 +1,273 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+find_repo_root() {
+  local d="$SCRIPT_DIR"
+  while [[ "$d" != / ]]; do
+    if [[ -f "$d/portfolio/package.json" ]]; then
+      printf '%s\n' "$d"
+      return 0
+    fi
+    d=$(dirname "$d")
+  done
+  echo "verify-portfolio: could not find repo root (portfolio/package.json)" >&2
+  return 1
+}
+
+REPO_ROOT=$(find_repo_root)
+HOST=${VERIFY_PORTFOLIO_HOST:-127.0.0.1}
+PORT=${VERIFY_PORTFOLIO_PORT:-3000}
+STATE_DIR=${VERIFY_PORTFOLIO_STATE_DIR:-/tmp/verify-portfolio}
+EVIDENCE_DIR=${VERIFY_PORTFOLIO_EVIDENCE:-/opt/cursor/artifacts/verify-portfolio}
+URL="http://${HOST}:${PORT}"
+ENV_FILE="$STATE_DIR/run.env"
+PID_FILE="$STATE_DIR/server.pid"
+LOG_FILE="$STATE_DIR/server.log"
+
+usage() {
+  cat <<EOF
+Usage: verify-portfolio <launch|doctor|drive|cleanup>
+
+  launch          Build portfolio/ and start next start
+  doctor          Check that this run's production server is worth driving
+  drive home      Drive the Home feature over CDP Chrome
+  cleanup         Kill this run's server PID. Keep evidence.
+EOF
+}
+
+load_env() {
+  if [[ ! -f "$ENV_FILE" ]]; then
+    echo "verify-portfolio: no run.env at $ENV_FILE (run launch first)" >&2
+    return 1
+  fi
+  # shellcheck disable=SC1090
+  source "$ENV_FILE"
+}
+
+pid_alive() {
+  local pid="$1"
+  [[ -n "$pid" ]] && kill -0 "$pid" 2>/dev/null
+}
+
+pid_cmdline() {
+  local pid="$1"
+  if [[ -r "/proc/$pid/cmdline" ]]; then
+    tr '\0' ' ' <"/proc/$pid/cmdline"
+    return 0
+  fi
+  ps -p "$pid" -o args= 2>/dev/null || true
+}
+
+pid_owns_port() {
+  local pid="$1"
+  local port="$2"
+  if command -v ss >/dev/null 2>&1; then
+    ss -ltnp 2>/dev/null | grep -E ":${port}\\b" | grep -q "pid=${pid},"
+    return $?
+  fi
+  lsof -nP -iTCP:"$port" -sTCP:LISTEN 2>/dev/null | awk '{print $2}' | grep -qx "$pid"
+}
+
+port_pids() {
+  local port="$1"
+  if command -v ss >/dev/null 2>&1; then
+    ss -ltnp 2>/dev/null | grep -E ":${port}\\b" | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u
+    return 0
+  fi
+  lsof -nP -iTCP:"$port" -sTCP:LISTEN -t 2>/dev/null | sort -u
+}
+
+write_env() {
+  local pid="$1"
+  local build_id="$2"
+  cat >"$ENV_FILE" <<EOF
+VERIFY_PORTFOLIO_HOST=$HOST
+VERIFY_PORTFOLIO_PORT=$PORT
+VERIFY_PORTFOLIO_URL=$URL
+VERIFY_PORTFOLIO_PID=$pid
+VERIFY_PORTFOLIO_BUILD_ID=$build_id
+VERIFY_PORTFOLIO_REPO=$REPO_ROOT
+VERIFY_PORTFOLIO_EVIDENCE=$EVIDENCE_DIR
+EOF
+  printf '%s\n' "$pid" >"$PID_FILE"
+}
+
+cmd_launch() {
+  mkdir -p "$STATE_DIR"
+
+  if [[ -f "$ENV_FILE" ]]; then
+    # shellcheck disable=SC1090
+    source "$ENV_FILE"
+    if pid_alive "${VERIFY_PORTFOLIO_PID:-}"; then
+      echo "verify-portfolio: already running pid=$VERIFY_PORTFOLIO_PID url=$VERIFY_PORTFOLIO_URL"
+      return 0
+    fi
+    rm -f "$ENV_FILE" "$PID_FILE"
+  fi
+
+  local occupants
+  occupants=$(port_pids "$PORT" || true)
+  if [[ -n "$occupants" ]]; then
+    echo "verify-portfolio: port $PORT is already bound by pid(s) $occupants. Refusing to share." >&2
+    return 2
+  fi
+
+  cd "$REPO_ROOT"
+  if [[ "${VERIFY_PORTFOLIO_SKIP_BUILD:-}" != 1 ]]; then
+    npm --prefix portfolio run build
+  fi
+
+  if [[ ! -f portfolio/.next/BUILD_ID ]]; then
+    echo "verify-portfolio: missing portfolio/.next/BUILD_ID after build" >&2
+    return 1
+  fi
+  local build_id
+  build_id=$(tr -d '[:space:]' <portfolio/.next/BUILD_ID)
+
+  : >"$LOG_FILE"
+  PORT="$PORT" npm --prefix portfolio run start -- -H "$HOST" -p "$PORT" >"$LOG_FILE" 2>&1 &
+  local pid=$!
+
+  local i code
+  code=""
+  for i in $(seq 1 60); do
+    if ! pid_alive "$pid"; then
+      echo "verify-portfolio: server pid $pid exited before ready. Log:" >&2
+      cat "$LOG_FILE" >&2 || true
+      return 1
+    fi
+    code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 2 "$URL/" || true)
+    if [[ "$code" == 200 ]]; then
+      write_env "$pid" "$build_id"
+      echo "verify-portfolio: ready url=$URL pid=$pid build=$build_id"
+      return 0
+    fi
+    sleep 1
+  done
+
+  echo "verify-portfolio: timed out waiting for 200 on $URL/ (last code=${code:-none})" >&2
+  if pid_alive "$pid"; then
+    kill "$pid" 2>/dev/null || true
+  fi
+  return 1
+}
+
+cmd_doctor() {
+  load_env
+  local pid="${VERIFY_PORTFOLIO_PID:-}"
+  if ! pid_alive "$pid"; then
+    echo "verify-portfolio doctor: pid $pid is not alive" >&2
+    return 1
+  fi
+
+  local cmd
+  cmd=$(pid_cmdline "$pid")
+  if [[ "$cmd" == *" next dev"* || "$cmd" == *"/dev.js"* || "$cmd" == *"next-dev"* ]]; then
+    echo "verify-portfolio doctor: pid $pid looks like next dev: $cmd" >&2
+    return 1
+  fi
+  if [[ "$cmd" != *"next"* ]]; then
+    echo "verify-portfolio doctor: pid $pid is not a next process: $cmd" >&2
+    return 1
+  fi
+
+  if ! pid_owns_port "$pid" "$VERIFY_PORTFOLIO_PORT"; then
+    echo "verify-portfolio doctor: pid $pid does not own port $VERIFY_PORTFOLIO_PORT" >&2
+    return 1
+  fi
+
+  local code body
+  code=$(curl -s -o /tmp/verify-portfolio-doctor-body.html -w '%{http_code}' --max-time 5 "${VERIFY_PORTFOLIO_URL}/")
+  if [[ "$code" != 200 ]]; then
+    echo "verify-portfolio doctor: GET / returned $code" >&2
+    return 1
+  fi
+  body=$(cat /tmp/verify-portfolio-doctor-body.html)
+  if [[ "$body" != *"Idriss"* ]]; then
+    echo "verify-portfolio doctor: GET / body does not contain Idriss" >&2
+    return 1
+  fi
+
+  local build_file="$VERIFY_PORTFOLIO_REPO/portfolio/.next/BUILD_ID"
+  if [[ ! -f "$build_file" ]]; then
+    echo "verify-portfolio doctor: missing $build_file" >&2
+    return 1
+  fi
+  local build_id
+  build_id=$(tr -d '[:space:]' <"$build_file")
+
+  echo "verify-portfolio doctor: ok"
+  echo "  url=$VERIFY_PORTFOLIO_URL"
+  echo "  pid=$pid"
+  echo "  build=$build_id"
+  echo "  cmdline=$cmd"
+}
+
+cmd_drive() {
+  local feature="${1:-}"
+  if [[ "$feature" != home ]]; then
+    echo "verify-portfolio: drive expects feature 'home' (got '${feature:-}')" >&2
+    return 1
+  fi
+  load_env
+  cmd_doctor >/dev/null
+  VERIFY_PORTFOLIO_HOST="$VERIFY_PORTFOLIO_HOST" \
+    VERIFY_PORTFOLIO_PORT="$VERIFY_PORTFOLIO_PORT" \
+    VERIFY_PORTFOLIO_URL="$VERIFY_PORTFOLIO_URL" \
+    VERIFY_PORTFOLIO_PID="$VERIFY_PORTFOLIO_PID" \
+    VERIFY_PORTFOLIO_BUILD_ID="$VERIFY_PORTFOLIO_BUILD_ID" \
+    VERIFY_PORTFOLIO_REPO="$VERIFY_PORTFOLIO_REPO" \
+    VERIFY_PORTFOLIO_EVIDENCE="$VERIFY_PORTFOLIO_EVIDENCE" \
+    VERIFY_PORTFOLIO_STATE_DIR="$STATE_DIR" \
+    node "$SCRIPT_DIR/drive-home.mjs"
+}
+
+cmd_cleanup() {
+  if [[ ! -f "$ENV_FILE" ]]; then
+    echo "verify-portfolio: nothing to clean ($ENV_FILE missing)"
+    echo "verify-portfolio: evidence kept at $EVIDENCE_DIR"
+    return 0
+  fi
+  # shellcheck disable=SC1090
+  source "$ENV_FILE"
+  local pid="${VERIFY_PORTFOLIO_PID:-}"
+  if pid_alive "$pid"; then
+    kill "$pid" 2>/dev/null || true
+    local i
+    for i in $(seq 1 20); do
+      if ! pid_alive "$pid"; then
+        break
+      fi
+      sleep 0.2
+    done
+    if pid_alive "$pid"; then
+      kill -9 "$pid" 2>/dev/null || true
+    fi
+    echo "verify-portfolio: stopped pid=$pid"
+  else
+    echo "verify-portfolio: pid ${pid:-unknown} already gone"
+  fi
+  rm -rf "$STATE_DIR"
+  echo "verify-portfolio: removed $STATE_DIR"
+  echo "verify-portfolio: evidence kept at ${VERIFY_PORTFOLIO_EVIDENCE:-$EVIDENCE_DIR}"
+}
+
+main() {
+  local cmd="${1:-}"
+  case "$cmd" in
+    launch) cmd_launch ;;
+    doctor) cmd_doctor ;;
+    drive) shift; cmd_drive "${1:-}" ;;
+    cleanup) cmd_cleanup ;;
+    -h|--help|help|"") usage; [[ -n "$cmd" ]] || exit 1 ;;
+    *)
+      echo "verify-portfolio: unknown command '$cmd'" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"
