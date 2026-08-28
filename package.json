@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "kode:setup": "bash scripts/cloud-agent-install.sh",
     "kode:check": "npm --prefix portfolio run lint && npm --prefix portfolio run build"
   },
   "dependencies": {
