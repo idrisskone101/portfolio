@@ -37,8 +37,9 @@ Preconditions:
 ## Gotchas
 
 - Tailwind `xl` is 1280px. 1279 still uses the mobile bar. 1280 shows the rail. Proof viewports are 1440 and 390 so you are not sitting on the breakpoint.
-- `data-identity="name"` exists only in the desktop rail. Do not fail mobile because it is missing.
+- `data-identity="name"` and the Open menu button stay in the DOM at every width. `xl:hidden` / `hidden xl:block` only hide them. Assert visibility (box size / computed style), not `querySelector` presence.
 - After a client navigation, wait for the new `h1`. A screenshot during `PageTransition` is not proof.
 - The magenta titles rotate on a timer. Assert that some title text is present. Do not assert character timing, hold duration, or blob morph duration from this recipe.
-- `waitUntil: networkidle` can hang. Wait for the `h1` or `domcontentloaded`.
+- The rail name and the Home `h1` use CSS `uppercase`. `innerText` is `IDRISS` / `IDRISS KONE`. Read `textContent` or match case-insensitively.
+- `waitUntil: networkidle` can hang. Wait for `[data-identity="copy"]` or `domcontentloaded`.
 - LinkedIn, Twitter, and Instagram hrefs are placeholders. A 404 on those hosts is not a Home failure.

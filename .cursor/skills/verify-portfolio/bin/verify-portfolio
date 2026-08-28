@@ -63,35 +63,132 @@ pid_cmdline() {
 pid_owns_port() {
   local pid="$1"
   local port="$2"
-  if command -v ss >/dev/null 2>&1; then
-    ss -ltnp 2>/dev/null | grep -E ":${port}\\b" | grep -q "pid=${pid},"
-    return $?
-  fi
-  lsof -nP -iTCP:"$port" -sTCP:LISTEN 2>/dev/null | awk '{print $2}' | grep -qx "$pid"
+  port_pids "$port" | grep -qx "$pid"
+}
+
+collect_tree() {
+  local pid="$1"
+  [[ -n "$pid" ]] || return 0
+  printf '%s\n' "$pid"
+  local child
+  while IFS= read -r child; do
+    [[ -n "$child" ]] && collect_tree "$child"
+  done < <(pgrep -P "$pid" 2>/dev/null || true)
+}
+
+stop_tree() {
+  local root="$1"
+  [[ -n "$root" ]] || return 0
+  local pids
+  pids=$(collect_tree "$root" | tac)
+  local pid
+  for pid in $pids; do
+    if pid_alive "$pid"; then
+      kill "$pid" 2>/dev/null || true
+    fi
+  done
+  local i
+  for i in $(seq 1 20); do
+    local any=0
+    for pid in $pids; do
+      if pid_alive "$pid"; then
+        any=1
+        break
+      fi
+    done
+    if [[ "$any" -eq 0 ]]; then
+      return 0
+    fi
+    sleep 0.2
+  done
+  for pid in $pids; do
+    if pid_alive "$pid"; then
+      kill -9 "$pid" 2>/dev/null || true
+    fi
+  done
 }
 
 port_pids() {
   local port="$1"
-  if command -v ss >/dev/null 2>&1; then
-    ss -ltnp 2>/dev/null | grep -E ":${port}\\b" | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u
-    return 0
-  fi
-  lsof -nP -iTCP:"$port" -sTCP:LISTEN -t 2>/dev/null | sort -u
+  python3 - "$port" <<'PY'
+import os, sys
+port = int(sys.argv[1])
+inodes = set()
+for table in ("/proc/net/tcp", "/proc/net/tcp6"):
+    try:
+        lines = open(table, encoding="utf-8").read().splitlines()[1:]
+    except OSError:
+        continue
+    for line in lines:
+        parts = line.split()
+        if len(parts) < 10:
+            continue
+        local = parts[1]
+        state = parts[3]
+        inode = parts[9]
+        try:
+            _, hexport = local.split(":")
+            if int(hexport, 16) == port and state == "0A":
+                inodes.add(inode)
+        except ValueError:
+            continue
+if not inodes:
+    raise SystemExit(0)
+pids = []
+for pid in os.listdir("/proc"):
+    if not pid.isdigit():
+        continue
+    fd_dir = f"/proc/{pid}/fd"
+    try:
+        for fd in os.listdir(fd_dir):
+            try:
+                target = os.readlink(f"{fd_dir}/{fd}")
+            except OSError:
+                continue
+            if target.startswith("socket:[") and target[8:-1] in inodes:
+                pids.append(pid)
+                break
+    except OSError:
+        continue
+print("\n".join(pids))
+PY
 }
 
 write_env() {
-  local pid="$1"
-  local build_id="$2"
+  local listen_pid="$1"
+  local launch_pid="$2"
+  local build_id="$3"
   cat >"$ENV_FILE" <<EOF
 VERIFY_PORTFOLIO_HOST=$HOST
 VERIFY_PORTFOLIO_PORT=$PORT
 VERIFY_PORTFOLIO_URL=$URL
-VERIFY_PORTFOLIO_PID=$pid
+VERIFY_PORTFOLIO_PID=$listen_pid
+VERIFY_PORTFOLIO_LAUNCH_PID=$launch_pid
 VERIFY_PORTFOLIO_BUILD_ID=$build_id
 VERIFY_PORTFOLIO_REPO=$REPO_ROOT
 VERIFY_PORTFOLIO_EVIDENCE=$EVIDENCE_DIR
 EOF
-  printf '%s\n' "$pid" >"$PID_FILE"
+  printf '%s\n' "$listen_pid" >"$PID_FILE"
+}
+
+find_next_server() {
+  local root="$1"
+  local pid cmd child
+  local queue=("$root")
+  local i=0
+  while [[ $i -lt ${#queue[@]} ]]; do
+    pid="${queue[$i]}"
+    i=$((i + 1))
+    cmd=$(pid_cmdline "$pid")
+    if [[ "$cmd" == *"next-server"* ]]; then
+      printf '%s\n' "$pid"
+      return 0
+    fi
+    while IFS= read -r child; do
+      [[ -n "$child" ]] && queue+=("$child")
+    done < <(pgrep -P "$pid" 2>/dev/null || true)
+  done
+  return 1
 }
 
 cmd_launch() {
@@ -100,8 +197,8 @@ cmd_launch() {
   if [[ -f "$ENV_FILE" ]]; then
     # shellcheck disable=SC1090
     source "$ENV_FILE"
-    if pid_alive "${VERIFY_PORTFOLIO_PID:-}"; then
-      echo "verify-portfolio: already running pid=$VERIFY_PORTFOLIO_PID url=$VERIFY_PORTFOLIO_URL"
+    if pid_alive "${VERIFY_PORTFOLIO_PID:-}" || pid_alive "${VERIFY_PORTFOLIO_LAUNCH_PID:-}"; then
+      echo "verify-portfolio: already running pid=${VERIFY_PORTFOLIO_PID:-} launch=${VERIFY_PORTFOLIO_LAUNCH_PID:-} url=$VERIFY_PORTFOLIO_URL"
       return 0
     fi
     rm -f "$ENV_FILE" "$PID_FILE"
@@ -110,7 +207,7 @@ cmd_launch() {
   local occupants
   occupants=$(port_pids "$PORT" || true)
   if [[ -n "$occupants" ]]; then
-    echo "verify-portfolio: port $PORT is already bound by pid(s) $occupants. Refusing to share." >&2
+    echo "verify-portfolio: port $PORT is already bound by pid(s) $occupants. Refusing to share. Kill that PID if it is a leftover from this skill, then relaunch." >&2
     return 2
   fi
 
@@ -130,18 +227,26 @@ cmd_launch() {
   PORT="$PORT" npm --prefix portfolio run start -- -H "$HOST" -p "$PORT" >"$LOG_FILE" 2>&1 &
   local pid=$!
 
-  local i code
+  local i code listen_pid
   code=""
+  listen_pid=""
   for i in $(seq 1 60); do
+    if grep -q EADDRINUSE "$LOG_FILE" 2>/dev/null; then
+      echo "verify-portfolio: server failed with EADDRINUSE. Log:" >&2
+      cat "$LOG_FILE" >&2 || true
+      stop_tree "$pid"
+      return 1
+    fi
     if ! pid_alive "$pid"; then
       echo "verify-portfolio: server pid $pid exited before ready. Log:" >&2
       cat "$LOG_FILE" >&2 || true
       return 1
     fi
+    listen_pid=$(find_next_server "$pid" || true)
     code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 2 "$URL/" || true)
-    if [[ "$code" == 200 ]]; then
-      write_env "$pid" "$build_id"
-      echo "verify-portfolio: ready url=$URL pid=$pid build=$build_id"
+    if [[ -n "$listen_pid" && "$code" == 200 ]]; then
+      write_env "$listen_pid" "$pid" "$build_id"
+      echo "verify-portfolio: ready url=$URL pid=$listen_pid launch=$pid build=$build_id"
       return 0
     fi
     sleep 1
@@ -157,8 +262,14 @@ cmd_launch() {
 cmd_doctor() {
   load_env
   local pid="${VERIFY_PORTFOLIO_PID:-}"
+  local launch_pid="${VERIFY_PORTFOLIO_LAUNCH_PID:-}"
   if ! pid_alive "$pid"; then
-    echo "verify-portfolio doctor: pid $pid is not alive" >&2
+    if pid_alive "$launch_pid"; then
+      pid=$(find_next_server "$launch_pid" || true)
+    fi
+  fi
+  if ! pid_alive "$pid"; then
+    echo "verify-portfolio doctor: pid ${VERIFY_PORTFOLIO_PID:-unknown} is not alive" >&2
     return 1
   fi
 
@@ -173,8 +284,10 @@ cmd_doctor() {
     return 1
   fi
 
+  local occupants
+  occupants=$(port_pids "$VERIFY_PORTFOLIO_PORT" || true)
   if ! pid_owns_port "$pid" "$VERIFY_PORTFOLIO_PORT"; then
-    echo "verify-portfolio doctor: pid $pid does not own port $VERIFY_PORTFOLIO_PORT" >&2
+    echo "verify-portfolio doctor: pid $pid does not own port $VERIFY_PORTFOLIO_PORT (occupants: ${occupants:-none})" >&2
     return 1
   fi
 
@@ -233,22 +346,10 @@ cmd_cleanup() {
   # shellcheck disable=SC1090
   source "$ENV_FILE"
   local pid="${VERIFY_PORTFOLIO_PID:-}"
-  if pid_alive "$pid"; then
-    kill "$pid" 2>/dev/null || true
-    local i
-    for i in $(seq 1 20); do
-      if ! pid_alive "$pid"; then
-        break
-      fi
-      sleep 0.2
-    done
-    if pid_alive "$pid"; then
-      kill -9 "$pid" 2>/dev/null || true
-    fi
-    echo "verify-portfolio: stopped pid=$pid"
-  else
-    echo "verify-portfolio: pid ${pid:-unknown} already gone"
-  fi
+  local launch_pid="${VERIFY_PORTFOLIO_LAUNCH_PID:-}"
+  stop_tree "$launch_pid"
+  stop_tree "$pid"
+  echo "verify-portfolio: stopped pid=$pid launch=${launch_pid:-none}"
   rm -rf "$STATE_DIR"
   echo "verify-portfolio: removed $STATE_DIR"
   echo "verify-portfolio: evidence kept at ${VERIFY_PORTFOLIO_EVIDENCE:-$EVIDENCE_DIR}"

@@ -107,7 +107,7 @@ async function connectChrome(debugPort) {
 }
 
 async function attachPage(cdp, url) {
-  const created = await cdp.send('Target.createTarget', { url: 'about:blank' });
+  const created = await cdp.send('Target.createTarget', { url });
   const attached = await cdp.send('Target.attachToTarget', {
     targetId: created.targetId,
     flatten: true,
@@ -115,18 +115,18 @@ async function attachPage(cdp, url) {
   const sessionId = attached.sessionId;
   await cdp.send('Page.enable', {}, sessionId);
   await cdp.send('Runtime.enable', {}, sessionId);
-  await cdp.send('Page.navigate', { url }, sessionId);
   const start = Date.now();
   while (Date.now() - start < 20000) {
     const ready = await evaluate(
       cdp,
       sessionId,
-      `document.readyState === 'complete' && document.body && document.body.innerText.includes('Idriss')`
+      `Boolean(document.querySelector('[data-identity="copy"]'))`
     );
     if (ready) return sessionId;
     await delay(150);
   }
-  throw new Error(`page did not become ready at ${url}`);
+  const href = await evaluate(cdp, sessionId, 'location.href');
+  throw new Error(`page did not become ready at ${url} (at ${href})`);
 }
 
 async function evaluate(cdp, sessionId, expression) {
@@ -182,7 +182,7 @@ const SNAPSHOT_EXPR = `(() => {
     const aria = el.getAttribute && el.getAttribute('aria-label');
     let name = aria || '';
     if (!name && ['h1', 'h2', 'h3', 'a', 'button', 'label'].includes(tag)) {
-      name = (el.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 120);
+      name = (el.textContent || '').replace(/\\s+/g, ' ').trim().slice(0, 120);
     }
     if (identity || href || aria || ['h1', 'h2', 'nav', 'main', 'button'].includes(tag) || role === 'alert' || role === 'img') {
       nodes.push({ tag, role, name, href, identity });
@@ -197,23 +197,30 @@ const STATE_EXPR = `(() => {
   const q = (sel) => document.querySelector(sel);
   const text = (sel) => {
     const el = q(sel);
-    return el ? (el.innerText || '').replace(/\\s+/g, ' ').trim() : null;
+    return el ? (el.textContent || '').replace(/\\s+/g, ' ').trim() : null;
+  };
+  const visible = (el) => {
+    if (!el) return false;
+    const cs = getComputedStyle(el);
+    if (cs.display === 'none' || cs.visibility === 'hidden') return false;
+    const r = el.getBoundingClientRect();
+    return r.width > 0 && r.height > 0;
   };
   const copy = q('[data-identity="copy"]');
   const blob = q('[data-identity="blob"]');
   const name = q('[data-identity="name"]');
   const menu = q('[aria-label="Open menu"]');
-  const viewWork = [...document.querySelectorAll('a')].find((a) => (a.innerText || '').trim() === 'View work');
-  const contact = [...document.querySelectorAll('a')].find((a) => (a.innerText || '').trim() === 'Get in touch');
-  const navNames = [...document.querySelectorAll('nav a, [role="dialog"] a')].map((a) => (a.innerText || '').replace(/\\s+/g, ' ').trim()).filter(Boolean);
+  const viewWork = [...document.querySelectorAll('a')].find((a) => (a.textContent || '').trim() === 'View work' && visible(a));
+  const contact = [...document.querySelectorAll('a')].find((a) => (a.textContent || '').trim() === 'Get in touch' && visible(a));
+  const navNames = [...document.querySelectorAll('nav a')].filter(visible).map((a) => (a.textContent || '').replace(/\\s+/g, ' ').trim()).filter(Boolean);
   return {
     path: location.pathname,
     title: document.title,
-    copy: copy ? copy.innerText.trim() : null,
+    copy: copy ? copy.textContent.trim() : null,
     blobLabel: blob ? blob.getAttribute('aria-label') : null,
-    nameText: name ? name.innerText.trim() : null,
-    nameHref: name ? name.getAttribute('href') : null,
-    hasMenu: Boolean(menu),
+    nameText: visible(name) ? name.textContent.trim() : null,
+    nameHref: visible(name) ? name.getAttribute('href') : null,
+    hasMenu: visible(menu),
     viewWorkHref: viewWork ? viewWork.getAttribute('href') : null,
     contactHref: contact ? contact.getAttribute('href') : null,
     h1: text('h1'),
@@ -250,7 +257,7 @@ async function clickByText(cdp, sessionId, tag, label) {
     sessionId,
     `(() => {
       const nodes = [...document.querySelectorAll(${JSON.stringify(tag)})];
-      const el = nodes.find((node) => (node.innerText || '').replace(/\\s+/g, ' ').trim() === ${JSON.stringify(label)});
+      const el = nodes.find((node) => (node.textContent || '').replace(/\\s+/g, ' ').trim() === ${JSON.stringify(label)});
       if (!el) return false;
       el.click();
       return true;
@@ -259,15 +266,24 @@ async function clickByText(cdp, sessionId, tag, label) {
   if (!clicked) throw new Error(`clickByText: no ${tag} named ${label}`);
 }
 
-async function waitForPath(cdp, sessionId, expected, timeoutMs = 10000) {
+async function waitForH1(cdp, sessionId, expected, timeoutMs = 10000) {
   const start = Date.now();
   while (Date.now() - start < timeoutMs) {
-    const pathName = await evaluate(cdp, sessionId, 'location.pathname');
-    if (pathName === expected) return;
+    const h1 = await evaluate(
+      cdp,
+      sessionId,
+      `document.querySelector('h1')?.textContent.replace(/\\s+/g, ' ').trim() || ''`
+    );
+    if (h1 === expected) return;
     await delay(150);
   }
-  const actual = await evaluate(cdp, sessionId, 'location.pathname');
-  throw new Error(`timed out waiting for ${expected} (at ${actual})`);
+  const actual = await evaluate(
+    cdp,
+    sessionId,
+    `document.querySelector('h1')?.textContent.replace(/\\s+/g, ' ').trim() || ''`
+  );
+  const pathName = await evaluate(cdp, sessionId, 'location.pathname');
+  throw new Error(`timed out waiting for h1 ${expected} (h1=${actual} path=${pathName})`);
 }
 
 async function main() {
@@ -284,6 +300,7 @@ async function main() {
       '--no-sandbox',
       '--disable-setuid-sandbox',
       '--disable-dev-shm-usage',
+      '--remote-allow-origins=*',
       `--remote-debugging-port=${debugPort}`,
       `--remote-debugging-address=127.0.0.1`,
       `--user-data-dir=${profileDir}`,
@@ -340,7 +357,7 @@ async function main() {
     await writeFile(path.join(outDir, 'before.aria.txt'), formatAria(desktopAria));
 
     await clickByText(cdp, sessionId, 'a', 'View work');
-    await waitForPath(cdp, sessionId, '/portfolio');
+    await waitForH1(cdp, sessionId, 'Selected work');
     const after = await evaluate(cdp, sessionId, STATE_EXPR);
     check(assertions, 'cta-work-h1', after.h1 === 'Selected work', after.h1);
     check(assertions, 'cta-work-path', after.path === '/portfolio', after.path);
