@@ -1,7 +1,7 @@
-import React from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
-import settings from '@/settings.json';
+import { about } from '@/data/site-content';
+import { PageSection } from '@/components/page-chrome';
 import ReactIcon from '@/app/(pages)/about/assets/react.svg';
 import TypeScriptIcon from '@/app/(pages)/about/assets/typescript.svg';
 import JavaScriptIcon from '@/app/(pages)/about/assets/javascript.svg';
@@ -24,7 +24,6 @@ import RemixRunIcon from '@/app/(pages)/about/assets/remixrun.svg';
 import SquarespaceIcon from '@/app/(pages)/about/assets/squarespace.svg';
 import GitIcon from '@/app/(pages)/about/assets/git.svg';
 
-// Unified skill data object with all properties
 const skillsData = {
   React: {
     bgColor: 'bg-[#7ee1fc26]',
@@ -102,7 +101,7 @@ const skillsData = {
     icon: WordPressIcon,
   },
   Shopify: {
-    bgColor: 'bg-[#8CBC5A]',
+    bgColor: 'bg-[#8CBC5A26]',
     textColor: 'text-[#8CBC5A]',
     icon: ShopifyIcon,
   },
@@ -112,7 +111,7 @@ const skillsData = {
     icon: WebflowIcon,
   },
   GraphQL: {
-    bgColor: 'bg-[#e8457c]',
+    bgColor: 'bg-[#e8457c26]',
     textColor: 'text-[#e8457c]',
     icon: GraphQLIcon,
   },
@@ -133,18 +132,30 @@ const skillsData = {
   },
 };
 
-const SkillSection = ({ title, skills, hasBackground = false }) => (
-  <div className="relative">
-    {/* Full-width background that extends edge to edge - only if hasBackground is true */}
-    {hasBackground && (
-      <div className="absolute left-0 right-0 w-screen h-full bg-black xl:ml-[calc(-50vw+50%)] ml-[calc(-50vw+50%-0px)] xs:ml-[calc(-50vw+50%+110px)] lg:ml-[calc(-50vw+50%+140px)]"></div>
-    )}
+export default function AboutSkills() {
+  const { skills } = about;
 
-    {/* Centered content */}
-    <div className="relative z-10 py-8">
-      <h3 className="mb-6 text-lg font-bold text-left">{title}</h3>
-      <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {skills.map((skill, index) => {
+  const frontendSkills = skills.filter((skill) => skill.stack === 'frontend');
+  const backendSkills = skills.filter((skill) => skill.stack === 'backend');
+  const toolSkills = skills.filter((skill) => skill.stack === 'tools');
+
+  return (
+    <PageSection title="Skills & Tools">
+      <div className="space-y-10">
+        <SkillSection title="Frontend" skills={frontendSkills} />
+        <SkillSection title="Backend" skills={backendSkills} />
+        <SkillSection title="Tools & Platforms" skills={toolSkills} />
+      </div>
+    </PageSection>
+  );
+}
+
+function SkillSection({ title, skills }) {
+  return (
+    <div>
+      <h3 className="mb-4 text-lg font-bold text-left">{title}</h3>
+      <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+        {skills.map((skill) => {
           const skillInfo = skillsData[skill.name] || {
             bgColor: 'bg-[#ffffff14]',
             textColor: 'text-white',
@@ -153,8 +164,8 @@ const SkillSection = ({ title, skills, hasBackground = false }) => (
 
           return (
             <li
-              key={index}
-              className="flex items-center gap-3 rounded-md p-3 bg-secondary/5 dark:bg-[#ffffff0a] backdrop-blur-2xl"
+              key={skill.name}
+              className="flex items-center gap-3 p-3 border rounded-md bg-surface border-line"
             >
               <div
                 className={clsx(
@@ -163,13 +174,18 @@ const SkillSection = ({ title, skills, hasBackground = false }) => (
                   skillInfo.textColor
                 )}
               >
-                <Image
-                  src={skillInfo.icon}
-                  alt={skill.name}
-                  width={20}
-                  height={20}
-                  className={clsx('object-contain', skill.isInvert && 'invert')}
-                />
+                {skillInfo.icon ? (
+                  <Image
+                    src={skillInfo.icon}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className={clsx(
+                      'object-contain',
+                      skill.isInvert && 'invert'
+                    )}
+                  />
+                ) : null}
               </div>
               <span className="text-sm">{skill.name}</span>
             </li>
@@ -177,42 +193,5 @@ const SkillSection = ({ title, skills, hasBackground = false }) => (
         })}
       </ul>
     </div>
-  </div>
-);
-
-const AboutSkills = () => {
-  const { skills } = settings.about;
-
-  const frontendSkills = skills.filter((skill) => skill.stack === 'frontend');
-  const backendSkills = skills.filter((skill) => skill.stack === 'backend');
-  const toolSkills = skills.filter((skill) => skill.stack === 'tools');
-
-  return (
-    <div className="relative">
-      <div className="container max-w-[1140px] mx-auto pt-10">
-        <h2 className="mb-6 text-2xl font-bold text-left text-white">
-          Skills & Tools
-        </h2>
-        <div className="space-y-8">
-          <SkillSection
-            title="Frontend"
-            skills={frontendSkills}
-            hasBackground={true}
-          />
-          <SkillSection
-            title="Backend"
-            skills={backendSkills}
-            hasBackground={false}
-          />
-          <SkillSection
-            title="Tools & Platforms"
-            skills={toolSkills}
-            hasBackground={true}
-          />
-        </div>
-      </div>
-    </div>
   );
-};
-
-export default AboutSkills;
+}

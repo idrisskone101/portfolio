@@ -11,6 +11,7 @@
       { "label": "Services", "path": "/services" },
       { "label": "Portfolio", "path": "/portfolio" },
       { "label": "Blog", "path": "/blog" },
+      { "label": "News", "path": "/news" },
       { "label": "Contact", "path": "/contact" }
     ]
   },
@@ -282,7 +283,7 @@
   "contact": {
     "title": "Contact",
     "description": "Get in touch",
-    "email": "you@example.com",
+    "email": "idriss.kone@icloud.com",
     "phone": "+1 234 567 890",
     "location": "Montreal, Canada"
   }

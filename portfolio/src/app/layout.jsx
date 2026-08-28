@@ -1,8 +1,8 @@
 import { Montserrat } from 'next/font/google';
 import clsx from 'clsx';
 import './_assets/globals.css';
-import NavBar from '@/components/NavBar';
-import ContentSlideIn from '@/components/ContentSlideIn';
+import NavBar from '@/components/nav/NavBar';
+import PageTransition from '@/components/page-transition/PageTransition';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -23,15 +23,19 @@ export default function RootLayout({ children }) {
         className={clsx(
           montserrat.className,
           montserrat.variable,
-          'flex flex-col w-screen h-screen overflow-hidden xl:flex-row xl:justify-center'
+          'flex flex-col w-full h-[100dvh] overflow-hidden xl:flex-row xl:justify-center bg-canvas'
         )}
       >
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:px-3 focus:py-2 focus:bg-magenta focus:text-white"
+        >
+          Skip to content
+        </a>
         <NavBar />
-        <main className="flex-1 overflow-auto bg-[#111]">
-          <div className="relative flex-1 w-full h-full text-white">
-            <div className="w-full px-5 py-10 xl:py-0 xl:pt-10">
-              <ContentSlideIn>{children}</ContentSlideIn>
-            </div>
+        <main id="content" className="flex-1 min-h-0 overflow-auto bg-canvas">
+          <div className="relative w-full h-full min-h-full text-white">
+            <PageTransition>{children}</PageTransition>
           </div>
         </main>
       </body>

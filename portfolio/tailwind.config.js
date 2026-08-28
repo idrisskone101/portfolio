@@ -5,12 +5,25 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/data/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
         main: '#323232',
+        canvas: 'var(--canvas)',
+        rail: 'var(--rail)',
         magenta: 'rgb(210, 45, 128)',
+        copy: {
+          DEFAULT: 'var(--copy)',
+          muted: 'var(--copy-muted)',
+          faint: 'var(--copy-faint)',
+        },
+        surface: {
+          DEFAULT: 'var(--surface)',
+          2: 'var(--surface-2)',
+        },
+        line: 'var(--line)',
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
@@ -44,18 +57,6 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          1: 'hsl(var(--chart-1))',
-          2: 'hsl(var(--chart-2))',
-          3: 'hsl(var(--chart-3))',
-          4: 'hsl(var(--chart-4))',
-          5: 'hsl(var(--chart-5))',
-        },
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       screens: {
         mlg: {
@@ -69,8 +70,14 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      transitionTimingFunction: {
+        page: 'var(--ease-out)',
+      },
+      transitionDuration: {
+        page: 'var(--duration-page)',
+      },
       animation: {
-        morph: 'morph 8s ease-in-out 1s infinite',
+        morph: 'morph var(--duration-morph) ease-in-out infinite',
       },
       keyframes: {
         morph: {

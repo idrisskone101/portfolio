@@ -1,74 +1,75 @@
 'use client';
 
 import { useState } from 'react';
-import settings from '@/settings.json';
+import { portfolio } from '@/data/site-content';
 import {
-  HeroSection,
   CategoryFilters,
   PortfolioGrid,
   EmptyState,
   ProjectDialog,
 } from './components';
+import { PageHeader, PageShell, PlaceholderFlag } from '@/components/page-chrome';
+
+const PLACEHOLDER_IMAGE =
+  'https://placehold.co/600x400/1a1a1a/BBBBBB?text=Project+Image';
 
 export default function PortfolioPage() {
-  const { title, subtitle, projects } = settings.portfolio;
+  const { title, projects } = portfolio;
   const [selectedProject, setSelectedProject] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const handleProjectClick = (project) => {
-    setSelectedProject(project);
-    setDialogOpen(true);
-  };
-
-  // Placeholder image for demo purposes if project images don't exist yet
-  const placeholderImage =
-    'https://placehold.co/600x400/3b3b3b/FFFFFF?text=Project+Image';
-
-  // Extract unique categories from projects
   const categories = [
     'All',
     ...new Set(projects.map((project) => project.category || 'Other')),
   ];
 
-  // Filter projects based on active category
   const filteredProjects =
     activeFilter === 'All'
       ? projects
       : projects.filter((project) => project.category === activeFilter);
 
-  console.log('selected project', selectedProject);
-
   return (
-    <div className="container px-4 py-12 mx-auto">
-      {/* Hero Section */}
-      <HeroSection title={title} subtitle={subtitle} />
-
-      {/* Category Filters */}
-      <CategoryFilters
-        categories={categories}
-        activeFilter={activeFilter}
-        setActiveFilter={setActiveFilter}
+    <PageShell>
+      <PageHeader
+        eyebrow={title}
+        title="Selected work"
+        lede="Explore recent projects. Items marked Placeholder are stand-ins until real writeups exist."
       />
+      <div className="flex items-center gap-3 mb-8">
+        <PlaceholderFlag />
+        <p className="text-sm text-copy-faint">
+          Copy, links, and some imagery are draft.
+        </p>
+      </div>
 
-      {/* Portfolio Grid */}
+      {categories.length > 2 ? (
+        <CategoryFilters
+          categories={categories}
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+        />
+      ) : null}
+
       {filteredProjects.length > 0 ? (
         <PortfolioGrid
           projects={filteredProjects}
-          handleProjectClick={handleProjectClick}
-          placeholderImage={placeholderImage}
+          handleProjectClick={(project) => {
+            setSelectedProject(project);
+            setDialogOpen(true);
+          }}
+          placeholderImage={PLACEHOLDER_IMAGE}
         />
       ) : (
         <EmptyState setActiveFilter={setActiveFilter} />
       )}
 
-      {/* Project Dialog */}
       <ProjectDialog
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
         selectedProject={selectedProject}
-        placeholderImage={placeholderImage}
+        placeholderImage={PLACEHOLDER_IMAGE}
       />
-    </div>
+    </PageShell>
   );
 }
