@@ -58,26 +58,28 @@ export default function Home() {
             </Button>
           </div>
           <ul className="flex justify-center gap-4 mt-8 text-white xl:justify-start xl:mt-5">
-            {socials.map((social) => {
-              const Icon = ICONS[social.icon];
-              return (
-                <li key={social.id}>
-                  <a
-                    href={social.href}
-                    target={social.icon === 'mail' ? undefined : '_blank'}
-                    rel={
-                      social.icon === 'mail'
-                        ? undefined
-                        : 'noopener noreferrer'
-                    }
-                    aria-label={social.label}
-                    className="transition-colors duration-page ease-page hover:text-magenta"
-                  >
-                    <Icon size={20} />
-                  </a>
-                </li>
-              );
-            })}
+            {socials
+              .filter((social) => social.placeholder !== true)
+              .map((social) => {
+                const Icon = ICONS[social.icon];
+                return (
+                  <li key={social.id}>
+                    <a
+                      href={social.href}
+                      target={social.icon === 'mail' ? undefined : '_blank'}
+                      rel={
+                        social.icon === 'mail'
+                          ? undefined
+                          : 'noopener noreferrer'
+                      }
+                      aria-label={social.label}
+                      className="transition-colors duration-page ease-page hover:text-magenta"
+                    >
+                      <Icon size={20} />
+                    </a>
+                  </li>
+                );
+              })}
           </ul>
         </div>
       </div>

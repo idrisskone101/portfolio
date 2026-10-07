@@ -61,6 +61,7 @@ Recipes live in `features/`. Stable handles, in order of preference:
 | --- | --- |
 | Routes `/`, `/about`, `/services`, `/portfolio`, `/blog`, `/news`, `/contact` | every page |
 | Link names Home, About, Services, Portfolio, Blog, News, Contact | desktop rail; mobile sheet after **Open menu** |
+| Home social names GitHub and Email | Home; placeholder networks stay hidden |
 | `data-identity="name"` | desktop rail word Idriss, `href="/"` |
 | `data-identity="blob"` | Home portrait, `aria-label="Idriss Kone portrait"` |
 | `data-identity="copy"` | Home `h1` Idriss Kone |

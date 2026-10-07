@@ -32,9 +32,20 @@ export default function AboutHero({ settings, name }) {
       </div>
 
       <hr className="w-full border-t border-line mb-7" />
-      <p className="text-sm text-copy-muted text-left leading-7 whitespace-pre-line max-w-[65ch] xl:max-w-5xl">
-        {settings.mainContent}
-      </p>
+      <div className="max-w-[65ch] space-y-5 xl:max-w-5xl">
+        {settings.mainContent
+          .split(/\n\n+/)
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean)
+          .map((paragraph) => (
+            <p
+              key={paragraph}
+              className="text-sm text-left leading-7 text-copy-muted sm:text-base"
+            >
+              {paragraph}
+            </p>
+          ))}
+      </div>
       <hr className="w-full border-t border-line mb-7 mt-8" />
       <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-x-10 lg:gap-y-3">
         {settings.info.map((info) => (

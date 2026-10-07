@@ -31,7 +31,7 @@ Preconditions:
 - **Mobile sheet.** Click Open menu. The snapshot includes the same seven route names. Click About. The destination `h1` is About Me. Return to `/` before the next bullet.
 - **View work.** From `/` at 1440, click View work. The destination `h1` is Selected work and the URL path is `/portfolio`.
 - **Get in touch.** From `/`, click Get in touch. The destination `h1` is Get in touch and the URL path is `/contact`.
-- **Social names.** From `/`, the snapshot includes links named GitHub, LinkedIn (placeholder), Email, Twitter (placeholder), and Instagram (placeholder). Do not require those hosts to load.
+- **Social names.** From `/`, the snapshot includes links named GitHub and Email. Placeholder LinkedIn, Twitter, and Instagram icons are hidden until real URLs exist.
 - **Proof.** Capture Home at 1440 and at 390 before any CTA click. Write `before.png`, `after.png` (after View work), `after.aria.txt`, and `report.json` under `$VERIFY_PORTFOLIO_EVIDENCE/<run-id>/home/`. The dumps must show Idriss Kone and the matching `data-identity` attributes.
 
 ## Gotchas
