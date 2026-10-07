@@ -11,6 +11,11 @@ import { cn } from '@/lib/utils';
 
 export const revalidate = 3600;
 
+export const metadata = {
+  title: 'Blog',
+  description: blog.lede,
+};
+
 function formatDate(dateString) {
   try {
     return formatDistanceToNow(new Date(dateString), { addSuffix: true });

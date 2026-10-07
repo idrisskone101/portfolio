@@ -61,6 +61,7 @@ Recipes live in `features/`. Stable handles, in order of preference:
 | --- | --- |
 | Routes `/`, `/about`, `/services`, `/portfolio`, `/blog`, `/news`, `/contact` | every page |
 | Link names Home, About, Services, Portfolio, Blog, News, Contact | desktop rail; mobile sheet after **Open menu** |
+| Home social names GitHub and Email | Home; placeholder networks stay hidden |
 | `data-identity="name"` | desktop rail word Idriss, `href="/"` |
 | `data-identity="blob"` | Home portrait, `aria-label="Idriss Kone portrait"` |
 | `data-identity="copy"` | Home `h1` Idriss Kone |
@@ -69,7 +70,7 @@ Recipes live in `features/`. Stable handles, in order of preference:
 | `role="tablist"` named Project categories | Portfolio, only when more than one category exists |
 | `label` Name, Email, Message and button Send message | Contact |
 | `role="alert"` Name, email, and message are required. | Contact invalid submit |
-| `aria-label="Montreal, Canada (placeholder pin)"` | Contact map |
+| `aria-label="Map"` | Contact map |
 
 Do not click by coordinates. Do not tab-walk when a name, href, or `data-identity` exists. After a client navigation, wait for the destination `h1` (or the named status). `PageTransition` fades the outgoing tree. Do not treat a mid-fade screenshot as proof. Do not change fade or Home typewriter/blob timing from this skill.
 

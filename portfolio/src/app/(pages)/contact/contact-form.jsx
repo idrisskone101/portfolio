@@ -35,7 +35,7 @@ export default function ContactForm() {
       return;
     }
 
-    const subject = `Portfolio message from ${name}`;
+    const subject = `Kode Studios — note from ${name}`;
     const body = `${message}\n\n- ${name} <${email}>`;
     const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 

@@ -16,9 +16,20 @@ const aboutEmail =
   settings.about.info.find((row) => row.label === 'Email:')?.value ||
   settings.contact.email;
 
-const aboutLocation =
-  settings.about.info.find((row) => row.label === 'Location:')?.value ||
-  settings.contact.location;
+export const siteMetadata = {
+  title: settings.siteMetadata.title,
+  titleTemplate: '%s · Idriss Kone',
+  description: settings.siteMetadata.description,
+  author: settings.siteMetadata.author,
+};
+
+export const studio = {
+  name: 'Kode Studios',
+  founder: settings.home.name,
+  founded: '2026',
+  email: aboutEmail,
+  summary: 'Kode Studios is Idriss Kone\'s AI-first app studio.',
+};
 
 export const home = {
   ...settings.home,
@@ -29,6 +40,22 @@ export const home = {
     twitter: settings.home.socialLinks.twitter,
     instagram: settings.home.socialLinks.instagram,
   },
+  products: [
+    {
+      id: 'pillie',
+      title: 'Birth Control Reminder: Pillie',
+      statusLabel: 'Live on the App Store',
+      href: 'https://apps.apple.com/app/id6759352439',
+      external: true,
+    },
+    {
+      id: 'hairtrace',
+      title: 'HairTrace',
+      statusLabel: 'In development',
+      href: '/portfolio',
+      external: false,
+    },
+  ],
 };
 
 export const socials = [
@@ -70,65 +97,27 @@ export const socials = [
 export const about = settings.about;
 
 export const portfolio = {
-  ...settings.portfolio,
+  eyebrow: settings.portfolio.title,
+  title: 'Selected work',
+  lede: settings.portfolio.description,
   projects: settings.portfolio.projects.map((project) => ({
     ...project,
-    placeholder: true,
+    placeholder: project.placeholder === true,
   })),
 };
 
 export const services = {
   eyebrow: 'Services',
-  title: 'What I can help with',
-  lede: 'These offerings are placeholders until the real list is ready. Nothing here is a client claim or a metric.',
+  title: 'What Kode Studios builds',
+  lede: 'Kode Studios is an AI-first app studio. It ships consumer iOS apps.',
   offerings: [
     {
-      id: 'web-development',
+      id: 'consumer-ios',
       number: '01',
-      title: 'Web development',
+      title: 'Consumer iOS apps',
       description:
-        'Full-stack product work: Next.js, React, and APIs that stay maintainable after launch.',
-      placeholder: true,
-    },
-    {
-      id: 'frontend-engineering',
-      number: '02',
-      title: 'Frontend engineering',
-      description:
-        'Interfaces that are fast, accessible, and consistent with a design system instead of a pile of one-off styles.',
-      placeholder: true,
-    },
-    {
-      id: 'ecommerce',
-      number: '03',
-      title: 'E-commerce',
-      description:
-        'Storefronts and merchandising flows on Shopify, headless setups, or custom checkout paths.',
-      placeholder: true,
-    },
-    {
-      id: 'design-to-code',
-      number: '04',
-      title: 'Design to code',
-      description:
-        'Taking Figma, Webflow, or Squarespace intent into production React without losing the look.',
-      placeholder: true,
-    },
-    {
-      id: 'performance',
-      number: '05',
-      title: 'Performance and polish',
-      description:
-        'Load, Core Web Vitals, and the small motion and type details that make a site feel finished.',
-      placeholder: true,
-    },
-    {
-      id: 'collaboration',
-      number: '06',
-      title: 'Collaboration',
-      description:
-        'Short engagements to unblock a team, review an architecture, or pair on a thorny UI.',
-      placeholder: true,
+        'Pillie is live on the App Store. HairTrace is in development.',
+      placeholder: false,
     },
   ],
 };
@@ -162,7 +151,7 @@ export const blog = {
     },
     {
       id: 'placeholder-montreal-dev',
-      title: 'Building from Montreal',
+      title: 'Building in public',
       brief: 'Stand-in brief about remote-friendly product work and keeping a personal site honest about what is real vs. draft.',
       url: `https://${HASHNODE_HOST}`,
       publishedAt: '2025-11-18T12:00:00.000Z',
@@ -220,10 +209,10 @@ export const news = {
       title: 'Contact and map',
       date: '2026-01-14',
       excerpt:
-        'Stand-in note that Contact uses a frontend-only form and a Montreal pin until a backend exists.',
+        'Stand-in note that Contact uses a frontend-only form until a backend exists.',
       paragraphs: [
-        'This is placeholder news. The map pin is Montreal as a location marker, not a street address.',
-        'The form opens a mail client. Nothing is stored on a server.',
+        'This is placeholder news. The form opens a mail client. Nothing is stored on a server.',
+        'Replace this article when there is an actual update to announce.',
       ],
       placeholder: true,
     },
@@ -237,12 +226,11 @@ export const contact = {
   email: aboutEmail,
   phone: settings.contact.phone,
   phonePlaceholder: true,
-  location: aboutLocation,
   map: {
     lat: 45.5017,
     lng: -73.5673,
     zoom: 11,
-    label: 'Montreal, Canada (placeholder pin)',
+    label: 'Map',
   },
 };
 
@@ -252,6 +240,8 @@ export function getNewsArticle(slug) {
 
 export const site = {
   navigation,
+  siteMetadata,
+  studio,
   home,
   about,
   portfolio,

@@ -1,7 +1,7 @@
 {
   "siteMetadata": {
-    "title": "Idriss Kone Portfolio",
-    "description": "Personal portfolio website of Idriss Kone, Software Developer",
+    "title": "Idriss Kone — Kode Studios",
+    "description": "Kode Studios is Idriss Kone's AI-first app studio. Pillie is live on the App Store. HairTrace is in development.",
     "author": "Idriss Kone"
   },
   "navigation": {
@@ -17,23 +17,23 @@
   },
   "home": {
     "name": "Idriss Kone",
-    "titles": ["Software Developer", "Full Stack Developer", "Web Developer"],
-    "description": "Innovative developer in Montreal, crafting elegant solutions and ready to elevate projects across North America with cutting-edge expertise.",
+    "titles": ["Founder of Kode Studios", "Building Pillie", "AI-first app studio"],
+    "description": "I run Kode Studios, an AI-first app studio.",
     "profileImage": "/app/_assets/images/profile.jpg",
     "socialLinks": {
       "github": "https://github.com/yourusername",
       "linkedin": "https://linkedin.com/in/yourprofile",
-      "email": "you@example.com",
+      "email": "idriss@idrisskone.com",
       "twitter": "https://twitter.com/yourhandle",
       "instagram": "https://instagram.com/yourprofile"
     }
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Software Developer",
+    "subtitle": "Founder of Kode Studios",
     "profileImage": "/app/_assets/images/profile.jpg",
-    "mainContent": "Hi, I'm Idriss, a front-end web developer specializing in React and e-commerce with four years of experience. I love turning ideas into fast, scalable, and intuitive web experiences. With expertise in Remix.run, Webflow, and Squarespace, I build high-performance platforms that look great and run smoothly.\n\n Beyond front-end, I'm expanding my full-stack skills to launch indie SaaS projects and share insights on Twitter. I thrive on problem-solving and optimization, ensuring integrations work seamlessly with minimal maintenance. Right now, I'm seeking new opportunities to push web development further.\n\n Let's build something great together.",
-    "additionalContent": "I'm a software developer with a passion for building web applications. I'm a quick learner and I'm always looking to improve my skills.",
+    "mainContent": "I run Kode Studios, an AI-first app studio I founded in 2026.\n\nPillie (Birth Control Reminder: Pillie) has been live on the App Store since May 2026. It is a birth control reminder that can block distracting apps until the dose is marked as taken. It is free with subscriptions and has paying users.\n\nHairTrace, a hair-loss treatment tracking iOS app, is in development.\n\nWrite to idriss@idrisskone.com.",
+    "additionalContent": "Kode Studios is Idriss Kone's AI-first app studio.",
     "info": [
       {
         "label": "Birthday:",
@@ -41,19 +41,19 @@
       },
       {
         "label": "Location:",
-        "value": "Montreal, Canada"
+        "value": "Montreal"
       },
       {
         "label": "Email:",
-        "value": "idriss.kone@icloud.com"
+        "value": "idriss@idrisskone.com"
       },
       {
         "label": "Phone:",
         "value": "+1 234 567 890"
       },
       {
-        "label": "Freelance:",
-        "value": "Available"
+        "label": "Studio:",
+        "value": "Kode Studios"
       },
       {
         "label": "Study:",
@@ -179,99 +179,36 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitle": "My Work",
-    "description": "Check out some of my work",
+    "subtitle": "Kode Studios",
+    "description": "Consumer iOS apps from Kode Studios. Pillie is live. HairTrace is in development.",
     "projects": [
       {
-        "id": 1,
-        "title": "Weather App",
-        "description": "A responsive weather application built with React that uses weather APIs to display current weather and forecasts. Features include location search, temperature units toggle, and detailed weather information.",
-        "image": "/projects/weatherapp.png",
-        "liveUrl": "https://example-weather.com",
-        "githubUrl": "https://github.com/username/weather-app",
-        "category": "Frontend",
-        "technologies": [
-          { "name": "React" },
-          { "name": "JavaScript" },
-          { "name": "CSS" },
-          { "name": "Weather API" }
-        ]
+        "id": "pillie",
+        "title": "Birth Control Reminder: Pillie",
+        "description": "A birth control reminder that can block distracting apps until the dose is marked as taken. Free with subscriptions. Live on the App Store since May 2026, with paying users.",
+        "image": null,
+        "appStoreUrl": "https://apps.apple.com/app/id6759352439",
+        "liveUrl": null,
+        "githubUrl": null,
+        "category": "iOS",
+        "status": "live",
+        "statusLabel": "Live on the App Store",
+        "placeholder": false,
+        "technologies": [{ "name": "iOS" }]
       },
       {
-        "id": 2,
-        "title": "IP Address Tracker",
-        "description": "An IP address tracking application that allows users to search for any IP address and view its location on a map along with other details like ISP and timezone.",
-        "image": "/projects/ipaddress.png",
-        "liveUrl": "https://example-iptracker.com",
-        "githubUrl": "https://github.com/username/ip-tracker",
-        "category": "Frontend",
-        "technologies": [
-          { "name": "JavaScript" },
-          { "name": "HTML" },
-          { "name": "CSS" },
-          { "name": "IP Geolocation API" },
-          { "name": "Leaflet Maps" }
-        ]
-      },
-      {
-        "id": 3,
-        "title": "Designo Website",
-        "description": "A multi-page website for a fictional design agency with responsive layouts, custom animations, and form validation.",
-        "image": "/projects/designo.png",
-        "liveUrl": "https://example-designo.com",
-        "githubUrl": "https://github.com/username/designo-website",
-        "category": "Frontend",
-        "technologies": [
-          { "name": "React" },
-          { "name": "Next.js" },
-          { "name": "Tailwind CSS" },
-          { "name": "Framer Motion" }
-        ]
-      },
-      {
-        "id": 4,
-        "title": "Dine Restaurant",
-        "description": "A restaurant website featuring an elegant design, online booking system, and responsive menu displays.",
-        "image": "/projects/dine.png",
-        "liveUrl": "https://example-dine.com",
-        "githubUrl": "https://github.com/username/dine-restaurant",
-        "category": "Frontend",
-        "technologies": [
-          { "name": "HTML" },
-          { "name": "CSS" },
-          { "name": "JavaScript" },
-          { "name": "GSAP Animation" }
-        ]
-      },
-      {
-        "id": 5,
-        "title": "Movie Search App",
-        "description": "A movie search application that allows users to search for movies, view details, and save favorites. Built with React and a movie database API.",
-        "image": "/projects/moviesearch.png",
-        "liveUrl": "https://example-moviesearch.com",
-        "githubUrl": "https://github.com/username/movie-search",
-        "category": "Frontend",
-        "technologies": [
-          { "name": "React" },
-          { "name": "Redux" },
-          { "name": "Styled Components" },
-          { "name": "TMDB API" }
-        ]
-      },
-      {
-        "id": 6,
-        "title": "Pokedex App",
-        "description": "An interactive Pokedex application that displays information about different Pokemon. Features include search, filtering, and detailed Pokemon stats.",
-        "image": "/projects/pokedex.png",
-        "liveUrl": "https://example-pokedex.com",
-        "githubUrl": "https://github.com/username/pokedex-app",
-        "category": "Frontend",
-        "technologies": [
-          { "name": "React" },
-          { "name": "TypeScript" },
-          { "name": "CSS Modules" },
-          { "name": "Pokemon API" }
-        ]
+        "id": "hairtrace",
+        "title": "HairTrace",
+        "description": "A hair-loss treatment tracking iOS app, in development.",
+        "image": null,
+        "appStoreUrl": null,
+        "liveUrl": null,
+        "githubUrl": null,
+        "category": "iOS",
+        "status": "in-development",
+        "statusLabel": "In development",
+        "placeholder": false,
+        "technologies": [{ "name": "iOS" }]
       }
     ]
   },
@@ -283,8 +220,7 @@
   "contact": {
     "title": "Contact",
     "description": "Get in touch",
-    "email": "idriss.kone@icloud.com",
-    "phone": "+1 234 567 890",
-    "location": "Montreal, Canada"
+    "email": "idriss@idrisskone.com",
+    "phone": "+1 234 567 890"
   }
 }

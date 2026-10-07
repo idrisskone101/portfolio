@@ -1,13 +1,13 @@
 # Home
 
-Home is the landing page. It shows Idriss Kone's portrait, name, rotating titles, a short lede, two CTAs, and social links. Desktop places the portrait and copy in a row on the canvas beside the in-flow left rail. Mobile stacks them and uses a top bar plus a menu sheet.
+Home is the landing page. It shows Idriss Kone's portrait, name, Kode Studios, rotating titles, a short lede, Pillie and HairTrace, two CTAs, and social links. Desktop places the portrait and copy in a row on the canvas beside the in-flow left rail. Mobile stacks them and uses a top bar plus a menu sheet.
 
 ## Sub-features
 
-- `home-lockup` shows the portrait, the `h1` Idriss Kone, at least one title, and the lede.
+- `home-lockup` shows the portrait, the `h1` Idriss Kone, Kode Studios, at least one title, the lede, Pillie, and HairTrace.
 - `home-cta-work` follows View work to Portfolio.
 - `home-cta-contact` follows Get in touch to Contact.
-- `home-social` exposes GitHub, LinkedIn, Email, Twitter, and Instagram by accessible name.
+- `home-social` exposes GitHub and Email by accessible name.
 - `home-desktop-rail` shows the Idriss name link and in-flow nav at 1440.
 - `home-mobile-menu` opens the sheet from Open menu at 390 and reaches the same routes.
 
@@ -25,13 +25,13 @@ Preconditions:
 - Doctor reports HTTP 200 on `http://127.0.0.1:3000/` (or the configured host/port).
 - The launch PID owns that port and is `next start`, not `next dev`.
 
-- **Open Home.** Go to `/`. Run `.cursor/skills/verify-portfolio/bin/verify-portfolio drive home`, or Playwright `browser_navigate` to that URL then `browser_snapshot`. The snapshot includes `h1` Idriss Kone (`data-identity="copy"`), an image named `Idriss Kone portrait` (`data-identity="blob"`), a link named View work with `href="/portfolio"`, and a link named Get in touch with `href="/contact"`.
+- **Open Home.** Go to `/`. Run `.cursor/skills/verify-portfolio/bin/verify-portfolio drive home`, or Playwright `browser_navigate` to that URL then `browser_snapshot`. The snapshot includes `h1` Idriss Kone (`data-identity="copy"`), an image named `Idriss Kone portrait` (`data-identity="blob"`), the words Kode Studios, Pillie, and HairTrace, a link named View work with `href="/portfolio"`, and a link named Get in touch with `href="/contact"`. Pillie is an App Store link (`https://apps.apple.com/app/id6759352439`). HairTrace goes to `/portfolio`.
 - **Desktop rail.** Resize to 1440×900. The snapshot includes a link named Idriss with `data-identity="name"` and `href="/"`, plus links named Home, About, Services, Portfolio, Blog, News, and Contact. There is no button named Open menu.
 - **Mobile chrome.** Resize to 390×844 and reload `/`. The snapshot includes a button named Open menu. `data-identity="name"` is absent. The portrait and `h1` remain.
 - **Mobile sheet.** Click Open menu. The snapshot includes the same seven route names. Click About. The destination `h1` is About Me. Return to `/` before the next bullet.
 - **View work.** From `/` at 1440, click View work. The destination `h1` is Selected work and the URL path is `/portfolio`.
 - **Get in touch.** From `/`, click Get in touch. The destination `h1` is Get in touch and the URL path is `/contact`.
-- **Social names.** From `/`, the snapshot includes links named GitHub, LinkedIn (placeholder), Email, Twitter (placeholder), and Instagram (placeholder). Do not require those hosts to load.
+- **Social names.** From `/`, the snapshot includes links named GitHub and Email. Placeholder LinkedIn, Twitter, and Instagram icons are hidden until real URLs exist.
 - **Proof.** Capture Home at 1440 and at 390 before any CTA click. Write `before.png`, `after.png` (after View work), `after.aria.txt`, and `report.json` under `$VERIFY_PORTFOLIO_EVIDENCE/<run-id>/home/`. The dumps must show Idriss Kone and the matching `data-identity` attributes.
 
 ## Gotchas

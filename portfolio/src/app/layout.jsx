@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import './_assets/globals.css';
 import NavBar from '@/components/nav/NavBar';
 import PageTransition from '@/components/page-transition/PageTransition';
+import { siteMetadata } from '@/data/site-content';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -12,8 +13,11 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: 'Idriss Kone',
-  description: 'Portfolio of Idriss Kone',
+  title: {
+    default: siteMetadata.title,
+    template: siteMetadata.titleTemplate,
+  },
+  description: siteMetadata.description,
 };
 
 export default function RootLayout({ children }) {

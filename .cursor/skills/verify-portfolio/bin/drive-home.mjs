@@ -225,6 +225,9 @@ const STATE_EXPR = `(() => {
     contactHref: contact ? contact.getAttribute('href') : null,
     h1: text('h1'),
     navNames,
+    bodyText: (document.body.textContent || '').replace(/\\s+/g, ' '),
+    pillieHref: [...document.querySelectorAll('a')].find((a) => /Pillie/.test(a.textContent || ''))?.getAttribute('href') || null,
+    hairTraceHref: [...document.querySelectorAll('a')].find((a) => /HairTrace/.test(a.textContent || ''))?.getAttribute('href') || null,
     innerWidth: window.innerWidth,
   };
 })()`;
@@ -344,6 +347,24 @@ async function main() {
     check(assertions, 'desktop-no-menu', desktop.hasMenu === false, desktop.hasMenu);
     check(assertions, 'view-work-href', desktop.viewWorkHref === '/portfolio', desktop.viewWorkHref);
     check(assertions, 'contact-href', desktop.contactHref === '/contact', desktop.contactHref);
+    check(
+      assertions,
+      'desktop-studio',
+      /Kode Studios/.test(desktop.bodyText || ''),
+      desktop.bodyText
+    );
+    check(
+      assertions,
+      'desktop-pillie',
+      desktop.pillieHref === 'https://apps.apple.com/app/id6759352439',
+      desktop.pillieHref
+    );
+    check(
+      assertions,
+      'desktop-hairtrace',
+      desktop.hairTraceHref === '/portfolio',
+      desktop.hairTraceHref
+    );
     const requiredNav = ['Home', 'About', 'Services', 'Portfolio', 'Blog', 'News', 'Contact'];
     check(
       assertions,
