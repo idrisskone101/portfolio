@@ -6,6 +6,11 @@ import {
 } from '@/components/page-chrome';
 import { cn } from '@/lib/utils';
 
+export const metadata = {
+  title: 'Services',
+  description: services.lede,
+};
+
 export default function ServicesPage() {
   return (
     <PageShell>

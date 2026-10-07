@@ -20,6 +20,23 @@ const aboutLocation =
   settings.about.info.find((row) => row.label === 'Location:')?.value ||
   settings.contact.location;
 
+export const siteMetadata = {
+  title: settings.siteMetadata.title,
+  titleTemplate: '%s · Idriss Kone',
+  description: settings.siteMetadata.description,
+  author: settings.siteMetadata.author,
+};
+
+export const studio = {
+  name: 'Kode Studios',
+  founder: settings.home.name,
+  city: 'Montreal (Verdun)',
+  founded: '2026',
+  email: aboutEmail,
+  summary:
+    'Kode Studios is Idriss Kone\'s app studio in Montreal (Verdun). It builds consumer iOS apps with an AI-first approach.',
+};
+
 export const home = {
   ...settings.home,
   socialLinks: {
@@ -29,6 +46,22 @@ export const home = {
     twitter: settings.home.socialLinks.twitter,
     instagram: settings.home.socialLinks.instagram,
   },
+  products: [
+    {
+      id: 'pillie',
+      title: 'Birth Control Reminder: Pillie',
+      statusLabel: 'Live on the App Store',
+      href: 'https://apps.apple.com/app/id6759352439',
+      external: true,
+    },
+    {
+      id: 'hairtrace',
+      title: 'HairTrace',
+      statusLabel: 'In development',
+      href: '/portfolio',
+      external: false,
+    },
+  ],
 };
 
 export const socials = [
@@ -70,65 +103,35 @@ export const socials = [
 export const about = settings.about;
 
 export const portfolio = {
-  ...settings.portfolio,
+  eyebrow: settings.portfolio.title,
+  title: 'Selected work',
+  lede: settings.portfolio.description,
   projects: settings.portfolio.projects.map((project) => ({
     ...project,
-    placeholder: true,
+    placeholder: project.placeholder === true,
   })),
 };
 
 export const services = {
   eyebrow: 'Services',
-  title: 'What I can help with',
-  lede: 'These offerings are placeholders until the real list is ready. Nothing here is a client claim or a metric.',
+  title: 'What Kode Studios builds',
+  lede: 'Kode Studios is an app studio in Montreal (Verdun). The work is consumer iOS, shipped with an AI-first process.',
   offerings: [
     {
-      id: 'web-development',
+      id: 'consumer-ios',
       number: '01',
-      title: 'Web development',
+      title: 'Consumer iOS apps',
       description:
-        'Full-stack product work: Next.js, React, and APIs that stay maintainable after launch.',
-      placeholder: true,
+        'Kode Studios builds consumer iOS apps. Pillie is live on the App Store. HairTrace is in development.',
+      placeholder: false,
     },
     {
-      id: 'frontend-engineering',
+      id: 'ai-first-studio',
       number: '02',
-      title: 'Frontend engineering',
+      title: 'AI-first studio work',
       description:
-        'Interfaces that are fast, accessible, and consistent with a design system instead of a pile of one-off styles.',
-      placeholder: true,
-    },
-    {
-      id: 'ecommerce',
-      number: '03',
-      title: 'E-commerce',
-      description:
-        'Storefronts and merchandising flows on Shopify, headless setups, or custom checkout paths.',
-      placeholder: true,
-    },
-    {
-      id: 'design-to-code',
-      number: '04',
-      title: 'Design to code',
-      description:
-        'Taking Figma, Webflow, or Squarespace intent into production React without losing the look.',
-      placeholder: true,
-    },
-    {
-      id: 'performance',
-      number: '05',
-      title: 'Performance and polish',
-      description:
-        'Load, Core Web Vitals, and the small motion and type details that make a site feel finished.',
-      placeholder: true,
-    },
-    {
-      id: 'collaboration',
-      number: '06',
-      title: 'Collaboration',
-      description:
-        'Short engagements to unblock a team, review an architecture, or pair on a thorny UI.',
-      placeholder: true,
+        'AI agents help with engineering, marketing, copywriting, and product. Idriss reviews and ships.',
+      placeholder: false,
     },
   ],
 };
@@ -239,10 +242,10 @@ export const contact = {
   phonePlaceholder: true,
   location: aboutLocation,
   map: {
-    lat: 45.5017,
-    lng: -73.5673,
-    zoom: 11,
-    label: 'Montreal, Canada (placeholder pin)',
+    lat: 45.458,
+    lng: -73.5674,
+    zoom: 12,
+    label: 'Montreal (Verdun), Canada (area pin)',
   },
 };
 
@@ -252,6 +255,8 @@ export function getNewsArticle(slug) {
 
 export const site = {
   navigation,
+  siteMetadata,
+  studio,
   home,
   about,
   portfolio,

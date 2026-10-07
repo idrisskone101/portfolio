@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { contact } from '@/data/site-content';
+import { contact, studio } from '@/data/site-content';
 import {
   PageHeader,
   PageSection,
@@ -7,6 +7,11 @@ import {
   PlaceholderFlag,
 } from '@/components/page-chrome';
 import ContactForm from './contact-form';
+
+export const metadata = {
+  title: 'Contact',
+  description: `Write to ${studio.email}. ${contact.lede}`,
+};
 
 const ContactMap = dynamic(() => import('./contact-map'), {
   ssr: false,

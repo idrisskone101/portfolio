@@ -41,9 +41,9 @@ Keep implementation details out of the map. Name only user paths, stable handles
 
 ## Features
 
-- [Home](./home.md) covers the landing lockup, CTAs, social links, and the desktop vs mobile chrome.
+- [Home](./home.md) covers the landing lockup, Kode Studios line, Pillie and HairTrace, CTAs, social links, and the desktop vs mobile chrome.
 - [About](./about.md) covers bio, facts, skills, and the resume link.
-- [Services](./services.md) covers the six placeholder offerings.
+- [Services](./services.md) covers the two Kode Studios offerings.
 - [Portfolio](./portfolio.md) covers the project grid and project dialog.
 - [Blog](./blog.md) covers Hashnode posts and the in-repo fallback list.
 - [News](./news.md) covers the notes index and article pages.

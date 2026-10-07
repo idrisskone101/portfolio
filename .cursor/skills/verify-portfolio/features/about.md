@@ -5,7 +5,7 @@ About is the bio page. It shows a portrait, the name Idriss Kone, a short subtit
 ## Sub-features
 
 - `about-hero` shows eyebrow About, `h1` About Me, the portrait, and the name Idriss Kone.
-- `about-facts` lists Birthday, Location, Email, Phone, Freelance, Study, and Degree.
+- `about-facts` lists Birthday, Location, Email, Phone, Studio, Study, and Degree.
 - `about-skills` lists Frontend, Backend, and Tools & Platforms groups.
 - `about-resume` exposes View my Resume as a link to `/IdrissKoneResume.pdf`.
 
@@ -22,7 +22,7 @@ Preconditions:
 - Start from `/` or go directly to `/about`.
 
 - **Open About.** Click About, or `browser_navigate` to `/about`. The `h1` is About Me. An image named `Idriss Kone portrait` is present. A heading Idriss Kone is present.
-- **Facts.** The snapshot includes Location Montreal, Canada and Email idriss.kone@icloud.com. Phone shows +1 234 567 890 and a Placeholder flag.
+- **Facts.** The snapshot includes Location Montreal (Verdun), Canada, Studio Kode Studios, and Email idriss@idrisskone.com. Phone shows +1 234 567 890 and a Placeholder flag.
 - **Skills.** The snapshot includes headings Frontend, Backend, and Tools & Platforms, plus at least React, Next.js, and Node.js.
 - **Resume link.** The snapshot includes a link named View my Resume with `href="/IdrissKoneResume.pdf"`. Request that URL. Record the status code. A 404 is a product gap. Do not call the feature verified-unreachable because of it. The link itself must exist.
 - **Proof.** Screenshot and ARIA dump of `/about` with About Me visible. Save under `$VERIFY_PORTFOLIO_EVIDENCE/<run-id>/about/`.

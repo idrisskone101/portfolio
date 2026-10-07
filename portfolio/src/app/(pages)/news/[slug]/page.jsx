@@ -14,9 +14,9 @@ export function generateStaticParams() {
 export function generateMetadata({ params }) {
   const article = getNewsArticle(params.slug);
   if (!article) {
-    return { title: 'News | Idriss Kone' };
+    return { title: 'News' };
   }
-  return { title: `${article.title} | Idriss Kone` };
+  return { title: article.title };
 }
 
 export default function NewsArticlePage({ params }) {

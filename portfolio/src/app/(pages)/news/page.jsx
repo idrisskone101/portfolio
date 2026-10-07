@@ -6,6 +6,11 @@ import {
 } from '@/components/page-chrome';
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'News',
+  description: news.lede,
+};
+
 export default function NewsPage() {
   return (
     <PageShell>

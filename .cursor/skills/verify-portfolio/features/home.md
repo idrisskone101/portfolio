@@ -1,10 +1,10 @@
 # Home
 
-Home is the landing page. It shows Idriss Kone's portrait, name, rotating titles, a short lede, two CTAs, and social links. Desktop places the portrait and copy in a row on the canvas beside the in-flow left rail. Mobile stacks them and uses a top bar plus a menu sheet.
+Home is the landing page. It shows Idriss Kone's portrait, name, Kode Studios in Montreal (Verdun), rotating titles, a short lede, Pillie and HairTrace, two CTAs, and social links. Desktop places the portrait and copy in a row on the canvas beside the in-flow left rail. Mobile stacks them and uses a top bar plus a menu sheet.
 
 ## Sub-features
 
-- `home-lockup` shows the portrait, the `h1` Idriss Kone, at least one title, and the lede.
+- `home-lockup` shows the portrait, the `h1` Idriss Kone, Kode Studios, at least one title, the lede, Pillie, and HairTrace.
 - `home-cta-work` follows View work to Portfolio.
 - `home-cta-contact` follows Get in touch to Contact.
 - `home-social` exposes GitHub, LinkedIn, Email, Twitter, and Instagram by accessible name.
@@ -25,7 +25,7 @@ Preconditions:
 - Doctor reports HTTP 200 on `http://127.0.0.1:3000/` (or the configured host/port).
 - The launch PID owns that port and is `next start`, not `next dev`.
 
-- **Open Home.** Go to `/`. Run `.cursor/skills/verify-portfolio/bin/verify-portfolio drive home`, or Playwright `browser_navigate` to that URL then `browser_snapshot`. The snapshot includes `h1` Idriss Kone (`data-identity="copy"`), an image named `Idriss Kone portrait` (`data-identity="blob"`), a link named View work with `href="/portfolio"`, and a link named Get in touch with `href="/contact"`.
+- **Open Home.** Go to `/`. Run `.cursor/skills/verify-portfolio/bin/verify-portfolio drive home`, or Playwright `browser_navigate` to that URL then `browser_snapshot`. The snapshot includes `h1` Idriss Kone (`data-identity="copy"`), an image named `Idriss Kone portrait` (`data-identity="blob"`), the words Kode Studios, Pillie, and HairTrace, a link named View work with `href="/portfolio"`, and a link named Get in touch with `href="/contact"`. Pillie is an App Store link (`https://apps.apple.com/app/id6759352439`). HairTrace goes to `/portfolio`.
 - **Desktop rail.** Resize to 1440×900. The snapshot includes a link named Idriss with `data-identity="name"` and `href="/"`, plus links named Home, About, Services, Portfolio, Blog, News, and Contact. There is no button named Open menu.
 - **Mobile chrome.** Resize to 390×844 and reload `/`. The snapshot includes a button named Open menu. `data-identity="name"` is absent. The portrait and `h1` remain.
 - **Mobile sheet.** Click Open menu. The snapshot includes the same seven route names. Click About. The destination `h1` is About Me. Return to `/` before the next bullet.

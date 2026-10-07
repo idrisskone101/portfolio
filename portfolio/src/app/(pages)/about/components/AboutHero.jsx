@@ -41,7 +41,16 @@ export default function AboutHero({ settings, name }) {
           <div className="flex text-sm" key={info.label}>
             <p className="w-24 font-bold text-left shrink-0">{info.label}</p>
             <p className="flex flex-wrap items-center gap-2 text-copy-muted text-left">
-              {info.value}
+              {info.label === 'Email:' ? (
+                <a
+                  href={`mailto:${info.value}`}
+                  className="hover:text-magenta"
+                >
+                  {info.value}
+                </a>
+              ) : (
+                info.value
+              )}
               {info.label === 'Phone:' && contact.phonePlaceholder ? (
                 <PlaceholderFlag />
               ) : null}

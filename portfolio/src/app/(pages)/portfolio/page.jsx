@@ -10,11 +10,8 @@ import {
 } from './components';
 import { PageHeader, PageShell, PlaceholderFlag } from '@/components/page-chrome';
 
-const PLACEHOLDER_IMAGE =
-  'https://placehold.co/600x400/1a1a1a/BBBBBB?text=Project+Image';
-
 export default function PortfolioPage() {
-  const { title, projects } = portfolio;
+  const { eyebrow, title, lede, projects } = portfolio;
   const [selectedProject, setSelectedProject] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState('All');
@@ -29,19 +26,19 @@ export default function PortfolioPage() {
       ? projects
       : projects.filter((project) => project.category === activeFilter);
 
+  const hasPlaceholders = projects.some((project) => project.placeholder);
+
   return (
     <PageShell>
-      <PageHeader
-        eyebrow={title}
-        title="Selected work"
-        lede="Explore recent projects. Items marked Placeholder are stand-ins until real writeups exist."
-      />
-      <div className="flex items-center gap-3 mb-8">
-        <PlaceholderFlag />
-        <p className="text-sm text-copy-faint">
-          Copy, links, and some imagery are draft.
-        </p>
-      </div>
+      <PageHeader eyebrow={eyebrow} title={title} lede={lede} />
+      {hasPlaceholders ? (
+        <div className="flex items-center gap-3 mb-8">
+          <PlaceholderFlag />
+          <p className="text-sm text-copy-faint">
+            Some items are still draft.
+          </p>
+        </div>
+      ) : null}
 
       {categories.length > 2 ? (
         <CategoryFilters
@@ -58,7 +55,6 @@ export default function PortfolioPage() {
             setSelectedProject(project);
             setDialogOpen(true);
           }}
-          placeholderImage={PLACEHOLDER_IMAGE}
         />
       ) : (
         <EmptyState setActiveFilter={setActiveFilter} />
@@ -68,7 +64,6 @@ export default function PortfolioPage() {
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
         selectedProject={selectedProject}
-        placeholderImage={PLACEHOLDER_IMAGE}
       />
     </PageShell>
   );

@@ -5,6 +5,53 @@
  */
 
 /**
+ * @typedef {Object} SiteMetadata
+ * @property {string} title
+ * @property {string} titleTemplate
+ * @property {string} description
+ * @property {string} author
+ */
+
+/**
+ * @typedef {Object} Studio
+ * @property {string} name
+ * @property {string} founder
+ * @property {string} city
+ * @property {string} founded
+ * @property {string} email
+ * @property {string} summary
+ */
+
+/**
+ * @typedef {Object} HomeProduct
+ * @property {string} id
+ * @property {string} title
+ * @property {string} statusLabel
+ * @property {string} href
+ * @property {boolean} external
+ */
+
+/**
+ * @typedef {'live' | 'in-development'} ProjectStatus
+ */
+
+/**
+ * @typedef {Object} Project
+ * @property {string} id
+ * @property {string} title
+ * @property {string} description
+ * @property {string | null} [image]
+ * @property {string | null} [appStoreUrl]
+ * @property {string | null} [liveUrl]
+ * @property {string | null} [githubUrl]
+ * @property {string} [category]
+ * @property {ProjectStatus} [status]
+ * @property {string} [statusLabel]
+ * @property {boolean} [placeholder]
+ * @property {{ name: string }[]} [technologies]
+ */
+
+/**
  * @typedef {Object} SocialLink
  * @property {string} id
  * @property {string} label
