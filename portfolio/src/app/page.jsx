@@ -37,7 +37,7 @@ export default function Home() {
 
         <div className="flex flex-col items-center justify-center mt-8 text-center xl:mt-0 xl:text-left xl:items-start">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-copy-faint">
-            {studio.name} · {studio.city}
+            {studio.name}
           </p>
           <h1 className="mt-3 text-4xl font-bold uppercase lg:text-5xl" data-identity="copy">
             {home.name}

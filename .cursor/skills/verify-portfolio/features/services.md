@@ -4,8 +4,8 @@ Services lists what Kode Studios builds. Copy is real studio work, not a checkou
 
 ## Sub-features
 
-- `services-header` shows eyebrow Services, `h1` What Kode Studios builds, and a lede about consumer iOS in Montreal (Verdun).
-- `services-list` shows two numbered items: Consumer iOS apps and AI-first studio work.
+- `services-header` shows eyebrow Services, `h1` What Kode Studios builds, and a lede that Kode Studios is an AI-first app studio.
+- `services-list` shows one numbered item: Consumer iOS apps.
 
 ## How to get to it (user POV)
 
@@ -19,8 +19,8 @@ Preconditions:
 - Doctor is green on the production URL.
 
 - **Open Services.** Click Services, or go to `/services`. The `h1` is What Kode Studios builds.
-- **Offerings.** The snapshot includes headings Consumer iOS apps and AI-first studio work, plus markers 01 and 02. The first offering names Pillie and HairTrace.
-- **Proof.** Screenshot and ARIA dump of `/services` with the `h1` and both offerings visible. Save under `$VERIFY_PORTFOLIO_EVIDENCE/<run-id>/services/`.
+- **Offerings.** The snapshot includes heading Consumer iOS apps and marker 01. The offering names Pillie and HairTrace. There is no process copy about agents.
+- **Proof.** Screenshot and ARIA dump of `/services` with the `h1` and the offering visible. Save under `$VERIFY_PORTFOLIO_EVIDENCE/<run-id>/services/`.
 
 ## Gotchas
 

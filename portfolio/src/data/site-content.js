@@ -16,10 +16,6 @@ const aboutEmail =
   settings.about.info.find((row) => row.label === 'Email:')?.value ||
   settings.contact.email;
 
-const aboutLocation =
-  settings.about.info.find((row) => row.label === 'Location:')?.value ||
-  settings.contact.location;
-
 export const siteMetadata = {
   title: settings.siteMetadata.title,
   titleTemplate: '%s · Idriss Kone',
@@ -30,11 +26,9 @@ export const siteMetadata = {
 export const studio = {
   name: 'Kode Studios',
   founder: settings.home.name,
-  city: 'Montreal (Verdun)',
   founded: '2026',
   email: aboutEmail,
-  summary:
-    'Kode Studios is Idriss Kone\'s app studio in Montreal (Verdun). It builds consumer iOS apps with an AI-first approach.',
+  summary: 'Kode Studios is Idriss Kone\'s AI-first app studio.',
 };
 
 export const home = {
@@ -115,22 +109,14 @@ export const portfolio = {
 export const services = {
   eyebrow: 'Services',
   title: 'What Kode Studios builds',
-  lede: 'Kode Studios is an app studio in Montreal (Verdun). The work is consumer iOS, shipped with an AI-first process.',
+  lede: 'Kode Studios is an AI-first app studio. It ships consumer iOS apps.',
   offerings: [
     {
       id: 'consumer-ios',
       number: '01',
       title: 'Consumer iOS apps',
       description:
-        'Kode Studios builds consumer iOS apps. Pillie is live on the App Store. HairTrace is in development.',
-      placeholder: false,
-    },
-    {
-      id: 'ai-first-studio',
-      number: '02',
-      title: 'AI-first studio work',
-      description:
-        'AI agents help with engineering, marketing, copywriting, and product. Idriss reviews and ships.',
+        'Pillie is live on the App Store. HairTrace is in development.',
       placeholder: false,
     },
   ],
@@ -165,7 +151,7 @@ export const blog = {
     },
     {
       id: 'placeholder-montreal-dev',
-      title: 'Building from Montreal',
+      title: 'Building in public',
       brief: 'Stand-in brief about remote-friendly product work and keeping a personal site honest about what is real vs. draft.',
       url: `https://${HASHNODE_HOST}`,
       publishedAt: '2025-11-18T12:00:00.000Z',
@@ -223,10 +209,10 @@ export const news = {
       title: 'Contact and map',
       date: '2026-01-14',
       excerpt:
-        'Stand-in note that Contact uses a frontend-only form and a Montreal pin until a backend exists.',
+        'Stand-in note that Contact uses a frontend-only form until a backend exists.',
       paragraphs: [
-        'This is placeholder news. The map pin is Montreal as a location marker, not a street address.',
-        'The form opens a mail client. Nothing is stored on a server.',
+        'This is placeholder news. The form opens a mail client. Nothing is stored on a server.',
+        'Replace this article when there is an actual update to announce.',
       ],
       placeholder: true,
     },
@@ -240,12 +226,11 @@ export const contact = {
   email: aboutEmail,
   phone: settings.contact.phone,
   phonePlaceholder: true,
-  location: aboutLocation,
   map: {
-    lat: 45.458,
-    lng: -73.5674,
-    zoom: 12,
-    label: 'Montreal (Verdun), Canada (area pin)',
+    lat: 45.5017,
+    lng: -73.5673,
+    zoom: 11,
+    label: 'Map',
   },
 };
 

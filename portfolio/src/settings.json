@@ -1,7 +1,7 @@
 {
   "siteMetadata": {
     "title": "Idriss Kone — Kode Studios",
-    "description": "Kode Studios is Idriss Kone's app studio in Montreal. Pillie is live on the App Store. HairTrace is in development.",
+    "description": "Kode Studios is Idriss Kone's AI-first app studio. Pillie is live on the App Store. HairTrace is in development.",
     "author": "Idriss Kone"
   },
   "navigation": {
@@ -18,7 +18,7 @@
   "home": {
     "name": "Idriss Kone",
     "titles": ["Founder of Kode Studios", "Building Pillie", "AI-first app studio"],
-    "description": "I run Kode Studios, an app studio in Montreal (Verdun). We build consumer iOS apps with an AI-first approach: agents help with engineering, marketing, copy, and product — I review and ship. Pillie is live on the App Store. HairTrace is in development.",
+    "description": "I run Kode Studios, an AI-first app studio.",
     "profileImage": "/app/_assets/images/profile.jpg",
     "socialLinks": {
       "github": "https://github.com/yourusername",
@@ -32,16 +32,12 @@
     "title": "About Me",
     "subtitle": "Founder of Kode Studios",
     "profileImage": "/app/_assets/images/profile.jpg",
-    "mainContent": "I run Kode Studios, an app studio in Montreal (Verdun) that I founded in 2026. We build consumer iOS apps with an AI-first approach: AI agents help with engineering, marketing, copywriting, and product work, and I review and ship.\n\nPillie (Birth Control Reminder: Pillie) has been live on the App Store since May 2026. It is a birth control reminder that can block distracting apps until the dose is marked as taken. It is free with subscriptions and has paying users.\n\nHairTrace, a hair-loss treatment tracking iOS app, is in development.\n\nWrite to idriss@idrisskone.com.",
-    "additionalContent": "Kode Studios is Idriss Kone's app studio in Montreal (Verdun).",
+    "mainContent": "I run Kode Studios, an AI-first app studio I founded in 2026.\n\nPillie (Birth Control Reminder: Pillie) has been live on the App Store since May 2026. It is a birth control reminder that can block distracting apps until the dose is marked as taken. It is free with subscriptions and has paying users.\n\nHairTrace, a hair-loss treatment tracking iOS app, is in development.\n\nWrite to idriss@idrisskone.com.",
+    "additionalContent": "Kode Studios is Idriss Kone's AI-first app studio.",
     "info": [
       {
         "label": "Birthday:",
         "value": "1999-05-04"
-      },
-      {
-        "label": "Location:",
-        "value": "Montreal (Verdun), Canada"
       },
       {
         "label": "Email:",
@@ -221,7 +217,6 @@
     "title": "Contact",
     "description": "Get in touch",
     "email": "idriss@idrisskone.com",
-    "phone": "+1 234 567 890",
-    "location": "Montreal (Verdun), Canada"
+    "phone": "+1 234 567 890"
   }
 }

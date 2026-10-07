@@ -16,7 +16,6 @@
  * @typedef {Object} Studio
  * @property {string} name
  * @property {string} founder
- * @property {string} city
  * @property {string} founded
  * @property {string} email
  * @property {string} summary

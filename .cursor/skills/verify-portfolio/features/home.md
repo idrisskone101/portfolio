@@ -1,13 +1,13 @@
 # Home
 
-Home is the landing page. It shows Idriss Kone's portrait, name, Kode Studios in Montreal (Verdun), rotating titles, a short lede, Pillie and HairTrace, two CTAs, and social links. Desktop places the portrait and copy in a row on the canvas beside the in-flow left rail. Mobile stacks them and uses a top bar plus a menu sheet.
+Home is the landing page. It shows Idriss Kone's portrait, name, Kode Studios, rotating titles, a short lede, Pillie and HairTrace, two CTAs, and social links. Desktop places the portrait and copy in a row on the canvas beside the in-flow left rail. Mobile stacks them and uses a top bar plus a menu sheet.
 
 ## Sub-features
 
 - `home-lockup` shows the portrait, the `h1` Idriss Kone, Kode Studios, at least one title, the lede, Pillie, and HairTrace.
 - `home-cta-work` follows View work to Portfolio.
 - `home-cta-contact` follows Get in touch to Contact.
-- `home-social` exposes GitHub, LinkedIn, Email, Twitter, and Instagram by accessible name.
+- `home-social` exposes GitHub and Email by accessible name.
 - `home-desktop-rail` shows the Idriss name link and in-flow nav at 1440.
 - `home-mobile-menu` opens the sheet from Open menu at 390 and reaches the same routes.
 

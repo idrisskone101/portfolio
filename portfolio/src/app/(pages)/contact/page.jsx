@@ -48,10 +48,6 @@ export default function ContactPage() {
                 {contact.phonePlaceholder ? <PlaceholderFlag /> : null}
               </span>
             </li>
-            <li className="flex gap-4">
-              <span className="w-24 font-bold shrink-0">Location</span>
-              <span className="text-copy-muted">{contact.location}</span>
-            </li>
           </ul>
           <PageSection title="Map" className="mt-0">
             <ContactMap pin={contact.map} />
