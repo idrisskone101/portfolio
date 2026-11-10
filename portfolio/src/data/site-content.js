@@ -5,7 +5,7 @@ export const HASHNODE_HOST = 'idrisskone.hashnode.dev';
 export const navigation = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
-  { name: 'Services', path: '/services' },
+  { name: 'Experience', path: '/experience' },
   { name: 'Portfolio', path: '/portfolio' },
   { name: 'Blog', path: '/blog' },
   { name: 'News', path: '/news' },
@@ -23,12 +23,10 @@ export const siteMetadata = {
   author: settings.siteMetadata.author,
 };
 
-export const studio = {
-  name: 'Kode Studios',
-  founder: settings.home.name,
-  founded: '2026',
-  email: aboutEmail,
-  summary: 'Kode Studios is Idriss Kone\'s AI-first app studio.',
+export const role = {
+  title: 'Software Developer',
+  company: 'Plusgrade',
+  location: 'Montreal',
 };
 
 export const home = {
@@ -42,18 +40,18 @@ export const home = {
   },
   products: [
     {
-      id: 'pillie',
-      title: 'Birth Control Reminder: Pillie',
-      statusLabel: 'Live on the App Store',
-      href: 'https://apps.apple.com/app/id6759352439',
-      external: true,
+      id: 'plusgrade',
+      title: 'Software Developer · Plusgrade',
+      statusLabel: 'Currently',
+      href: '/experience',
+      external: false,
     },
     {
-      id: 'hairtrace',
-      title: 'HairTrace',
-      statusLabel: 'In development',
-      href: '/portfolio',
-      external: false,
+      id: 'pillie',
+      title: 'Pillie, an iOS app on the App Store',
+      statusLabel: 'Side project',
+      href: 'https://apps.apple.com/app/id6759352439',
+      external: true,
     },
   ],
 };
@@ -98,7 +96,7 @@ export const about = settings.about;
 
 export const portfolio = {
   eyebrow: settings.portfolio.title,
-  title: 'Selected work',
+  title: 'Projects',
   lede: settings.portfolio.description,
   projects: settings.portfolio.projects.map((project) => ({
     ...project,
@@ -106,18 +104,65 @@ export const portfolio = {
   })),
 };
 
-export const services = {
-  eyebrow: 'Services',
-  title: 'What Kode Studios builds',
-  lede: 'Kode Studios is an AI-first app studio. It ships consumer iOS apps.',
-  offerings: [
+export const experience = {
+  eyebrow: 'Experience',
+  title: 'Where I have worked',
+  lede: 'Over five years building web products, from e-commerce storefronts to the Optimizations team at Plusgrade.',
+  roles: [
     {
-      id: 'consumer-ios',
+      id: 'plusgrade',
       number: '01',
-      title: 'Consumer iOS apps',
-      description:
-        'Pillie is live on the App Store. HairTrace is in development.',
-      placeholder: false,
+      title: 'Software Developer',
+      company: 'Plusgrade',
+      period: 'Present',
+      location: 'Montreal',
+      summary:
+        'On the Optimizations team, I work across React, Go and Salesforce Commerce Cloud, and use PostHog, Snowflake and Splunk to measure and debug what ships.',
+      highlights: [],
+    },
+    {
+      id: 'sheertex-web-developer',
+      number: '02',
+      title: 'Web Developer',
+      company: 'Sheertex',
+      period: 'Sep 2023 – Feb 2025',
+      location: 'Montreal',
+      summary: null,
+      highlights: [
+        'Built a customer accounts feature with TypeScript and the Shopify Customer API.',
+        'Worked on the migration from React to Remix with server-side rendering, cutting initial page load times by 40%.',
+        'Built a store locator that combined scraped inventory data with mapping services, increasing physical store visits by 30%.',
+        'Shipped a wishlist with automated email notifications, increasing customer return rates by 25%.',
+        'Managed an external developer through task briefs and code reviews, cutting project turnaround time by 40%.',
+      ],
+    },
+    {
+      id: 'sheertex-junior',
+      number: '03',
+      title: 'Junior Web Developer',
+      company: 'Sheertex',
+      period: 'Feb 2022 – Sep 2023',
+      location: 'Montreal',
+      summary: null,
+      highlights: [
+        'Built a Quick Add feature with React and the Shopify Storefront API, increasing monthly revenue by 10%.',
+        'Ran A/B tests and user-behaviour analysis on the conversion funnel, raising conversion rates by 15%.',
+        'Improved page speed and uptime across the React storefronts, and led regular code reviews.',
+      ],
+    },
+    {
+      id: 'manhattan',
+      number: '04',
+      title: 'Junior Web Developer',
+      company: 'Manhattan International',
+      period: 'Jan 2021 – Feb 2022',
+      location: 'Montreal',
+      summary: null,
+      highlights: [
+        'Built a cart upsell feature that increased monthly revenue by 15% through higher order values.',
+        'Implemented third-party payment and shipping integrations to reduce cart abandonment.',
+        'Developed interactive site features in HTML, CSS and JavaScript.',
+      ],
     },
   ],
 };
@@ -226,6 +271,7 @@ export const contact = {
   email: aboutEmail,
   phone: settings.contact.phone,
   phonePlaceholder: true,
+  showPhone: false,
   map: {
     lat: 45.5017,
     lng: -73.5673,
@@ -241,11 +287,11 @@ export function getNewsArticle(slug) {
 export const site = {
   navigation,
   siteMetadata,
-  studio,
+  role,
   home,
   about,
   portfolio,
-  services,
+  experience,
   blog,
   news,
   contact,

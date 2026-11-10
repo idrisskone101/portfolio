@@ -51,7 +51,7 @@ Montserrat is the only typeface. Weights: 400 body, 600 labels, 700–800 titles
 
 ## Page chrome
 
-Every inner route (`/about`, `/services`, `/portfolio`, `/blog`, `/news`, `/contact`) uses:
+Every inner route (`/about`, `/experience`, `/portfolio`, `/blog`, `/news`, `/contact`) uses:
 
 1. `PageShell` — left-aligned, `max-w-5xl`, shared page padding.
 2. `PageHeader` — eyebrow chip, title, optional lede.

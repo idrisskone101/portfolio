@@ -40,7 +40,7 @@
     "name": "Idriss Kone",
     "titles": [
       "Software Developer",
-      "Full-Stack Engineer",
+      "Frontend & Web Developer",
       "Developer at Plusgrade"
     ],
     "description": "I build fast, reliable web products. Over five years shipping features in React, TypeScript and Go, most recently on the Optimizations team at Plusgrade.",
@@ -58,12 +58,7 @@
     "subtitle": "Software Developer at Plusgrade",
     "profileImage": "/app/_assets/images/profile.jpg",
     "mainContent": "I'm a software developer in Montreal with over five years of experience building web products. I work on the Optimizations team at Plusgrade, where my day-to-day spans React, Go, Salesforce Commerce Cloud, and data tools like PostHog, Snowflake and Splunk.\n\nBefore Plusgrade, I spent three years at Sheertex building e-commerce features end to end: customer accounts, a store locator, a wishlist with email notifications, and a migration from React to Remix that cut initial page load times by 40%. I also reviewed code and managed an external developer. I started at Manhattan International, building checkout, upsell and shipping integrations.\n\nOutside work I build side projects. The most recent, Pillie, is an iOS app live on the App Store.\n\nWrite to idriss@idrisskone.com.",
-    "additionalContent": "Idriss Kone is a software developer at Plusgrade.",
     "info": [
-      {
-        "label": "Birthday:",
-        "value": "1999-05-04"
-      },
       {
         "label": "Location:",
         "value": "Montreal"
@@ -71,10 +66,6 @@
       {
         "label": "Email:",
         "value": "idriss@idrisskone.com"
-      },
-      {
-        "label": "Phone:",
-        "value": "+1 234 567 890"
       },
       {
         "label": "Company:",
@@ -152,7 +143,7 @@
       },
       {
         "name": "Vite",
-        "stack": "backend"
+        "stack": "tools"
       },
       {
         "name": "GitHub",
