@@ -6,7 +6,6 @@ import { Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { home, role, socials } from '@/data/site-content';
-import HomeProducts from './home/home-products';
 import HomeTypeTitles from './home/home-type-titles';
 
 const ICONS = {
@@ -48,7 +47,6 @@ export default function Home() {
           <p className="max-w-md mt-5 text-lg text-copy-muted">
             {home.description}
           </p>
-          <HomeProducts products={home.products} />
           <div className="flex flex-wrap justify-center gap-3 mt-8 xl:justify-start xl:mt-5">
             <Button asChild>
               <Link href="/portfolio">View work</Link>

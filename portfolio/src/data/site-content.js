@@ -38,22 +38,6 @@ export const home = {
     twitter: settings.home.socialLinks.twitter,
     instagram: settings.home.socialLinks.instagram,
   },
-  products: [
-    {
-      id: 'plusgrade',
-      title: 'Software Developer · Plusgrade',
-      statusLabel: 'Currently',
-      href: '/experience',
-      external: false,
-    },
-    {
-      id: 'pillie',
-      title: 'Pillie, an iOS app on the App Store',
-      statusLabel: 'Side project',
-      href: 'https://apps.apple.com/app/id6759352439',
-      external: true,
-    },
-  ],
 };
 
 export const socials = [

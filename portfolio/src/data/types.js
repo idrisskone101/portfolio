@@ -13,15 +13,6 @@
  */
 
 /**
- * @typedef {Object} HomeProduct
- * @property {string} id
- * @property {string} title
- * @property {string} statusLabel
- * @property {string} href
- * @property {boolean} external
- */
-
-/**
  * @typedef {'live' | 'in-development'} ProjectStatus
  */
 
