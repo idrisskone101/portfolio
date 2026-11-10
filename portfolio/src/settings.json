@@ -1,7 +1,7 @@
 {
   "siteMetadata": {
     "title": "Idriss Kone — Software Developer",
-    "description": "Idriss Kone is a software developer in Montreal, on the Optimizations team at Plusgrade. Over five years building web products with React, TypeScript and Go.",
+    "description": "Idriss Kone is a full-stack software developer in Montreal at Plusgrade. Over five years building web applications in TypeScript and React.",
     "author": "Idriss Kone"
   },
   "navigation": {
@@ -40,14 +40,14 @@
     "name": "Idriss Kone",
     "titles": [
       "Software Developer",
-      "Frontend & Web Developer",
+      "Full-Stack Developer",
       "Developer at Plusgrade"
     ],
-    "description": "I build fast, reliable web products. Over five years shipping features in React, TypeScript and Go, most recently on the Optimizations team at Plusgrade.",
+    "description": "Software developer with over five years building web applications in TypeScript and React. At Plusgrade, I run storefront experimentation and build AI-powered tooling.",
     "profileImage": "/app/_assets/images/profile.jpg",
     "socialLinks": {
       "github": "https://github.com/yourusername",
-      "linkedin": "https://linkedin.com/in/yourprofile",
+      "linkedin": "https://www.linkedin.com/in/idriss-kone-880b491bb",
       "email": "idriss@idrisskone.com",
       "twitter": "https://twitter.com/yourhandle",
       "instagram": "https://instagram.com/yourprofile"
@@ -57,7 +57,7 @@
     "title": "About Me",
     "subtitle": "Software Developer at Plusgrade",
     "profileImage": "/app/_assets/images/profile.jpg",
-    "mainContent": "I'm a software developer in Montreal with over five years of experience building web products. I work on the Optimizations team at Plusgrade, where my day-to-day spans React, Go, Salesforce Commerce Cloud, and data tools like PostHog, Snowflake and Splunk.\n\nBefore Plusgrade, I spent three years at Sheertex building e-commerce features end to end: customer accounts, a store locator, a wishlist with email notifications, and a migration from React to Remix that cut initial page load times by 40%. I also reviewed code and managed an external developer. I started at Manhattan International, building checkout, upsell and shipping integrations.\n\nOutside work I build side projects. The most recent, Pillie, is an iOS app live on the App Store.\n\nWrite to idriss@idrisskone.com.",
+    "mainContent": "I'm a software developer in Montreal with over five years of experience building web applications in TypeScript and React.\n\nAt Plusgrade I run experimentation on partner storefronts end to end, ship production features in React and Salesforce Commerce Cloud, and build AI-powered tooling, including a production support plugin my team relies on and a pull request review skill the team adopted. I also led a partner product launch from solution document to delivery; the team shipped about two months early.\n\nBefore that I spent three years at Sheertex building Remix and Shopify storefronts: self-serve customer accounts, a store locator, a wishlist with back-in-stock emails, and the move from a client-rendered React app to Remix. I started at Manhattan International, working on checkout, upsell and shipping integrations.\n\nOutside work I build side projects. The most recent, Pillie, is an iOS app live on the App Store.\n\nWrite to idriss@idrisskone.com.",
     "info": [
       {
         "label": "Location:",
@@ -77,7 +77,7 @@
       },
       {
         "label": "Degree:",
-        "value": "Bachelor of Science in Computer Science"
+        "value": "BCompSc in Computer Science"
       }
     ],
     "skills": [
@@ -199,6 +199,18 @@
       {
         "name": "Splunk",
         "stack": "tools"
+      },
+      {
+        "name": "FullStory",
+        "stack": "tools"
+      },
+      {
+        "name": "Cypress",
+        "stack": "tools"
+      },
+      {
+        "name": "GitLab",
+        "stack": "tools"
       }
     ]
   },
@@ -228,153 +240,66 @@
       {
         "id": "weather-app",
         "title": "Weather App",
-        "description": "A responsive weather application built with React that uses weather APIs to display current weather and forecasts. Features include location search, temperature units toggle, and detailed weather information.",
+        "description": "A responsive weather app with location search, showing current conditions and forecasts from a weather API.",
         "image": "/projects/weatherapp.png",
         "liveUrl": null,
         "githubUrl": null,
         "category": "Frontend",
-        "technologies": [
-          {
-            "name": "React"
-          },
-          {
-            "name": "JavaScript"
-          },
-          {
-            "name": "CSS"
-          },
-          {
-            "name": "Weather API"
-          }
-        ],
         "appStoreUrl": null,
         "placeholder": false
       },
       {
         "id": "ip-address-tracker",
         "title": "IP Address Tracker",
-        "description": "An IP address tracking application that allows users to search for any IP address and view its location on a map along with other details like ISP and timezone.",
+        "description": "Look up an IP address and see its location on a map, along with its ISP and timezone.",
         "image": "/projects/ipaddress.png",
         "liveUrl": null,
         "githubUrl": null,
         "category": "Frontend",
-        "technologies": [
-          {
-            "name": "JavaScript"
-          },
-          {
-            "name": "HTML"
-          },
-          {
-            "name": "CSS"
-          },
-          {
-            "name": "IP Geolocation API"
-          },
-          {
-            "name": "Leaflet Maps"
-          }
-        ],
         "appStoreUrl": null,
         "placeholder": false
       },
       {
         "id": "designo",
         "title": "Designo Website",
-        "description": "A multi-page website for a fictional design agency with responsive layouts, custom animations, and form validation.",
+        "description": "A responsive multi-page website for a fictional design agency.",
         "image": "/projects/designo.png",
         "liveUrl": null,
         "githubUrl": null,
         "category": "Frontend",
-        "technologies": [
-          {
-            "name": "React"
-          },
-          {
-            "name": "Next.js"
-          },
-          {
-            "name": "Tailwind CSS"
-          },
-          {
-            "name": "Framer Motion"
-          }
-        ],
         "appStoreUrl": null,
         "placeholder": false
       },
       {
         "id": "dine",
         "title": "Dine Restaurant",
-        "description": "A restaurant website featuring an elegant design, online booking system, and responsive menu displays.",
+        "description": "A responsive website for a fictional restaurant.",
         "image": "/projects/dine.png",
         "liveUrl": null,
         "githubUrl": null,
         "category": "Frontend",
-        "technologies": [
-          {
-            "name": "HTML"
-          },
-          {
-            "name": "CSS"
-          },
-          {
-            "name": "JavaScript"
-          },
-          {
-            "name": "GSAP Animation"
-          }
-        ],
         "appStoreUrl": null,
         "placeholder": false
       },
       {
         "id": "movie-search",
         "title": "Movie Search App",
-        "description": "A movie search application that allows users to search for movies, view details, and save favorites. Built with React and a movie database API.",
+        "description": "Search for movies and view their details using a movie database API.",
         "image": "/projects/moviesearch.png",
         "liveUrl": null,
         "githubUrl": null,
         "category": "Frontend",
-        "technologies": [
-          {
-            "name": "React"
-          },
-          {
-            "name": "Redux"
-          },
-          {
-            "name": "Styled Components"
-          },
-          {
-            "name": "TMDB API"
-          }
-        ],
         "appStoreUrl": null,
         "placeholder": false
       },
       {
         "id": "pokedex",
         "title": "Pokedex App",
-        "description": "An interactive Pokedex application that displays information about different Pokemon. Features include search, filtering, and detailed Pokemon stats.",
+        "description": "Browse and search Pokémon and view their stats.",
         "image": "/projects/pokedex.png",
         "liveUrl": null,
         "githubUrl": null,
         "category": "Frontend",
-        "technologies": [
-          {
-            "name": "React"
-          },
-          {
-            "name": "TypeScript"
-          },
-          {
-            "name": "CSS Modules"
-          },
-          {
-            "name": "Pokemon API"
-          }
-        ],
         "appStoreUrl": null,
         "placeholder": false
       }

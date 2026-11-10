@@ -65,10 +65,9 @@ export const socials = [
   },
   {
     id: 'linkedin',
-    label: 'LinkedIn (placeholder)',
+    label: 'LinkedIn',
     href: home.socialLinks.linkedin,
     icon: 'linkedin',
-    placeholder: true,
   },
   {
     id: 'mail',
@@ -107,33 +106,37 @@ export const portfolio = {
 export const experience = {
   eyebrow: 'Experience',
   title: 'Where I have worked',
-  lede: 'Over five years building web products, from e-commerce storefronts to the Optimizations team at Plusgrade.',
+  lede: 'Over five years building web applications in TypeScript and React, from Shopify storefronts to partner products at Plusgrade.',
   roles: [
     {
       id: 'plusgrade',
       number: '01',
       title: 'Software Developer',
       company: 'Plusgrade',
-      period: 'Present',
+      period: 'Mar 2025 – Present',
       location: 'Montreal',
-      summary:
-        'On the Optimizations team, I work across React, Go and Salesforce Commerce Cloud, and use PostHog, Snowflake and Splunk to measure and debug what ships.',
-      highlights: [],
+      highlights: [
+        'Led partner storefront experimentation end to end, running tests and reporting results before launch. Winning tests lifted conversion 15% to 25% and grew average transaction size.',
+        'Built an AI-powered production support plugin that pulls context from several systems into one place, shortening support investigations.',
+        'Built an AI skill for pull request review that the team adopted, raising release confidence.',
+        'Led a partner product launch from ideation to delivery: wrote the solution document and ran story mapping into epics and tickets. The team shipped about two months early.',
+        'Shipped production storefront features in TypeScript, React and Salesforce Commerce Cloud, and owned incident follow-up so recurring storefront failures stopped.',
+        'Rewrote application startup logic into smaller, clearer steps, making new features safer to add.',
+      ],
     },
     {
       id: 'sheertex-web-developer',
       number: '02',
       title: 'Web Developer',
       company: 'Sheertex',
-      period: 'Sep 2023 – Feb 2025',
+      period: 'Sep 2023 – Mar 2025',
       location: 'Montreal',
-      summary: null,
       highlights: [
-        'Built a customer accounts feature with TypeScript and the Shopify Customer API.',
-        'Worked on the migration from React to Remix with server-side rendering, cutting initial page load times by 40%.',
-        'Built a store locator that combined scraped inventory data with mapping services, increasing physical store visits by 30%.',
-        'Shipped a wishlist with automated email notifications, increasing customer return rates by 25%.',
-        'Managed an external developer through task briefs and code reviews, cutting project turnaround time by 40%.',
+        'Shipped self-serve customer accounts on the Shopify Customer API, so shoppers could manage their details without contacting support.',
+        'Raised store visits 30% with a store locator that paired a map service with daily inventory scraping.',
+        'Migrated the storefront from a client-rendered React app to Remix, moving rendering to the server.',
+        'Shipped a wishlist and back-in-stock email flow that notified shoppers when a saved item returned.',
+        'Cut freelancer turnaround 30% across multiple sites with clear briefs and code review.',
       ],
     },
     {
@@ -143,11 +146,9 @@ export const experience = {
       company: 'Sheertex',
       period: 'Feb 2022 – Sep 2023',
       location: 'Montreal',
-      summary: null,
       highlights: [
-        'Built a Quick Add feature with React and the Shopify Storefront API, increasing monthly revenue by 10%.',
-        'Ran A/B tests and user-behaviour analysis on the conversion funnel, raising conversion rates by 15%.',
-        'Improved page speed and uptime across the React storefronts, and led regular code reviews.',
+        'Raised revenue 10% with a Quick Add flow in React on the Shopify Storefront API.',
+        'Lifted storefront conversion 15% by running A/B tests and shipping only the winning variants.',
       ],
     },
     {
@@ -157,11 +158,9 @@ export const experience = {
       company: 'Manhattan International',
       period: 'Jan 2021 – Feb 2022',
       location: 'Montreal',
-      summary: null,
       highlights: [
         'Built a cart upsell feature that increased monthly revenue by 15% through higher order values.',
         'Implemented third-party payment and shipping integrations to reduce cart abandonment.',
-        'Developed interactive site features in HTML, CSS and JavaScript.',
       ],
     },
   ],

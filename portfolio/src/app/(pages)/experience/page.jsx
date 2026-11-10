@@ -33,11 +33,6 @@ export default function ExperiencePage() {
             <p className="mb-4 text-sm text-copy-faint">
               {role.company} · {role.location}
             </p>
-            {role.summary ? (
-              <p className="max-w-[65ch] text-sm leading-7 text-copy-muted sm:text-base">
-                {role.summary}
-              </p>
-            ) : null}
             {role.highlights.length > 0 ? (
               <ul className="max-w-[65ch] space-y-2 list-disc pl-5 text-sm leading-7 text-copy-muted marker:text-magenta sm:text-base">
                 {role.highlights.map((highlight) => (
