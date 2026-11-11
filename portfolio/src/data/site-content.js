@@ -105,7 +105,7 @@ export const contact = {
     lat: 45.5048,
     lng: -73.5698,
     zoom: 12.5,
-    label: 'Downtown Montreal',
+    label: 'Montreal',
   },
 };
 
