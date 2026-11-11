@@ -57,7 +57,7 @@
     "title": "About Me",
     "subtitle": "Software Developer at Plusgrade",
     "profileImage": "/app/_assets/images/profile.jpg",
-    "mainContent": "I'm Idriss, a software developer in Montreal. I've spent five-plus years building for the web, mostly in TypeScript and React, and seeing something I made work for real people never gets old.\n\nThese days I'm at Plusgrade, running experiments so we make data-backed software decisions at scale, and building AI workflows that take the tedious parts off my team's plate. Before that, I spent three years making Shopify storefronts faster and friendlier at Sheertex.\n\nOff the clock, I like to tinker: learning new tools, taking things apart to see how they work, and side projects I sometimes build in public. The latest is Pillie, an iOS app live on the App Store that people use.\n\nSay hi at idriss@idrisskone.com.",
+    "mainContent": "I'm Idriss, a software developer in Montreal. I've spent five-plus years building for the web, mostly in TypeScript and React, and seeing something I made work for real people never gets old.\n\nThese days I'm at Plusgrade, running experiments so we make data-backed software decisions at scale, and building AI workflows that take the tedious parts off my team's plate. Before that, I spent three years making Shopify storefronts faster and more user-friendly at Sheertex.\n\nOff the clock, I like to tinker. Learning new tools, taking things apart to see how they work, and side projects I sometimes build in public. The latest is Pillie, an iOS app, live on the App Store today.\n\nFeel free to say hello at idriss.kone@icloud.com.",
     "info": [
       {
         "label": "Location:",
