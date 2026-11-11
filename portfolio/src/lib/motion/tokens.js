@@ -6,12 +6,12 @@ export const pageMotion = {
 };
 
 export const homeMotion = {
-  typeMs: 92,
-  deleteMs: 58,
-  holdMs: 3600,
-  mobileTypeMs: 280,
-  mobileDeleteMs: 200,
-  mobileHoldMs: 8000,
+  typeMs: 55,
+  deleteMs: 28,
+  holdMs: 2000,
+  mobileTypeMs: 65,
+  mobileDeleteMs: 32,
+  mobileHoldMs: 2200,
   mobileQuery: '(max-width: 1279px)',
 };
 
