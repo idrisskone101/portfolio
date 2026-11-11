@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
 const EMPTY_FORM = {
-  name: '',
   email: '',
   subject: '',
   message: '',
@@ -16,9 +15,9 @@ const EMPTY_FORM = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function buildMailto({ name, email, subject, message }) {
-  const finalSubject = subject || `Hello from ${name}`;
-  const body = `${message}\r\n\r\n${name}\r\n${email}`;
+export function buildMailto({ email, subject, message }) {
+  const finalSubject = subject || 'Hello from idrisskone.com';
+  const body = `${message}\r\n\r\n${email}`;
   return `mailto:${contact.email}?subject=${encodeURIComponent(
     finalSubject
   )}&body=${encodeURIComponent(body)}`;
@@ -37,13 +36,12 @@ export default function ContactForm() {
     event.preventDefault();
 
     const values = {
-      name: form.name.trim(),
       email: form.email.trim(),
       subject: form.subject.trim(),
       message: form.message.trim(),
     };
 
-    if (!values.name || !values.email || !values.message) {
+    if (!values.email || !values.message) {
       setStatus('missing');
       return;
     }
@@ -68,17 +66,6 @@ export default function ContactForm() {
         Sending opens your email app with everything below filled in.
       </p>
       <div className="space-y-2">
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          name="name"
-          autoComplete="name"
-          value={form.name}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
@@ -97,7 +84,7 @@ export default function ContactForm() {
           name="subject"
           value={form.subject}
           onChange={handleChange}
-          placeholder={form.name.trim() ? `Hello from ${form.name.trim()}` : ''}
+          placeholder="Hello from idrisskone.com"
         />
       </div>
       <div className="space-y-2">
@@ -112,7 +99,7 @@ export default function ContactForm() {
       </div>
       {status === 'missing' ? (
         <p className="text-sm text-magenta" role="alert">
-          Name, email, and message are required.
+          Email and message are required.
         </p>
       ) : null}
       {status === 'bad-email' ? (
