@@ -268,68 +268,134 @@
       {
         "id": "weather-app",
         "title": "Weather App",
-        "description": "A responsive weather app with location search, showing current conditions and forecasts from a weather API.",
+        "description": "A fast weather lookup for your favourite cities, built in vanilla JavaScript with API fetching and autocomplete search.",
         "image": "/projects/weatherapp.png",
-        "liveUrl": null,
-        "githubUrl": null,
+        "liveUrl": "https://weather-search-8ebba8.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/WeatherApp",
         "category": "Frontend",
         "appStoreUrl": null,
-        "placeholder": false
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "REST API"
+          },
+          {
+            "name": "Autocomplete"
+          }
+        ]
       },
       {
         "id": "ip-address-tracker",
         "title": "IP Address Tracker",
-        "description": "Look up an IP address and see its location on a map, along with its ISP and timezone.",
+        "description": "Look up any IP address and see it on an interactive map. My first project with Next.js and Tailwind CSS, with Leaflet for the map.",
         "image": "/projects/ipaddress.png",
         "liveUrl": null,
-        "githubUrl": null,
+        "githubUrl": "https://github.com/idriss101/IP-Tracker",
         "category": "Frontend",
         "appStoreUrl": null,
-        "placeholder": false
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "Next.js"
+          },
+          {
+            "name": "Tailwind CSS"
+          },
+          {
+            "name": "Leaflet"
+          }
+        ]
       },
       {
         "id": "designo",
-        "title": "Designo Website",
-        "description": "A responsive multi-page website for a fictional design agency.",
+        "title": "Designo",
+        "description": "A multipage site for a fictional design agency (a Frontend Mentor challenge), built with React and Sass and no CSS framework. A good workout for CSS Grid, Flexbox and SVGs.",
         "image": "/projects/designo.png",
-        "liveUrl": null,
-        "githubUrl": null,
+        "liveUrl": "https://designo-d9d71e.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/Designo",
         "category": "Frontend",
         "appStoreUrl": null,
-        "placeholder": false
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "Sass"
+          },
+          {
+            "name": "CSS Grid"
+          },
+          {
+            "name": "SVG"
+          }
+        ]
       },
       {
         "id": "dine",
         "title": "Dine Restaurant",
-        "description": "A responsive website for a fictional restaurant.",
+        "description": "A two-page site for a fictional fine-dining restaurant, built with Next.js and Tailwind CSS, with layouts that change with screen size.",
         "image": "/projects/dine.png",
-        "liveUrl": null,
-        "githubUrl": null,
+        "liveUrl": "https://dine-restaurant-one.vercel.app/",
+        "githubUrl": "https://github.com/idriss101/Dine-Restaurant",
         "category": "Frontend",
         "appStoreUrl": null,
-        "placeholder": false
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "Next.js"
+          },
+          {
+            "name": "Tailwind CSS"
+          }
+        ]
       },
       {
         "id": "movie-search",
-        "title": "Movie Search App",
-        "description": "Search for movies and view their details using a movie database API.",
+        "title": "Movie Search",
+        "description": "Look up any movie for a short plot summary and its trailer. My first React project and my first time consuming an API.",
         "image": "/projects/moviesearch.png",
-        "liveUrl": null,
-        "githubUrl": null,
+        "liveUrl": "https://movie-search-464185.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/MovieSearch",
         "category": "Frontend",
         "appStoreUrl": null,
-        "placeholder": false
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "Axios"
+          },
+          {
+            "name": "React YouTube"
+          }
+        ]
       },
       {
         "id": "pokedex",
-        "title": "Pokedex App",
-        "description": "Browse and search Pokémon and view their stats.",
+        "title": "Pokédex",
+        "description": "A one-stop shop for looking up your favourite Pokémon, built because searching online every time took too long. My first time with React hooks and infinite scrolling.",
         "image": "/projects/pokedex.png",
-        "liveUrl": null,
-        "githubUrl": null,
+        "liveUrl": "https://pokemon-pokedex-4ah7.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/Pokedex",
         "category": "Frontend",
         "appStoreUrl": null,
-        "placeholder": false
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "React Hooks"
+          },
+          {
+            "name": "Infinite scroll"
+          }
+        ]
       }
     ]
   },
