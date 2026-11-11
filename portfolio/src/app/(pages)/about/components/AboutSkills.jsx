@@ -31,8 +31,56 @@ import OpenCodeIcon from '@/app/(pages)/about/assets/opencode.svg';
 import OllamaIcon from '@/app/(pages)/about/assets/ollama.svg';
 import DevinIcon from '@/app/(pages)/about/assets/devin.svg';
 import ManusIcon from '@/app/(pages)/about/assets/manus.svg';
+import SalesforceIcon from '@/app/(pages)/about/assets/salesforce.svg';
+import RhinoIcon from '@/app/(pages)/about/assets/rhino.svg';
+import SnowflakeIcon from '@/app/(pages)/about/assets/snowflake.svg';
+import PostHogIcon from '@/app/(pages)/about/assets/posthog.svg';
+import SplunkIcon from '@/app/(pages)/about/assets/splunk.svg';
+import FullStoryIcon from '@/app/(pages)/about/assets/fullstory.svg';
+import CypressIcon from '@/app/(pages)/about/assets/cypress.svg';
+import GitLabIcon from '@/app/(pages)/about/assets/gitlab.svg';
 
 const skillsData = {
+  'Salesforce Commerce Cloud': {
+    bgColor: 'bg-[#00a1e026]',
+    textColor: 'text-[#00a1e0]',
+    icon: SalesforceIcon,
+  },
+  'RhinoJS': {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: RhinoIcon,
+  },
+  'Snowflake': {
+    bgColor: 'bg-[#29b5e826]',
+    textColor: 'text-[#29b5e8]',
+    icon: SnowflakeIcon,
+  },
+  'PostHog': {
+    bgColor: 'bg-[#f9bd2b26]',
+    textColor: 'text-[#f9bd2b]',
+    icon: PostHogIcon,
+  },
+  'Splunk': {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: SplunkIcon,
+  },
+  'FullStory': {
+    bgColor: 'bg-[#a23cf026]',
+    textColor: 'text-[#a23cf0]',
+    icon: FullStoryIcon,
+  },
+  'Cypress': {
+    bgColor: 'bg-[#69d3a726]',
+    textColor: 'text-[#69d3a7]',
+    icon: CypressIcon,
+  },
+  'GitLab': {
+    bgColor: 'bg-[#fc6d2626]',
+    textColor: 'text-[#fc6d26]',
+    icon: GitLabIcon,
+  },
   Claude: {
     bgColor: 'bg-[#d9775726]',
     textColor: 'text-[#d97757]',

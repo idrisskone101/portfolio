@@ -213,11 +213,11 @@
         "stack": "tools"
       },
       {
-        "name": "Go",
+        "name": "Salesforce Commerce Cloud",
         "stack": "backend"
       },
       {
-        "name": "Salesforce Commerce Cloud",
+        "name": "RhinoJS",
         "stack": "backend"
       },
       {
