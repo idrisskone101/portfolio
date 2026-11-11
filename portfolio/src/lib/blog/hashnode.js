@@ -41,28 +41,80 @@ function mapHashnodeEdges(edges) {
   });
 }
 
+const NAMED_ENTITIES = {
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+  nbsp: ' ',
+  mdash: '\u2014',
+  ndash: '\u2013',
+  hellip: '\u2026',
+  lsquo: '\u2018',
+  rsquo: '\u2019',
+  ldquo: '\u201c',
+  rdquo: '\u201d',
+};
+
+function unwrapCdata(text) {
+  return text.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1');
+}
+
 function decodeEntities(text) {
-  return text
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
-    .replace(/&amp;/g, '&')
-    .trim();
+  let out = text;
+  for (let pass = 0; pass < 2; pass += 1) {
+    out = out
+      .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+      .replace(/&#x([0-9a-f]+);/gi, (_, code) =>
+        String.fromCodePoint(parseInt(code, 16))
+      )
+      .replace(/&([a-z]+);/gi, (match, name) =>
+        Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, name.toLowerCase())
+          ? NAMED_ENTITIES[name.toLowerCase()]
+          : match
+      );
+  }
+  return out.trim();
+}
+
+function readXmlText(xml, tag) {
+  const match = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
+  return match ? match[1] : '';
+}
+
+function readRawTag(xml, tag) {
+  return unwrapCdata(readXmlText(xml, tag));
 }
 
 function readTag(xml, tag) {
-  const match = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
-  return match ? decodeEntities(match[1]) : '';
+  return decodeEntities(readRawTag(xml, tag));
 }
 
-function stripHtml(html) {
-  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+function htmlToText(rawXmlText) {
+  // CDATA holds literal HTML; plain XML text holds entity-escaped HTML that
+  // must be unescaped once before its tags can be stripped.
+  const isCdata = /^\s*<!\[CDATA\[/.test(rawXmlText);
+  const html = isCdata
+    ? unwrapCdata(rawXmlText)
+    : rawXmlText
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, '&');
+  const withoutTags = html.replace(/<[^>]+>/g, ' ');
+  return decodeEntities(withoutTags).replace(/\s+/g, ' ').trim();
+}
+
+function toIsoDate(value) {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 
 function readCoverImage(item) {
-  const enclosure = item.match(/<enclosure[^>]*\burl="([^"]+)"[^>]*\btype="image\/[^"]*"/);
+  const enclosure = item.match(
+    /<enclosure[^>]*\burl="([^"]+)"[^>]*\btype="image\/[^"]*"/
+  );
   const anyEnclosure = item.match(/<enclosure[^>]*\burl="([^"]+)"/);
   return (
     decodeEntities((enclosure || anyEnclosure || [])[1] || '') ||
@@ -75,14 +127,14 @@ export function parseRss(xml) {
   const items = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
   return items.slice(0, 6).map((item) => {
     const url = readTag(item, 'link');
-    const brief = stripHtml(readTag(item, 'description'));
+    const brief = htmlToText(readXmlText(item, 'description'));
     const pubDate = readTag(item, 'pubDate');
     return {
       id: readTag(item, 'guid') || url,
       title: readTag(item, 'title') || 'Untitled',
       brief: brief.length > 280 ? `${brief.slice(0, 277)}...` : brief,
       url: url || blogContent.hashnodeUrl,
-      publishedAt: pubDate ? new Date(pubDate).toISOString() : null,
+      publishedAt: pubDate ? toIsoDate(pubDate) : null,
       coverImageUrl: readCoverImage(item),
       source: 'hashnode-rss',
     };
@@ -92,7 +144,10 @@ export function parseRss(xml) {
 async function getRssPosts() {
   try {
     const response = await fetch(`${blogContent.hashnodeUrl}/rss.xml`, {
-      headers: { Accept: 'application/rss+xml, application/xml, text/xml', 'User-Agent': USER_AGENT },
+      headers: {
+        Accept: 'application/rss+xml, application/xml, text/xml',
+        'User-Agent': USER_AGENT,
+      },
       next: { revalidate: 3600 },
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
@@ -117,7 +172,12 @@ async function fallback(error, cause) {
     cause,
     rssError: rss.error,
   });
-  return { ok: false, error: `${error}; ${rss.error}`, source: 'none', posts: [] };
+  return {
+    ok: false,
+    error: `${error}; ${rss.error}`,
+    source: 'none',
+    posts: [],
+  };
 }
 
 export async function getBlogPosts() {

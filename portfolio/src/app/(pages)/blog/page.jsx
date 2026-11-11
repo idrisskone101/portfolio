@@ -27,11 +27,7 @@ export default async function BlogPage() {
 
   return (
     <PageShell>
-      <PageHeader
-        eyebrow={blog.eyebrow}
-        title={blog.title}
-        lede={blog.lede}
-      />
+      <PageHeader eyebrow={blog.eyebrow} title={blog.title} lede={blog.lede} />
 
       {posts.length === 0 ? (
         <p
@@ -51,62 +47,66 @@ export default async function BlogPage() {
         </p>
       ) : null}
 
-      <ol
-        className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12"
-        data-blog-source={result.source}
-      >
-        {posts.map((post, index) => (
-          <li
-            key={post.id}
-            className={cn(
-              'border-t border-line py-8',
-              index === 0 && 'md:col-span-2'
-            )}
-          >
-            <a
-              href={post.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full max-w-xl group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
+      {posts.length > 0 ? (
+        <ol
+          className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12"
+          data-blog-source={result.source}
+        >
+          {posts.map((post, index) => (
+            <li
+              key={post.id}
+              className={cn(
+                'border-t border-line py-8',
+                index === 0 && 'md:col-span-2'
+              )}
             >
-              {post.coverImageUrl ? (
-                <div
+              <a
+                href={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full max-w-xl group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
+              >
+                {post.coverImageUrl ? (
+                  <div
+                    className={cn(
+                      'relative w-full mb-6 overflow-hidden border border-line rounded-lg aspect-[16/9]'
+                    )}
+                  >
+                    <Image
+                      src={post.coverImageUrl}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 576px"
+                    />
+                  </div>
+                ) : null}
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  {post.publishedAt ? (
+                    <p className="text-sm text-copy-faint">
+                      {formatDate(post.publishedAt)}
+                    </p>
+                  ) : null}
+                </div>
+                <h2
                   className={cn(
-                    'relative w-full mb-6 overflow-hidden border border-line rounded-lg aspect-[16/9]'
+                    'mb-3 font-semibold group-hover:text-magenta',
+                    index === 0 ? 'text-2xl sm:text-3xl' : 'text-xl'
                   )}
                 >
-                  <Image
-                    src={post.coverImageUrl}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 576px"
-                  />
-                </div>
-              ) : null}
-              <div className="flex flex-wrap items-center gap-3 mb-3">
-                {post.publishedAt ? (
-                  <p className="text-sm text-copy-faint">
-                    {formatDate(post.publishedAt)}
-                  </p>
-                ) : null}
-              </div>
-              <h2
-                className={cn(
-                  'mb-3 font-semibold group-hover:text-magenta',
-                  index === 0 ? 'text-2xl sm:text-3xl' : 'text-xl'
-                )}
-              >
-                {post.title}
-              </h2>
-              <p className="mb-4 text-sm leading-6 text-copy-muted line-clamp-3">
-                {post.brief}
-              </p>
-              <span className="text-sm font-medium text-magenta">Read more</span>
-            </a>
-          </li>
-        ))}
-      </ol>
+                  {post.title}
+                </h2>
+                <p className="mb-4 text-sm leading-6 text-copy-muted line-clamp-3">
+                  {post.brief}
+                </p>
+                <span className="text-sm font-medium text-magenta">
+                  Read more
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      ) : null}
     </PageShell>
   );
 }
