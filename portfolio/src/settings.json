@@ -262,6 +262,38 @@
         ]
       },
       {
+        "id": "postforge",
+        "title": "PostForge",
+        "description": "A self-hosted pipeline I built to make AI marketing content for my iOS apps. It generates images and video, turns them into slideshows and UGC-style clips, queues everything for review, and tracks what each one costs. The live demo runs on sample content for a made-up plant-care app.",
+        "image": "/projects/postforge.jpg",
+        "liveUrl": "https://postforge-demo-production.up.railway.app",
+        "githubUrl": "https://github.com/idrisskone101/postForge",
+        "category": "Full-stack",
+        "appStoreUrl": null,
+        "statusLabel": "Live demo",
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "Next.js"
+          },
+          {
+            "name": "TypeScript"
+          },
+          {
+            "name": "PostgreSQL"
+          },
+          {
+            "name": "Prisma"
+          },
+          {
+            "name": "Tailwind CSS"
+          },
+          {
+            "name": "fal.ai"
+          }
+        ]
+      },
+      {
         "id": "weather-app",
         "title": "Weather App",
         "description": "A fast weather lookup for your favourite cities, built in vanilla JavaScript with API fetching and autocomplete search.",
