@@ -72,8 +72,7 @@ export default async function BlogPage() {
               {post.coverImageUrl ? (
                 <div
                   className={cn(
-                    'relative w-full mb-6 overflow-hidden border border-line',
-                    index === 0 ? 'aspect-[16/7]' : 'aspect-[16/9]'
+                    'relative w-full max-w-xl mb-6 overflow-hidden border border-line rounded-lg aspect-[16/9]'
                   )}
                 >
                   <Image
@@ -81,7 +80,7 @@ export default async function BlogPage() {
                     alt=""
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 66vw"
+                    sizes="(max-width: 640px) 100vw, 576px"
                   />
                 </div>
               ) : null}
