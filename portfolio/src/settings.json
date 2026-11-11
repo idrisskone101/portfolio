@@ -82,6 +82,38 @@
     ],
     "skills": [
       {
+        "name": "Claude",
+        "stack": "ai"
+      },
+      {
+        "name": "Paper",
+        "stack": "ai"
+      },
+      {
+        "name": "Conductor",
+        "stack": "ai"
+      },
+      {
+        "name": "Codex",
+        "stack": "ai"
+      },
+      {
+        "name": "OpenCode",
+        "stack": "ai"
+      },
+      {
+        "name": "Ollama",
+        "stack": "ai"
+      },
+      {
+        "name": "Devin",
+        "stack": "ai"
+      },
+      {
+        "name": "Manus",
+        "stack": "ai"
+      },
+      {
         "name": "React",
         "stack": "frontend",
         "iconPath": "@/app/(pages)/about/assets/react.svg"

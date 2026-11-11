@@ -23,8 +23,56 @@ import GraphQLIcon from '@/app/(pages)/about/assets/graphql.svg';
 import RemixRunIcon from '@/app/(pages)/about/assets/remixrun.svg';
 import SquarespaceIcon from '@/app/(pages)/about/assets/squarespace.svg';
 import GitIcon from '@/app/(pages)/about/assets/git.svg';
+import ClaudeIcon from '@/app/(pages)/about/assets/claude.svg';
+import PaperIcon from '@/app/(pages)/about/assets/paper.svg';
+import ConductorIcon from '@/app/(pages)/about/assets/conductor.svg';
+import CodexIcon from '@/app/(pages)/about/assets/codex.svg';
+import OpenCodeIcon from '@/app/(pages)/about/assets/opencode.svg';
+import OllamaIcon from '@/app/(pages)/about/assets/ollama.svg';
+import DevinIcon from '@/app/(pages)/about/assets/devin.svg';
+import ManusIcon from '@/app/(pages)/about/assets/manus.svg';
 
 const skillsData = {
+  Claude: {
+    bgColor: 'bg-[#d9775726]',
+    textColor: 'text-[#d97757]',
+    icon: ClaudeIcon,
+  },
+  Paper: {
+    bgColor: 'bg-[#81acec26]',
+    textColor: 'text-[#81acec]',
+    icon: PaperIcon,
+  },
+  Conductor: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: ConductorIcon,
+  },
+  Codex: {
+    bgColor: 'bg-[#7a9dff26]',
+    textColor: 'text-[#7a9dff]',
+    icon: CodexIcon,
+  },
+  OpenCode: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: OpenCodeIcon,
+  },
+  Ollama: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: OllamaIcon,
+  },
+  Devin: {
+    bgColor: 'bg-[#21c19a26]',
+    textColor: 'text-[#21c19a]',
+    icon: DevinIcon,
+  },
+  Manus: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: ManusIcon,
+  },
   React: {
     bgColor: 'bg-[#7ee1fc26]',
     textColor: 'text-[#7ee1fc]',
@@ -135,6 +183,7 @@ const skillsData = {
 export default function AboutSkills() {
   const { skills } = about;
 
+  const aiSkills = skills.filter((skill) => skill.stack === 'ai');
   const frontendSkills = skills.filter((skill) => skill.stack === 'frontend');
   const backendSkills = skills.filter((skill) => skill.stack === 'backend');
   const toolSkills = skills.filter((skill) => skill.stack === 'tools');
@@ -142,6 +191,7 @@ export default function AboutSkills() {
   return (
     <PageSection title="Skills & Tools">
       <div className="space-y-10">
+        <SkillSection title="AI Tools" skills={aiSkills} />
         <SkillSection title="Frontend" skills={frontendSkills} />
         <SkillSection title="Backend" skills={backendSkills} />
         <SkillSection title="Tools & Platforms" skills={toolSkills} />
