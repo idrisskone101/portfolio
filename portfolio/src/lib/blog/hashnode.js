@@ -61,6 +61,16 @@ function stripHtml(html) {
   return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+function readCoverImage(item) {
+  const enclosure = item.match(/<enclosure[^>]*\burl="([^"]+)"[^>]*\btype="image\/[^"]*"/);
+  const anyEnclosure = item.match(/<enclosure[^>]*\burl="([^"]+)"/);
+  return (
+    decodeEntities((enclosure || anyEnclosure || [])[1] || '') ||
+    readTag(item, 'cover_image') ||
+    null
+  );
+}
+
 export function parseRss(xml) {
   const items = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
   return items.slice(0, 6).map((item) => {
@@ -73,7 +83,7 @@ export function parseRss(xml) {
       brief: brief.length > 280 ? `${brief.slice(0, 277)}...` : brief,
       url: url || blogContent.hashnodeUrl,
       publishedAt: pubDate ? new Date(pubDate).toISOString() : null,
-      coverImageUrl: readTag(item, 'cover_image') || null,
+      coverImageUrl: readCoverImage(item),
       source: 'hashnode-rss',
     };
   });
