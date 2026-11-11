@@ -42,16 +42,6 @@
  */
 
 /**
- * @typedef {Object} NewsArticle
- * @property {string} slug
- * @property {string} title
- * @property {string} date
- * @property {string} excerpt
- * @property {string[]} paragraphs
- * @property {boolean} placeholder
- */
-
-/**
  * @typedef {Object} BlogPost
  * @property {string} id
  * @property {string} title

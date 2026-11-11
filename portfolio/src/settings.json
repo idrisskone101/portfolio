@@ -23,10 +23,6 @@
         "path": "/blog"
       },
       {
-        "label": "News",
-        "path": "/news"
-      },
-      {
         "label": "Contact",
         "path": "/contact"
       }

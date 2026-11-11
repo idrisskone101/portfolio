@@ -7,7 +7,6 @@ export const navigation = [
   { name: 'About', path: '/about' },
   { name: 'Portfolio', path: '/portfolio' },
   { name: 'Blog', path: '/blog' },
-  { name: 'News', path: '/news' },
   { name: 'Contact', path: '/contact' },
 ];
 
@@ -94,63 +93,6 @@ export const blog = {
   hashnodeUrl: `https://${HASHNODE_HOST}`,
 };
 
-export const news = {
-  eyebrow: 'News',
-  title: 'Notes and updates',
-  lede: 'Short site notes. Every article here is placeholder copy until real updates exist.',
-  articles: [
-    {
-      slug: 'site-foundation',
-      title: 'This site now has a visual canon',
-      date: '2026-08-01',
-      excerpt:
-        'Tokens, shared page chrome, and one route transition so later visual work is a small change instead of a restyle.',
-      paragraphs: [
-        'This is placeholder news. It exists so the News route has real layout, not a stub.',
-        'The canon lives in DESIGN.md. Color, type, space, and motion should move there first. Pages should keep using PageHeader and PageCard.',
-        'Replace this article when there is an actual update to announce.',
-      ],
-      placeholder: true,
-    },
-    {
-      slug: 'open-to-collaborations',
-      title: 'Open to collaborations',
-      date: '2026-06-20',
-      excerpt:
-        'A stand-in note that the contact form is a mailto for now, and that project case studies will land in Portfolio.',
-      paragraphs: [
-        'This is placeholder news, not a real announcement.',
-        'When real work ships, swap this article. Do not invent employers or metrics here.',
-      ],
-      placeholder: true,
-    },
-    {
-      slug: 'reading-list',
-      title: 'A public reading list',
-      date: '2026-03-09',
-      excerpt:
-        'Stand-in excerpt for a list of talks, posts, and docs worth keeping next to the Hashnode blog.',
-      paragraphs: [
-        'This is placeholder news. Use it as a shape for talks, roundups, or changelog-style notes.',
-        'Keep News distinct from Blog: Blog is Hashnode writing. News is site-level updates.',
-      ],
-      placeholder: true,
-    },
-    {
-      slug: 'map-and-contact',
-      title: 'Contact and map',
-      date: '2026-01-14',
-      excerpt:
-        'Stand-in note that Contact uses a frontend-only form until a backend exists.',
-      paragraphs: [
-        'This is placeholder news. The form opens a mail client. Nothing is stored on a server.',
-        'Replace this article when there is an actual update to announce.',
-      ],
-      placeholder: true,
-    },
-  ],
-};
-
 export const contact = {
   eyebrow: 'Contact',
   title: 'Get in touch',
@@ -167,10 +109,6 @@ export const contact = {
   },
 };
 
-export function getNewsArticle(slug) {
-  return news.articles.find((article) => article.slug === slug) || null;
-}
-
 export const site = {
   navigation,
   siteMetadata,
@@ -179,7 +117,6 @@ export const site = {
   about,
   portfolio,
   blog,
-  news,
   contact,
   socials,
 };
