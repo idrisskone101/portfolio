@@ -40,7 +40,7 @@
     "socialLinks": {
       "github": "https://github.com/yourusername",
       "linkedin": "https://www.linkedin.com/in/idriss-kone-880b491bb",
-      "email": "idriss@idrisskone.com",
+      "email": "idriss.kone@icloud.com",
       "twitter": "https://twitter.com/yourhandle",
       "instagram": "https://instagram.com/yourprofile"
     }
@@ -57,7 +57,7 @@
       },
       {
         "label": "Email:",
-        "value": "idriss@idrisskone.com"
+        "value": "idriss.kone@icloud.com"
       },
       {
         "label": "Company:",
@@ -403,7 +403,7 @@
   "contact": {
     "title": "Contact",
     "description": "Get in touch",
-    "email": "idriss@idrisskone.com",
+    "email": "idriss.kone@icloud.com",
     "phone": "+1 234 567 890"
   }
 }

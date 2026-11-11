@@ -96,16 +96,16 @@ export const blog = {
 export const contact = {
   eyebrow: 'Contact',
   title: 'Get in touch',
-  lede: 'Send a note about a role, a product, or a collaboration. The form opens your mail client. Nothing is stored on this site.',
+  lede: 'Hiring, building something, or just want to say hi? Send a note.',
   email: aboutEmail,
   phone: settings.contact.phone,
   phonePlaceholder: true,
   showPhone: false,
   map: {
-    lat: 45.5017,
-    lng: -73.5673,
-    zoom: 11,
-    label: 'Map',
+    lat: 45.5048,
+    lng: -73.5698,
+    zoom: 12.5,
+    label: 'Downtown Montreal',
   },
 };
 

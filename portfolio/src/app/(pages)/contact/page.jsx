@@ -51,7 +51,7 @@ export default function ContactPage() {
               </li>
             ) : null}
           </ul>
-          <PageSection title="Map" className="mt-0">
+          <PageSection title="Based in Montreal" className="mt-0">
             <ContactMap pin={contact.map} />
           </PageSection>
         </div>

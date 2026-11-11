@@ -6,13 +6,23 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { PlaceholderFlag } from '@/components/page-chrome';
 
 const EMPTY_FORM = {
   name: '',
   email: '',
+  subject: '',
   message: '',
 };
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function buildMailto({ name, email, subject, message }) {
+  const finalSubject = subject || `Hello from ${name}`;
+  const body = `${message}\r\n\r\n${name}\r\n${email}`;
+  return `mailto:${contact.email}?subject=${encodeURIComponent(
+    finalSubject
+  )}&body=${encodeURIComponent(body)}`;
+}
 
 export default function ContactForm() {
   const [form, setForm] = useState(EMPTY_FORM);
@@ -26,31 +36,37 @@ export default function ContactForm() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const name = form.name.trim();
-    const email = form.email.trim();
-    const message = form.message.trim();
+    const values = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      subject: form.subject.trim(),
+      message: form.message.trim(),
+    };
 
-    if (!name || !email || !message) {
-      setStatus('invalid');
+    if (!values.name || !values.email || !values.message) {
+      setStatus('missing');
       return;
     }
 
-    const subject = `Note from ${name} via idrisskone.com`;
-    const body = `${message}\n\n- ${name} <${email}>`;
-    const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!EMAIL_PATTERN.test(values.email)) {
+      setStatus('bad-email');
+      return;
+    }
 
-    window.location.href = mailto;
+    const link = document.createElement('a');
+    link.href = buildMailto(values);
+    link.rel = 'noopener';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
     setStatus('opened');
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-      <div className="flex flex-wrap items-center gap-2">
-        <p className="text-sm text-copy-faint">
-          Frontend-only form. Submit opens your email client.
-        </p>
-        <PlaceholderFlag />
-      </div>
+      <p className="text-sm text-copy-faint">
+        Sending opens your email app with everything below filled in.
+      </p>
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input
@@ -75,6 +91,16 @@ export default function ContactForm() {
         />
       </div>
       <div className="space-y-2">
+        <Label htmlFor="subject">Subject</Label>
+        <Input
+          id="subject"
+          name="subject"
+          value={form.subject}
+          onChange={handleChange}
+          placeholder={form.name.trim() ? `Hello from ${form.name.trim()}` : ''}
+        />
+      </div>
+      <div className="space-y-2">
         <Label htmlFor="message">Message</Label>
         <Textarea
           id="message"
@@ -84,14 +110,24 @@ export default function ContactForm() {
           required
         />
       </div>
-      {status === 'invalid' ? (
+      {status === 'missing' ? (
         <p className="text-sm text-magenta" role="alert">
           Name, email, and message are required.
         </p>
       ) : null}
+      {status === 'bad-email' ? (
+        <p className="text-sm text-magenta" role="alert">
+          That email address does not look right.
+        </p>
+      ) : null}
       {status === 'opened' ? (
         <p className="text-sm text-copy-muted" role="status">
-          If a mail client did not open, write directly to {contact.email}.
+          Your email app should be open with the message ready to send. If it
+          did not open, write to{' '}
+          <a href={`mailto:${contact.email}`} className="text-magenta hover:underline">
+            {contact.email}
+          </a>
+          .
         </p>
       ) : null}
       <Button type="submit">Send message</Button>

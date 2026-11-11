@@ -30,8 +30,18 @@ export default function ContactMap({ pin }) {
               tileSize: 256,
               attribution: '© Esri, OpenStreetMap contributors',
             },
+            esriLabels: {
+              type: 'raster',
+              tiles: [
+                'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+              ],
+              tileSize: 256,
+            },
           },
-          layers: [{ id: 'esri', type: 'raster', source: 'esri' }],
+          layers: [
+            { id: 'esri', type: 'raster', source: 'esri' },
+            { id: 'esri-labels', type: 'raster', source: 'esriLabels' },
+          ],
         },
         center: [pin.lng, pin.lat],
         zoom: pin.zoom,
@@ -47,9 +57,17 @@ export default function ContactMap({ pin }) {
     }
 
     map.on('load', () => {
+      const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 36,
+        className: 'contact-map-popup',
+      }).setText(pin.label);
       new maplibregl.Marker({ color: '#d22d80' })
         .setLngLat([pin.lng, pin.lat])
-        .addTo(map);
+        .setPopup(popup)
+        .addTo(map)
+        .togglePopup();
       map.resize();
     });
 
@@ -69,7 +87,7 @@ export default function ContactMap({ pin }) {
       observer.disconnect();
       map.remove();
     };
-  }, [pin.lat, pin.lng, pin.zoom]);
+  }, [pin.lat, pin.lng, pin.zoom, pin.label]);
 
   if (failed) {
     const bbox = `${pin.lng - 0.18},${pin.lat - 0.12},${pin.lng + 0.18},${pin.lat + 0.12}`;
