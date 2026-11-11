@@ -89,41 +89,9 @@ export const portfolio = {
 export const blog = {
   eyebrow: 'Blog',
   title: 'Writing',
-  lede: 'Posts from Hashnode when the API responds. If it is empty or down, placeholder articles keep this page intact.',
+  lede: 'Notes on building software, learning in public, and whatever I am tinkering with. Straight from my Hashnode blog.',
   hashnodeHost: HASHNODE_HOST,
   hashnodeUrl: `https://${HASHNODE_HOST}`,
-  fallbackPosts: [
-    {
-      id: 'placeholder-shipping-ui',
-      title: 'Shipping a UI you can iterate',
-      brief: 'A stand-in post about keeping visual decisions in tokens so a site can change without a rewrite. Replace from Hashnode.',
-      url: `https://${HASHNODE_HOST}`,
-      publishedAt: '2026-04-12T12:00:00.000Z',
-      coverImageUrl: null,
-      placeholder: true,
-      source: 'placeholder',
-    },
-    {
-      id: 'placeholder-react-notes',
-      title: 'Notes on React in production',
-      brief: 'Stand-in brief covering server components, client islands, and when not to add another library. Replace from Hashnode.',
-      url: `https://${HASHNODE_HOST}`,
-      publishedAt: '2026-02-03T12:00:00.000Z',
-      coverImageUrl: null,
-      placeholder: true,
-      source: 'placeholder',
-    },
-    {
-      id: 'placeholder-montreal-dev',
-      title: 'Building in public',
-      brief: 'Stand-in brief about remote-friendly product work and keeping a personal site honest about what is real vs. draft.',
-      url: `https://${HASHNODE_HOST}`,
-      publishedAt: '2025-11-18T12:00:00.000Z',
-      coverImageUrl: null,
-      placeholder: true,
-      source: 'placeholder',
-    },
-  ],
 };
 
 export const news = {

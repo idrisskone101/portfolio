@@ -2,11 +2,7 @@ import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
 import { getBlogPosts } from '@/lib/blog/hashnode';
 import { blog } from '@/data/site-content';
-import {
-  PageHeader,
-  PageShell,
-  PlaceholderFlag,
-} from '@/components/page-chrome';
+import { PageHeader, PageShell } from '@/components/page-chrome';
 import { cn } from '@/lib/utils';
 
 export const revalidate = 3600;
@@ -28,21 +24,37 @@ function formatDate(dateString) {
 export default async function BlogPage() {
   const result = await getBlogPosts();
   const posts = result.posts;
-  const usingFallback = !result.ok;
 
   return (
     <PageShell>
       <PageHeader
         eyebrow={blog.eyebrow}
         title={blog.title}
-        lede={
-          usingFallback
-            ? `Hashnode is unavailable, so stand-in posts are showing. Writing still lives at ${blog.hashnodeHost}.`
-            : blog.lede
-        }
+        lede={blog.lede}
       />
 
-      <ol className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
+      {posts.length === 0 ? (
+        <p
+          className="border-t border-line py-8 text-sm text-copy-muted sm:text-base"
+          data-blog-source={result.source}
+        >
+          Read my posts on{' '}
+          <a
+            href={blog.hashnodeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-magenta hover:underline"
+          >
+            Hashnode
+          </a>
+          .
+        </p>
+      ) : null}
+
+      <ol
+        className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12"
+        data-blog-source={result.source}
+      >
         {posts.map((post, index) => (
           <li
             key={post.id}
@@ -74,7 +86,6 @@ export default async function BlogPage() {
                 </div>
               ) : null}
               <div className="flex flex-wrap items-center gap-3 mb-3">
-                {post.placeholder ? <PlaceholderFlag /> : null}
                 {post.publishedAt ? (
                   <p className="text-sm text-copy-faint">
                     {formatDate(post.publishedAt)}

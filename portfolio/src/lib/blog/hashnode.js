@@ -1,6 +1,8 @@
 import { blog as blogContent } from '@/data/site-content';
 
 const HASHNODE_ENDPOINT = 'https://gql.hashnode.com/';
+const USER_AGENT =
+  'Mozilla/5.0 (compatible; idrisskone.com/1.0; +https://idrisskone.com)';
 const FETCH_TIMEOUT_MS = 8000;
 
 const PUBLICATION_QUERY = `
@@ -24,10 +26,6 @@ const PUBLICATION_QUERY = `
   }
 `;
 
-function mapPlaceholderPosts() {
-  return blogContent.fallbackPosts.map((post) => ({ ...post }));
-}
-
 function mapHashnodeEdges(edges) {
   return edges.map((edge) => {
     const node = edge?.node || {};
@@ -38,24 +36,78 @@ function mapHashnodeEdges(edges) {
       url: node.url || blogContent.hashnodeUrl,
       publishedAt: node.publishedAt || new Date().toISOString(),
       coverImageUrl: node.coverImage?.url || null,
-      placeholder: false,
       source: 'hashnode',
     };
   });
 }
 
-function fallback(error, cause) {
-  console.error('hashnode posts unavailable; using placeholders', {
+function decodeEntities(text) {
+  return text
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&amp;/g, '&')
+    .trim();
+}
+
+function readTag(xml, tag) {
+  const match = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
+  return match ? decodeEntities(match[1]) : '';
+}
+
+function stripHtml(html) {
+  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+export function parseRss(xml) {
+  const items = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
+  return items.slice(0, 6).map((item) => {
+    const url = readTag(item, 'link');
+    const brief = stripHtml(readTag(item, 'description'));
+    const pubDate = readTag(item, 'pubDate');
+    return {
+      id: readTag(item, 'guid') || url,
+      title: readTag(item, 'title') || 'Untitled',
+      brief: brief.length > 280 ? `${brief.slice(0, 277)}...` : brief,
+      url: url || blogContent.hashnodeUrl,
+      publishedAt: pubDate ? new Date(pubDate).toISOString() : null,
+      coverImageUrl: readTag(item, 'cover_image') || null,
+      source: 'hashnode-rss',
+    };
+  });
+}
+
+async function getRssPosts() {
+  try {
+    const response = await fetch(`${blogContent.hashnodeUrl}/rss.xml`, {
+      headers: { Accept: 'application/rss+xml, application/xml, text/xml', 'User-Agent': USER_AGENT },
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    if (!response.ok) return { error: `rss http ${response.status}` };
+    const posts = parseRss(await response.text());
+    return posts.length ? { posts } : { error: 'rss empty' };
+  } catch (cause) {
+    return { error: `rss network: ${cause?.message || cause}` };
+  }
+}
+
+async function fallback(error, cause) {
+  const rss = await getRssPosts();
+  if (rss.posts) {
+    console.warn('hashnode graphql unavailable; using rss', { error, cause });
+    return { ok: true, error: null, source: 'rss', posts: rss.posts };
+  }
+  console.error('hashnode posts unavailable', {
     operation: 'getBlogPosts',
     host: blogContent.hashnodeHost,
     error,
     cause,
+    rssError: rss.error,
   });
-  return {
-    ok: false,
-    error,
-    posts: mapPlaceholderPosts(),
-  };
+  return { ok: false, error: `${error}; ${rss.error}`, source: 'none', posts: [] };
 }
 
 export async function getBlogPosts() {
@@ -67,6 +119,7 @@ export async function getBlogPosts() {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'User-Agent': USER_AGENT,
       },
       body: JSON.stringify({
         query: PUBLICATION_QUERY,
@@ -107,6 +160,7 @@ export async function getBlogPosts() {
   return {
     ok: true,
     error: null,
+    source: 'graphql',
     posts: mapHashnodeEdges(edges),
   };
 }
