@@ -219,7 +219,7 @@ function SkillSection({ title, skills }) {
             >
               <div
                 className={clsx(
-                  'p-2 items-center justify-center rounded-lg',
+                  'flex p-2 items-center justify-center rounded-lg shrink-0',
                   skillInfo.bgColor,
                   skillInfo.textColor
                 )}
@@ -231,7 +231,7 @@ function SkillSection({ title, skills }) {
                     width={20}
                     height={20}
                     className={clsx(
-                      'object-contain',
+                      'size-5 object-contain',
                       skill.isInvert && 'invert'
                     )}
                   />
