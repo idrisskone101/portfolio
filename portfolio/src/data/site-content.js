@@ -5,7 +5,6 @@ export const HASHNODE_HOST = 'idrisskone.hashnode.dev';
 export const navigation = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
-  { name: 'Experience', path: '/experience' },
   { name: 'Portfolio', path: '/portfolio' },
   { name: 'Blog', path: '/blog' },
   { name: 'News', path: '/news' },
@@ -85,69 +84,6 @@ export const portfolio = {
     ...project,
     placeholder: project.placeholder === true,
   })),
-};
-
-export const experience = {
-  eyebrow: 'Experience',
-  title: 'Where I have worked',
-  lede: 'Over five years building web applications in TypeScript and React, from Shopify storefronts to partner products at Plusgrade.',
-  roles: [
-    {
-      id: 'plusgrade',
-      number: '01',
-      title: 'Software Developer',
-      company: 'Plusgrade',
-      period: 'Mar 2025 – Present',
-      location: 'Montreal',
-      highlights: [
-        'Led partner storefront experimentation end to end, running tests and reporting results before launch. Winning tests lifted conversion 15% to 25% and grew average transaction size.',
-        'Built an AI-powered production support plugin that pulls context from several systems into one place, shortening support investigations.',
-        'Built an AI skill for pull request review that the team adopted, raising release confidence.',
-        'Led a partner product launch from ideation to delivery: wrote the solution document and ran story mapping into epics and tickets. The team shipped about two months early.',
-        'Shipped production storefront features in TypeScript, React and Salesforce Commerce Cloud, and owned incident follow-up so recurring storefront failures stopped.',
-        'Rewrote application startup logic into smaller, clearer steps, making new features safer to add.',
-      ],
-    },
-    {
-      id: 'sheertex-web-developer',
-      number: '02',
-      title: 'Web Developer',
-      company: 'Sheertex',
-      period: 'Sep 2023 – Mar 2025',
-      location: 'Montreal',
-      highlights: [
-        'Shipped self-serve customer accounts on the Shopify Customer API, so shoppers could manage their details without contacting support.',
-        'Raised store visits 30% with a store locator that paired a map service with daily inventory scraping.',
-        'Migrated the storefront from a client-rendered React app to Remix, moving rendering to the server.',
-        'Shipped a wishlist and back-in-stock email flow that notified shoppers when a saved item returned.',
-        'Cut freelancer turnaround 30% across multiple sites with clear briefs and code review.',
-      ],
-    },
-    {
-      id: 'sheertex-junior',
-      number: '03',
-      title: 'Junior Web Developer',
-      company: 'Sheertex',
-      period: 'Feb 2022 – Sep 2023',
-      location: 'Montreal',
-      highlights: [
-        'Raised revenue 10% with a Quick Add flow in React on the Shopify Storefront API.',
-        'Lifted storefront conversion 15% by running A/B tests and shipping only the winning variants.',
-      ],
-    },
-    {
-      id: 'manhattan',
-      number: '04',
-      title: 'Junior Web Developer',
-      company: 'Manhattan International',
-      period: 'Jan 2021 – Feb 2022',
-      location: 'Montreal',
-      highlights: [
-        'Built a cart upsell feature that increased monthly revenue by 15% through higher order values.',
-        'Implemented third-party payment and shipping integrations to reduce cart abandonment.',
-      ],
-    },
-  ],
 };
 
 export const blog = {
@@ -274,7 +210,6 @@ export const site = {
   home,
   about,
   portfolio,
-  experience,
   blog,
   news,
   contact,

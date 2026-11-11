@@ -15,10 +15,6 @@
         "path": "/about"
       },
       {
-        "label": "Experience",
-        "path": "/experience"
-      },
-      {
         "label": "Portfolio",
         "path": "/portfolio"
       },

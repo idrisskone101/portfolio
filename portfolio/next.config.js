@@ -3,7 +3,8 @@ const nextConfig = {
   transpilePackages: ['maplibre-gl'],
   async redirects() {
     return [
-      { source: '/services', destination: '/experience', permanent: true },
+      { source: '/services', destination: '/about', permanent: false },
+      { source: '/experience', destination: '/about', permanent: false },
     ];
   },
   images: {
