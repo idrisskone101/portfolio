@@ -67,12 +67,12 @@ export default async function BlogPage() {
               href={post.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
+              className="block w-full max-w-xl group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
             >
               {post.coverImageUrl ? (
                 <div
                   className={cn(
-                    'relative w-full max-w-xl mb-6 overflow-hidden border border-line rounded-lg aspect-[16/9]'
+                    'relative w-full mb-6 overflow-hidden border border-line rounded-lg aspect-[16/9]'
                   )}
                 >
                   <Image
@@ -99,7 +99,7 @@ export default async function BlogPage() {
               >
                 {post.title}
               </h2>
-              <p className="mb-4 text-sm leading-6 text-copy-muted line-clamp-3 max-w-[65ch]">
+              <p className="mb-4 text-sm leading-6 text-copy-muted line-clamp-3">
                 {post.brief}
               </p>
               <span className="text-sm font-medium text-magenta">Read more</span>
