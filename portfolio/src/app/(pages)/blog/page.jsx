@@ -2,11 +2,7 @@ import Image from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
 import { getBlogPosts } from '@/lib/blog/hashnode';
 import { blog } from '@/data/site-content';
-import {
-  PageHeader,
-  PageShell,
-  PlaceholderFlag,
-} from '@/components/page-chrome';
+import { PageHeader, PageShell } from '@/components/page-chrome';
 import { cn } from '@/lib/utils';
 
 export const revalidate = 3600;
@@ -28,75 +24,89 @@ function formatDate(dateString) {
 export default async function BlogPage() {
   const result = await getBlogPosts();
   const posts = result.posts;
-  const usingFallback = !result.ok;
 
   return (
     <PageShell>
-      <PageHeader
-        eyebrow={blog.eyebrow}
-        title={blog.title}
-        lede={
-          usingFallback
-            ? `Hashnode is unavailable, so stand-in posts are showing. Writing still lives at ${blog.hashnodeHost}.`
-            : blog.lede
-        }
-      />
+      <PageHeader eyebrow={blog.eyebrow} title={blog.title} lede={blog.lede} />
 
-      <ol className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
-        {posts.map((post, index) => (
-          <li
-            key={post.id}
-            className={cn(
-              'border-t border-line py-8',
-              index === 0 && 'md:col-span-2'
-            )}
+      {posts.length === 0 ? (
+        <p
+          className="border-t border-line py-8 text-sm text-copy-muted sm:text-base"
+          data-blog-source={result.source}
+        >
+          Read my posts on{' '}
+          <a
+            href={blog.hashnodeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-magenta hover:underline"
           >
-            <a
-              href={post.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
+            Hashnode
+          </a>
+          .
+        </p>
+      ) : null}
+
+      {posts.length > 0 ? (
+        <ol
+          className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12"
+          data-blog-source={result.source}
+        >
+          {posts.map((post, index) => (
+            <li
+              key={post.id}
+              className={cn(
+                'border-t border-line py-8',
+                index === 0 && 'md:col-span-2'
+              )}
             >
-              {post.coverImageUrl ? (
-                <div
+              <a
+                href={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full max-w-xl group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-magenta"
+              >
+                {post.coverImageUrl ? (
+                  <div
+                    className={cn(
+                      'relative w-full mb-6 overflow-hidden border border-line rounded-lg aspect-[16/9]'
+                    )}
+                  >
+                    <Image
+                      src={post.coverImageUrl}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 576px"
+                    />
+                  </div>
+                ) : null}
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  {post.publishedAt ? (
+                    <p className="text-sm text-copy-faint">
+                      {formatDate(post.publishedAt)}
+                    </p>
+                  ) : null}
+                </div>
+                <h2
                   className={cn(
-                    'relative w-full mb-6 overflow-hidden border border-line',
-                    index === 0 ? 'aspect-[16/7]' : 'aspect-[16/9]'
+                    'mb-3 font-semibold group-hover:text-magenta',
+                    index === 0 ? 'text-2xl sm:text-3xl' : 'text-xl'
                   )}
                 >
-                  <Image
-                    src={post.coverImageUrl}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 66vw"
-                  />
-                </div>
-              ) : null}
-              <div className="flex flex-wrap items-center gap-3 mb-3">
-                {post.placeholder ? <PlaceholderFlag /> : null}
-                {post.publishedAt ? (
-                  <p className="text-sm text-copy-faint">
-                    {formatDate(post.publishedAt)}
-                  </p>
-                ) : null}
-              </div>
-              <h2
-                className={cn(
-                  'mb-3 font-semibold group-hover:text-magenta',
-                  index === 0 ? 'text-2xl sm:text-3xl' : 'text-xl'
-                )}
-              >
-                {post.title}
-              </h2>
-              <p className="mb-4 text-sm leading-6 text-copy-muted line-clamp-3 max-w-[65ch]">
-                {post.brief}
-              </p>
-              <span className="text-sm font-medium text-magenta">Read more</span>
-            </a>
-          </li>
-        ))}
-      </ol>
+                  {post.title}
+                </h2>
+                <p className="mb-4 text-sm leading-6 text-copy-muted line-clamp-3">
+                  {post.brief}
+                </p>
+                <span className="text-sm font-medium text-magenta">
+                  Read more
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      ) : null}
     </PageShell>
   );
 }

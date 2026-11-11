@@ -13,24 +13,6 @@
  */
 
 /**
- * @typedef {Object} Studio
- * @property {string} name
- * @property {string} founder
- * @property {string} founded
- * @property {string} email
- * @property {string} summary
- */
-
-/**
- * @typedef {Object} HomeProduct
- * @property {string} id
- * @property {string} title
- * @property {string} statusLabel
- * @property {string} href
- * @property {boolean} external
- */
-
-/**
  * @typedef {'live' | 'in-development'} ProjectStatus
  */
 
@@ -57,25 +39,6 @@
  * @property {string} href
  * @property {'github' | 'linkedin' | 'mail' | 'twitter' | 'instagram'} icon
  * @property {boolean} [placeholder]
- */
-
-/**
- * @typedef {Object} ServiceOffering
- * @property {string} id
- * @property {string} number
- * @property {string} title
- * @property {string} description
- * @property {boolean} placeholder
- */
-
-/**
- * @typedef {Object} NewsArticle
- * @property {string} slug
- * @property {string} title
- * @property {string} date
- * @property {string} excerpt
- * @property {string[]} paragraphs
- * @property {boolean} placeholder
  */
 
 /**

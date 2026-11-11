@@ -23,8 +23,104 @@ import GraphQLIcon from '@/app/(pages)/about/assets/graphql.svg';
 import RemixRunIcon from '@/app/(pages)/about/assets/remixrun.svg';
 import SquarespaceIcon from '@/app/(pages)/about/assets/squarespace.svg';
 import GitIcon from '@/app/(pages)/about/assets/git.svg';
+import ClaudeIcon from '@/app/(pages)/about/assets/claude.svg';
+import PaperIcon from '@/app/(pages)/about/assets/paper.svg';
+import ConductorIcon from '@/app/(pages)/about/assets/conductor.svg';
+import ChatGPTIcon from '@/app/(pages)/about/assets/chatgpt.svg';
+import OpenCodeIcon from '@/app/(pages)/about/assets/opencode.svg';
+import OllamaIcon from '@/app/(pages)/about/assets/ollama.svg';
+import DevinIcon from '@/app/(pages)/about/assets/devin.svg';
+import ManusIcon from '@/app/(pages)/about/assets/manus.svg';
+import SalesforceIcon from '@/app/(pages)/about/assets/salesforce.svg';
+import RhinoIcon from '@/app/(pages)/about/assets/rhino.svg';
+import SnowflakeIcon from '@/app/(pages)/about/assets/snowflake.svg';
+import PostHogIcon from '@/app/(pages)/about/assets/posthog.svg';
+import SplunkIcon from '@/app/(pages)/about/assets/splunk.svg';
+import FullStoryIcon from '@/app/(pages)/about/assets/fullstory.svg';
+import CypressIcon from '@/app/(pages)/about/assets/cypress.svg';
+import GitLabIcon from '@/app/(pages)/about/assets/gitlab.svg';
 
 const skillsData = {
+  'Salesforce Commerce Cloud': {
+    bgColor: 'bg-[#00a1e026]',
+    textColor: 'text-[#00a1e0]',
+    icon: SalesforceIcon,
+  },
+  'RhinoJS': {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: RhinoIcon,
+  },
+  'Snowflake': {
+    bgColor: 'bg-[#29b5e826]',
+    textColor: 'text-[#29b5e8]',
+    icon: SnowflakeIcon,
+  },
+  'PostHog': {
+    bgColor: 'bg-[#f9bd2b26]',
+    textColor: 'text-[#f9bd2b]',
+    icon: PostHogIcon,
+  },
+  'Splunk': {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: SplunkIcon,
+  },
+  'FullStory': {
+    bgColor: 'bg-[#a23cf026]',
+    textColor: 'text-[#a23cf0]',
+    icon: FullStoryIcon,
+  },
+  'Cypress': {
+    bgColor: 'bg-[#69d3a726]',
+    textColor: 'text-[#69d3a7]',
+    icon: CypressIcon,
+  },
+  'GitLab': {
+    bgColor: 'bg-[#fc6d2626]',
+    textColor: 'text-[#fc6d26]',
+    icon: GitLabIcon,
+  },
+  Claude: {
+    bgColor: 'bg-[#d9775726]',
+    textColor: 'text-[#d97757]',
+    icon: ClaudeIcon,
+  },
+  Paper: {
+    bgColor: 'bg-[#81acec26]',
+    textColor: 'text-[#81acec]',
+    icon: PaperIcon,
+  },
+  Conductor: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: ConductorIcon,
+  },
+  ChatGPT: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: ChatGPTIcon,
+  },
+  OpenCode: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: OpenCodeIcon,
+  },
+  Ollama: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: OllamaIcon,
+  },
+  Devin: {
+    bgColor: 'bg-[#21c19a26]',
+    textColor: 'text-[#21c19a]',
+    icon: DevinIcon,
+  },
+  Manus: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: ManusIcon,
+  },
   React: {
     bgColor: 'bg-[#7ee1fc26]',
     textColor: 'text-[#7ee1fc]',
@@ -135,6 +231,7 @@ const skillsData = {
 export default function AboutSkills() {
   const { skills } = about;
 
+  const aiSkills = skills.filter((skill) => skill.stack === 'ai');
   const frontendSkills = skills.filter((skill) => skill.stack === 'frontend');
   const backendSkills = skills.filter((skill) => skill.stack === 'backend');
   const toolSkills = skills.filter((skill) => skill.stack === 'tools');
@@ -142,6 +239,7 @@ export default function AboutSkills() {
   return (
     <PageSection title="Skills & Tools">
       <div className="space-y-10">
+        <SkillSection title="AI Tools" skills={aiSkills} />
         <SkillSection title="Frontend" skills={frontendSkills} />
         <SkillSection title="Backend" skills={backendSkills} />
         <SkillSection title="Tools & Platforms" skills={toolSkills} />
@@ -169,7 +267,7 @@ function SkillSection({ title, skills }) {
             >
               <div
                 className={clsx(
-                  'p-2 items-center justify-center rounded-lg',
+                  'flex p-2 items-center justify-center rounded-lg shrink-0',
                   skillInfo.bgColor,
                   skillInfo.textColor
                 )}
@@ -181,7 +279,7 @@ function SkillSection({ title, skills }) {
                     width={20}
                     height={20}
                     className={clsx(
-                      'object-contain',
+                      'size-5 object-contain',
                       skill.isInvert && 'invert'
                     )}
                   />

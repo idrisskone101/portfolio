@@ -1,59 +1,67 @@
 {
   "siteMetadata": {
-    "title": "Idriss Kone — Kode Studios",
-    "description": "Kode Studios is Idriss Kone's AI-first app studio. Pillie is live on the App Store. HairTrace is in development.",
+    "title": "Idriss Kone — Software Developer",
+    "description": "Idriss Kone is a full-stack software developer in Montreal at Plusgrade. Over five years building web applications in TypeScript and React.",
     "author": "Idriss Kone"
   },
   "navigation": {
     "links": [
-      { "label": "Home", "path": "/" },
-      { "label": "About", "path": "/about" },
-      { "label": "Services", "path": "/services" },
-      { "label": "Portfolio", "path": "/portfolio" },
-      { "label": "Blog", "path": "/blog" },
-      { "label": "News", "path": "/news" },
-      { "label": "Contact", "path": "/contact" }
+      {
+        "label": "Home",
+        "path": "/"
+      },
+      {
+        "label": "About",
+        "path": "/about"
+      },
+      {
+        "label": "Portfolio",
+        "path": "/portfolio"
+      },
+      {
+        "label": "Blog",
+        "path": "/blog"
+      },
+      {
+        "label": "Contact",
+        "path": "/contact"
+      }
     ]
   },
   "home": {
     "name": "Idriss Kone",
-    "titles": ["Founder of Kode Studios", "Building Pillie", "AI-first app studio"],
-    "description": "I run Kode Studios, an AI-first app studio.",
+    "titles": [
+      "Software Developer",
+      "Frontend Developer",
+      "Full-Stack Developer"
+    ],
+    "description": "I love building software. I'm happiest tinkering: trying new tools and taking things apart to see how they work. Turning small ideas into projects people can actually use and benefit from.",
     "profileImage": "/app/_assets/images/profile.jpg",
     "socialLinks": {
       "github": "https://github.com/yourusername",
-      "linkedin": "https://linkedin.com/in/yourprofile",
-      "email": "idriss@idrisskone.com",
+      "linkedin": "https://www.linkedin.com/in/idriss-kone-880b491bb",
+      "email": "idriss.kone@icloud.com",
       "twitter": "https://twitter.com/yourhandle",
       "instagram": "https://instagram.com/yourprofile"
     }
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Founder of Kode Studios",
+    "subtitle": "Software Developer at Plusgrade",
     "profileImage": "/app/_assets/images/profile.jpg",
-    "mainContent": "I run Kode Studios, an AI-first app studio I founded in 2026.\n\nPillie (Birth Control Reminder: Pillie) has been live on the App Store since May 2026. It is a birth control reminder that can block distracting apps until the dose is marked as taken. It is free with subscriptions and has paying users.\n\nHairTrace, a hair-loss treatment tracking iOS app, is in development.\n\nWrite to idriss@idrisskone.com.",
-    "additionalContent": "Kode Studios is Idriss Kone's AI-first app studio.",
+    "mainContent": "I'm Idriss, a software developer in Montreal. I've spent five-plus years building for the web, mostly in TypeScript and React, and seeing something I made work for real people never gets old.\n\nThese days I'm at Plusgrade, running experiments so we make data-backed software decisions at scale, and building AI workflows that take the tedious parts off my team's plate. Before that, I spent three years making Shopify storefronts faster and more user-friendly at Sheertex.\n\nOff the clock, I like to tinker. Learning new tools, taking things apart to see how they work, and side projects I sometimes build in public. The latest is Pillie, an iOS app, live on the App Store today.\n\nFeel free to say hello at idriss.kone@icloud.com.",
     "info": [
-      {
-        "label": "Birthday:",
-        "value": "1999-05-04"
-      },
       {
         "label": "Location:",
         "value": "Montreal"
       },
       {
         "label": "Email:",
-        "value": "idriss@idrisskone.com"
+        "value": "idriss.kone@icloud.com"
       },
       {
-        "label": "Phone:",
-        "value": "+1 234 567 890"
-      },
-      {
-        "label": "Studio:",
-        "value": "Kode Studios"
+        "label": "Company:",
+        "value": "Plusgrade"
       },
       {
         "label": "Study:",
@@ -61,10 +69,42 @@
       },
       {
         "label": "Degree:",
-        "value": "Bachelor of Science in Computer Science"
+        "value": "BCompSc in Computer Science"
       }
     ],
     "skills": [
+      {
+        "name": "Claude",
+        "stack": "ai"
+      },
+      {
+        "name": "Paper",
+        "stack": "ai"
+      },
+      {
+        "name": "Conductor",
+        "stack": "ai"
+      },
+      {
+        "name": "ChatGPT",
+        "stack": "ai"
+      },
+      {
+        "name": "OpenCode",
+        "stack": "ai"
+      },
+      {
+        "name": "Ollama",
+        "stack": "ai"
+      },
+      {
+        "name": "Devin",
+        "stack": "ai"
+      },
+      {
+        "name": "Manus",
+        "stack": "ai"
+      },
       {
         "name": "React",
         "stack": "frontend",
@@ -127,7 +167,7 @@
       },
       {
         "name": "Vite",
-        "stack": "backend"
+        "stack": "tools"
       },
       {
         "name": "GitHub",
@@ -163,29 +203,50 @@
       {
         "name": "Git",
         "stack": "tools"
-      }
-    ]
-  },
-  "services": {
-    "title": "Services",
-    "description": "What I can do for you",
-    "services": [
+      },
       {
-        "title": "Web Development",
-        "description": "Full stack web development services",
-        "icon": "code"
+        "name": "Salesforce Commerce Cloud",
+        "stack": "backend"
+      },
+      {
+        "name": "RhinoJS",
+        "stack": "backend"
+      },
+      {
+        "name": "Snowflake",
+        "stack": "tools"
+      },
+      {
+        "name": "PostHog",
+        "stack": "tools"
+      },
+      {
+        "name": "Splunk",
+        "stack": "tools"
+      },
+      {
+        "name": "FullStory",
+        "stack": "tools"
+      },
+      {
+        "name": "Cypress",
+        "stack": "tools"
+      },
+      {
+        "name": "GitLab",
+        "stack": "tools"
       }
     ]
   },
   "portfolio": {
     "title": "Portfolio",
-    "subtitle": "Kode Studios",
-    "description": "Consumer iOS apps from Kode Studios. Pillie is live. HairTrace is in development.",
+    "subtitle": "Side projects",
+    "description": "Things I build outside work.",
     "projects": [
       {
         "id": "pillie",
         "title": "Birth Control Reminder: Pillie",
-        "description": "A birth control reminder that can block distracting apps until the dose is marked as taken. Free with subscriptions. Live on the App Store since May 2026, with paying users.",
+        "description": "An iOS birth control reminder that can block distracting apps until the dose is marked as taken. I built and shipped it as a side project. Free with subscriptions, live on the App Store since May 2026 with paying users.",
         "image": null,
         "appStoreUrl": "https://apps.apple.com/app/id6759352439",
         "liveUrl": null,
@@ -194,21 +255,143 @@
         "status": "live",
         "statusLabel": "Live on the App Store",
         "placeholder": false,
-        "technologies": [{ "name": "iOS" }]
+        "technologies": [
+          {
+            "name": "iOS"
+          }
+        ]
       },
       {
-        "id": "hairtrace",
-        "title": "HairTrace",
-        "description": "A hair-loss treatment tracking iOS app, in development.",
-        "image": null,
+        "id": "weather-app",
+        "title": "Weather App",
+        "description": "A fast weather lookup for your favourite cities, built in vanilla JavaScript with API fetching and autocomplete search.",
+        "image": "/projects/weatherapp.png",
+        "liveUrl": "https://weather-search-8ebba8.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/WeatherApp",
+        "category": "Frontend",
         "appStoreUrl": null,
-        "liveUrl": null,
-        "githubUrl": null,
-        "category": "iOS",
-        "status": "in-development",
-        "statusLabel": "In development",
         "placeholder": false,
-        "technologies": [{ "name": "iOS" }]
+        "technologies": [
+          {
+            "name": "JavaScript"
+          },
+          {
+            "name": "REST API"
+          },
+          {
+            "name": "Autocomplete"
+          }
+        ]
+      },
+      {
+        "id": "ip-address-tracker",
+        "title": "IP Address Tracker",
+        "description": "Look up any IP address and see it on an interactive map. My first project with Next.js and Tailwind CSS, with Leaflet for the map.",
+        "image": "/projects/ipaddress.png",
+        "liveUrl": null,
+        "githubUrl": "https://github.com/idriss101/IP-Tracker",
+        "category": "Frontend",
+        "appStoreUrl": null,
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "Next.js"
+          },
+          {
+            "name": "Tailwind CSS"
+          },
+          {
+            "name": "Leaflet"
+          }
+        ]
+      },
+      {
+        "id": "designo",
+        "title": "Designo",
+        "description": "A multipage site for a fictional design agency (a Frontend Mentor challenge), built with React and Sass and no CSS framework. A good workout for CSS Grid, Flexbox and SVGs.",
+        "image": "/projects/designo.png",
+        "liveUrl": "https://designo-d9d71e.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/Designo",
+        "category": "Frontend",
+        "appStoreUrl": null,
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "Sass"
+          },
+          {
+            "name": "CSS Grid"
+          },
+          {
+            "name": "SVG"
+          }
+        ]
+      },
+      {
+        "id": "dine",
+        "title": "Dine Restaurant",
+        "description": "A two-page site for a fictional fine-dining restaurant, built with Next.js and Tailwind CSS, with layouts that change with screen size.",
+        "image": "/projects/dine.png",
+        "liveUrl": "https://dine-restaurant-one.vercel.app/",
+        "githubUrl": "https://github.com/idriss101/Dine-Restaurant",
+        "category": "Frontend",
+        "appStoreUrl": null,
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "Next.js"
+          },
+          {
+            "name": "Tailwind CSS"
+          }
+        ]
+      },
+      {
+        "id": "movie-search",
+        "title": "Movie Search",
+        "description": "Look up any movie for a short plot summary and its trailer. My first React project and my first time consuming an API.",
+        "image": "/projects/moviesearch.png",
+        "liveUrl": "https://movie-search-464185.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/MovieSearch",
+        "category": "Frontend",
+        "appStoreUrl": null,
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "Axios"
+          },
+          {
+            "name": "React YouTube"
+          }
+        ]
+      },
+      {
+        "id": "pokedex",
+        "title": "Pokédex",
+        "description": "A one-stop shop for looking up your favourite Pokémon, built because searching online every time took too long. My first time with React hooks and infinite scrolling.",
+        "image": "/projects/pokedex.png",
+        "liveUrl": "https://pokemon-pokedex-4ah7.netlify.app/",
+        "githubUrl": "https://github.com/idriss101/Pokedex",
+        "category": "Frontend",
+        "appStoreUrl": null,
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "React Hooks"
+          },
+          {
+            "name": "Infinite scroll"
+          }
+        ]
       }
     ]
   },
@@ -220,7 +403,7 @@
   "contact": {
     "title": "Contact",
     "description": "Get in touch",
-    "email": "idriss@idrisskone.com",
+    "email": "idriss.kone@icloud.com",
     "phone": "+1 234 567 890"
   }
 }

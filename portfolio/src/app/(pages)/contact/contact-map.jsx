@@ -30,8 +30,18 @@ export default function ContactMap({ pin }) {
               tileSize: 256,
               attribution: '© Esri, OpenStreetMap contributors',
             },
+            esriLabels: {
+              type: 'raster',
+              tiles: [
+                'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+              ],
+              tileSize: 256,
+            },
           },
-          layers: [{ id: 'esri', type: 'raster', source: 'esri' }],
+          layers: [
+            { id: 'esri', type: 'raster', source: 'esri' },
+            { id: 'esri-labels', type: 'raster', source: 'esriLabels' },
+          ],
         },
         center: [pin.lng, pin.lat],
         zoom: pin.zoom,

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { contact, studio } from '@/data/site-content';
+import { contact } from '@/data/site-content';
 import {
   PageHeader,
   PageSection,
@@ -10,7 +10,7 @@ import ContactForm from './contact-form';
 
 export const metadata = {
   title: 'Contact',
-  description: `Write to ${studio.email}. ${contact.lede}`,
+  description: `Write to ${contact.email}. ${contact.lede}`,
 };
 
 const ContactMap = dynamic(() => import('./contact-map'), {
@@ -41,15 +41,17 @@ export default function ContactPage() {
                 {contact.email}
               </a>
             </li>
-            <li className="flex gap-4">
-              <span className="w-24 font-bold shrink-0">Phone</span>
-              <span className="flex flex-wrap items-center gap-2 text-copy-muted">
-                {contact.phone}
-                {contact.phonePlaceholder ? <PlaceholderFlag /> : null}
-              </span>
-            </li>
+            {contact.showPhone ? (
+              <li className="flex gap-4">
+                <span className="w-24 font-bold shrink-0">Phone</span>
+                <span className="flex flex-wrap items-center gap-2 text-copy-muted">
+                  {contact.phone}
+                  {contact.phonePlaceholder ? <PlaceholderFlag /> : null}
+                </span>
+              </li>
+            ) : null}
           </ul>
-          <PageSection title="Map" className="mt-0">
+          <PageSection title="Based in Montreal" className="mt-0">
             <ContactMap pin={contact.map} />
           </PageSection>
         </div>

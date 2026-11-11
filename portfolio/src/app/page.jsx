@@ -5,8 +5,7 @@ import profileImage from '@/app/_assets/images/profile.jpg';
 import { Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { home, socials, studio } from '@/data/site-content';
-import HomeProducts from './home/home-products';
+import { home, socials } from '@/data/site-content';
 import HomeTypeTitles from './home/home-type-titles';
 
 const ICONS = {
@@ -36,10 +35,7 @@ export default function Home() {
         />
 
         <div className="flex flex-col items-center justify-center mt-8 text-center xl:mt-0 xl:text-left xl:items-start">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-copy-faint">
-            {studio.name}
-          </p>
-          <h1 className="mt-3 text-4xl font-bold uppercase lg:text-5xl" data-identity="copy">
+          <h1 className="text-4xl font-bold uppercase lg:text-5xl" data-identity="copy">
             {home.name}
           </h1>
           <div className="mt-3 text-xl font-medium text-magenta min-h-[1.25em] lg:text-2xl">
@@ -48,7 +44,6 @@ export default function Home() {
           <p className="max-w-md mt-5 text-lg text-copy-muted">
             {home.description}
           </p>
-          <HomeProducts products={home.products} />
           <div className="flex flex-wrap justify-center gap-3 mt-8 xl:justify-start xl:mt-5">
             <Button asChild>
               <Link href="/portfolio">View work</Link>
