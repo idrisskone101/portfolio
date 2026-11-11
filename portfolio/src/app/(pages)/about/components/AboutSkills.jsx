@@ -26,7 +26,7 @@ import GitIcon from '@/app/(pages)/about/assets/git.svg';
 import ClaudeIcon from '@/app/(pages)/about/assets/claude.svg';
 import PaperIcon from '@/app/(pages)/about/assets/paper.svg';
 import ConductorIcon from '@/app/(pages)/about/assets/conductor.svg';
-import CodexIcon from '@/app/(pages)/about/assets/codex.svg';
+import ChatGPTIcon from '@/app/(pages)/about/assets/chatgpt.svg';
 import OpenCodeIcon from '@/app/(pages)/about/assets/opencode.svg';
 import OllamaIcon from '@/app/(pages)/about/assets/ollama.svg';
 import DevinIcon from '@/app/(pages)/about/assets/devin.svg';
@@ -48,10 +48,10 @@ const skillsData = {
     textColor: 'text-white',
     icon: ConductorIcon,
   },
-  Codex: {
-    bgColor: 'bg-[#7a9dff26]',
-    textColor: 'text-[#7a9dff]',
-    icon: CodexIcon,
+  ChatGPT: {
+    bgColor: 'bg-[#ffffff14]',
+    textColor: 'text-white',
+    icon: ChatGPTIcon,
   },
   OpenCode: {
     bgColor: 'bg-[#ffffff14]',
