@@ -57,17 +57,9 @@ export default function ContactMap({ pin }) {
     }
 
     map.on('load', () => {
-      const popup = new maplibregl.Popup({
-        closeButton: false,
-        closeOnClick: false,
-        offset: 36,
-        className: 'contact-map-popup',
-      }).setText(pin.label);
       new maplibregl.Marker({ color: '#d22d80' })
         .setLngLat([pin.lng, pin.lat])
-        .setPopup(popup)
-        .addTo(map)
-        .togglePopup();
+        .addTo(map);
       map.resize();
     });
 
@@ -87,7 +79,7 @@ export default function ContactMap({ pin }) {
       observer.disconnect();
       map.remove();
     };
-  }, [pin.lat, pin.lng, pin.zoom, pin.label]);
+  }, [pin.lat, pin.lng, pin.zoom]);
 
   if (failed) {
     const bbox = `${pin.lng - 0.18},${pin.lat - 0.12},${pin.lng + 0.18},${pin.lat + 0.12}`;
