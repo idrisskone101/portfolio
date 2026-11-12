@@ -23,7 +23,7 @@ export default function ProjectDialog({
 
   return (
     <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <AlertDialogContent className="xl:max-w-3xl max-h-[90vh] overflow-y-auto bg-canvas border-line px-4 sm:px-6 max-w-[90vw]">
+      <AlertDialogContent className="xl:max-w-3xl max-h-[90vh] overflow-y-auto auto-rows-max bg-canvas border-line px-4 sm:px-6 max-w-[90vw]">
         {selectedProject.image ? (
           <div className="relative mb-4 overflow-hidden rounded-lg aspect-video">
             <Image
