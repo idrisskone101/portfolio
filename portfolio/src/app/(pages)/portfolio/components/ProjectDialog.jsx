@@ -25,13 +25,18 @@ export default function ProjectDialog({
     <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <AlertDialogContent className="xl:max-w-3xl max-h-[90vh] overflow-y-auto bg-canvas border-line px-4 sm:px-6 max-w-[90vw]">
         {selectedProject.image ? (
-          <div className="relative mb-4 overflow-hidden rounded-lg aspect-video">
-            <Image
-              src={selectedProject.image}
-              alt={selectedProject.title}
-              fill
-              className="object-cover"
-            />
+          // The outer div is the grid item. A clipped aspect-ratio box has no
+          // minimum height of its own, so as a direct grid item its row shrank
+          // on short viewports and the image painted over the title below.
+          <div className="mb-4">
+            <div className="relative overflow-hidden rounded-lg aspect-video">
+              <Image
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         ) : null}
         <AlertDialogHeader>
