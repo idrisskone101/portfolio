@@ -247,7 +247,7 @@
         "id": "pillie",
         "title": "Birth Control Reminder: Pillie",
         "description": "An iOS birth control reminder that can block distracting apps until the dose is marked as taken. I built and shipped it as a side project. Free with subscriptions, live on the App Store since May 2026 with paying users.",
-        "image": null,
+        "image": "/projects/pillie.jpg",
         "appStoreUrl": "https://apps.apple.com/app/id6759352439",
         "liveUrl": null,
         "githubUrl": null,
