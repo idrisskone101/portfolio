@@ -294,6 +294,34 @@
         ]
       },
       {
+        "id": "upnext",
+        "title": "upNext",
+        "description": "Describe a vibe, like \"that 3am can't-sleep melancholy\", and get movie and TV picks, each with a reason it fits. An LLM picks the titles and TMDB supplies posters, cast, streaming info and trailers.",
+        "image": "/projects/upnext.jpg",
+        "liveUrl": "https://upnext-app-production.up.railway.app",
+        "githubUrl": null,
+        "category": "Full-stack",
+        "appStoreUrl": null,
+        "placeholder": false,
+        "technologies": [
+          {
+            "name": "React"
+          },
+          {
+            "name": "Node.js"
+          },
+          {
+            "name": "OpenAI API"
+          },
+          {
+            "name": "TMDB API"
+          },
+          {
+            "name": "Tailwind CSS"
+          }
+        ]
+      },
+      {
         "id": "weather-app",
         "title": "Weather App",
         "description": "A fast weather lookup for your favourite cities, built in vanilla JavaScript with API fetching and autocomplete search.",
