@@ -264,7 +264,7 @@
       {
         "id": "postforge",
         "title": "PostForge",
-        "description": "A self-hosted pipeline I built to make AI marketing content for my iOS apps. It generates images and video, turns them into slideshows and UGC-style clips, queues everything for review, and tracks what each one costs. The live demo runs on sample content for a made-up plant-care app.",
+        "description": "A self-hosted pipeline I built to make AI marketing content for my iOS apps. It generates images and video, turns them into slideshows and UGC-style clips, queues everything for review, and tracks what each one costs. The live demo walks through one launch campaign for a made-up language-learning app, from AI creators to cloned clips, slideshows, results and cost.",
         "image": "/projects/postforge.jpg",
         "liveUrl": "https://postforge-demo-production.up.railway.app",
         "githubUrl": "https://github.com/idrisskone101/postForge",
